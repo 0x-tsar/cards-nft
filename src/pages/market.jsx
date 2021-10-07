@@ -7,16 +7,29 @@ export const Container = styled.div`
   flex-direction: row;
 `;
 
-const Market = () => {
-  const ref = useRef();
+const _cards = [
+  {
+    card: "./card1.png",
+    options: { title: "Luciano", description: "Description 1" },
+  },
+  {
+    card: "./card2.png",
+    options: { title: "Hernanes", description: "Description 2" },
+  },
+  {
+    card: "./card3.png",
+    options: { title: "Reinaldo", description: "Description 3" },
+  },
+];
 
+const Market = () => {
   return (
     <Container>
-      {["./card1.png", "./card2.png", "./card3.png"].map((item, key) => {
+      {_cards.map((item, key) => {
         return (
-          <>
-            <Card key={key} card={item} ref={ref}></Card>
-          </>
+          <div key={key}>
+            <Card card={item}></Card>
+          </div>
         );
       })}
     </Container>

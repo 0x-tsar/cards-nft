@@ -17,7 +17,7 @@ export const CardHolder = styled.div`
 // MAKE A COMPONENT WITH ALL THE CLUBS AND THEIR PAGES
 export const LittleWindow = styled.div`
   width: 200px;
-  height: 400px;
+  height: 100px;
   background-color: rgb(255, 255, 255);
   /* background-color: rgb(140, 0, 107);
   color: white; */
@@ -56,7 +56,6 @@ const Card = ({ card }) => {
     <Container>
       <CardHolder
         onMouseMove={(e) => {
-          // console.log("enter");
           ref.current.style.display = "flex";
           ref.current.style.left = `${e.pageX + 10}px`;
           ref.current.style.top = `${e.pageY + 10}px`;
@@ -65,9 +64,13 @@ const Card = ({ card }) => {
           ref.current.style.display = "none";
         }}
       >
-        <Img src={card}></Img>
+        <Img src={card.card}></Img>
       </CardHolder>
-      <LittleWindow ref={ref}></LittleWindow>
+      <LittleWindow style={{ color: "black" }} ref={ref}>
+        <div>{card.options.title}</div>
+        <div>{card.options.description}</div>
+        <br></br>
+      </LittleWindow>
     </Container>
   );
 };
