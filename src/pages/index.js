@@ -3,7 +3,8 @@ import styles from "../../styles/Home.module.css";
 import styled from "styled-components";
 
 export const Container = styled.div`
-  grid-area: "main";
+  grid-area: main;
+  display: flex;
 `;
 
 export default function Home() {
