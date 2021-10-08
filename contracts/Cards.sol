@@ -10,6 +10,7 @@ contract Cards is ERC721Enumerable {
 
     struct Card {
         uint256 id;
+        string title;
         address owner;
         uint256 price;
         string description;
@@ -17,8 +18,9 @@ contract Cards is ERC721Enumerable {
         uint256 timestamp;
     }
 
-    mapping(address => Card) public marketCards;
+    mapping(address => mapping(uint256 => Card)) public marketCards;
     mapping(address => mapping(uint256 => Card)) public myCards;
+    mapping(address => bool) public admins;
 
     constructor() ERC721("Cards Futebol", "FUT") {
         admin = msg.sender;
@@ -26,12 +28,14 @@ contract Cards is ERC721Enumerable {
 
     function mintCards(
         uint256 _price,
+        string memory _title,
         string memory _description,
         string memory _urlPicture
     ) external {
         Card memory card = Card({
             id: nextItemId,
             owner: address(this),
+            title: _title,
             price: _price,
             description: _description,
             urlPicture: _urlPicture,
@@ -39,12 +43,16 @@ contract Cards is ERC721Enumerable {
         });
 
         _mint(address(this), nextItemId);
-        marketCards[address(this)] = card;
-
-        // tokenOfOwnerByIndex(owner, index);
-        // tokenByIndex(index);
+        marketCards[address(this)][nextItemId] = card;
 
         nextItemId++;
+    }
+
+    function addAdmin(address _newAdmin) external returns (bool) {
+        require(msg.sender == admin, "YOU ARE NOT AN ADMIN!");
+
+        admins[_newAdmin] = true;
+        return true;
     }
 
     function _baseURI() internal view virtual override returns (string memory) {

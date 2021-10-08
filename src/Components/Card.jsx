@@ -17,7 +17,9 @@ export const CardHolder = styled.div`
 // MAKE A COMPONENT WITH ALL THE CLUBS AND THEIR PAGES
 export const LittleWindow = styled.div`
   width: 200px;
-  height: 100px;
+  height: auto;
+  /* word-wrap: break-word; */
+  word-break: break-all;
   background-color: rgb(255, 255, 255);
   /* background-color: rgb(140, 0, 107);
   color: white; */
@@ -52,9 +54,13 @@ export const Img = styled.img`
 
 const Card = ({ card }) => {
   const ref = useRef();
+  const refCard = useRef();
   return (
     <Container>
       <CardHolder
+        onClick={(e) => {
+          console.log(card);
+        }}
         onMouseMove={(e) => {
           ref.current.style.display = "flex";
           ref.current.style.left = `${e.pageX + 10}px`;
@@ -64,11 +70,19 @@ const Card = ({ card }) => {
           ref.current.style.display = "none";
         }}
       >
-        <Img src={card.card}></Img>
+        <Img src={card.urlPicture}></Img>
       </CardHolder>
       <LittleWindow style={{ color: "black" }} ref={ref}>
-        <div>{card.options.title}</div>
-        <div>{card.options.description}</div>
+        <div>{card.id}</div> <br />
+        <div>{card.owner}</div> <br />
+        <div>{card.title}</div>
+        <br />
+        <div>{card.description}</div>
+        <br />
+        <div>{card.price}</div>
+        <br />
+        <div>{new Date(Number(card.timestamp) * 1000).toTimeString()}</div>
+        <br />
         <br></br>
       </LittleWindow>
     </Container>

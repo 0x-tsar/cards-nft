@@ -4,9 +4,11 @@ import Cards from "./contracts/Cards.json";
 export const loadEthereum = async () => {
   try {
     if (window.ethereum) {
-      const web3 = new Web3(window.ethereum);
+      const web3 = await new Web3(window.ethereum);
+      console.log(web3);
       window.ethereum.enable();
       const chainId = await window.ethereum.networkVersion;
+      console.log(chainId);
       if (chainId !== "5777") {
         alert("change to 5777 network");
       } else {
