@@ -66,16 +66,25 @@ contract Cards is ERC721Enumerable {
             "value is not enough"
         );
 
-        Card memory card = marketCards[address(this)][_idCard];
-        delete marketCards[address(this)][_idCard];
-        myCards[msg.sender][_idCard] = card;
+        Card memory card = Card({
+            id: marketCards[address(this)][_idCard].id,
+            owner: marketCards[address(this)][_idCard].owner,
+            title: marketCards[address(this)][_idCard].title,
+            price: marketCards[address(this)][_idCard].price,
+            description: marketCards[address(this)][_idCard].description,
+            urlPicture: marketCards[address(this)][_idCard].urlPicture,
+            timestamp: marketCards[address(this)][_idCard].timestamp
+        });
 
-        transferFrom(address(this), msg.sender, _idCard);
+        myCards[msg.sender][_idCard] = card;
+        delete marketCards[address(this)][_idCard];
+
+        _transfer(address(this), msg.sender, _idCard);
 
         emit cardTransaction(
             address(this),
             msg.sender,
-            card.price,
+            marketCards[address(this)][_idCard].price,
             block.timestamp,
             "Buy"
         );

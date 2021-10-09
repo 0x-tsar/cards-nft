@@ -65,9 +65,9 @@ const Card = ({ card }) => {
         onClick={async (e) => {
           console.log(card);
           const currentAccount = myInfos.currentAddress 
-          const value = myInfos.web3.utils.toWei('0.1');
+          const value = myInfos.web3.utils.toWei('0.03');
           const price = card.price
-          // console.log(currentAccount);
+          console.log(currentAccount);
           // console.log(value);
           // console.log(nft);
           // const tx =  nft.methods.addAdmin("0x6599cA2767Fa78bE271ef85557E755C6687Ee3Ca");
@@ -77,7 +77,7 @@ const Card = ({ card }) => {
 
           // instance.deposit(myData, {value: 100, from: myAccount, to: instance.address});
 
-          window.location.reload()
+          // window.location.reload()
 
         //   function buyCardFromMarket(uint256 _idCard)
         // external

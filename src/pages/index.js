@@ -10,18 +10,33 @@ export const Container = styled.div`
 `;
 
 export default function Home() {
-  const { nft, setNft, marketCards, setMarketCards, myInfos, setMyInfos } =
-    useContext(AuthContext);
+  const {
+    nft,
+    setNft,
+    marketCards,
+    setMarketCards,
+    myInfos,
+    setMyInfos,
+    myCards,
+    setMyCards,
+  } = useContext(AuthContext);
+
+  console.log("---");
+  console.log(myCards);
 
   return (
     <Container>
-      {marketCards.map((item, key) => {
-        return (
-          <div key={key}>
-            <Card card={item}></Card>
-          </div>
-        );
-      })}
+      {myCards ? (
+        myCards.map((item, key) => {
+          return (
+            <div key={key}>
+              <Card card={item}></Card>
+            </div>
+          );
+        })
+      ) : (
+        <div></div>
+      )}
     </Container>
   );
 }

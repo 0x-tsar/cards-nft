@@ -4,7 +4,6 @@ import loadEthereum from "../ethereum";
 export const AuthContext = createContext({});
 
 export const AuthProvider = (props) => {
-  console.log("context");
   const [nft, setNft] = useState(undefined);
   const [myCards, setMyCards] = useState([]);
   const [marketCards, setMarketCards] = useState([]);
@@ -23,34 +22,60 @@ export const AuthProvider = (props) => {
         web3,
       });
       setNft(cards);
+
+      let contractAddress = cards._address;
+
       //loading items from chain
       const contractBalance = await cards.methods
-        .balanceOf(cards._address)
+        .balanceOf(contractAddress)
         .call();
-      console.log(parseInt(contractBalance));
 
       for (let i = 0; i < contractBalance; i++) {
         let item = await cards.methods
-          .tokenOfOwnerByIndex(cards._address, i)
+          .tokenOfOwnerByIndex(contractAddress, i)
           .call();
         let item2 = await cards.methods.tokenByIndex(item).call();
         let token = await cards.methods
-          .marketCards(cards._address, item2)
+          .marketCards(contractAddress, item2)
           .call();
         // console.log(token);
 
         setMarketCards((marketCards) => [...marketCards, token]);
       }
-    };
 
-    // let date = new Date(Number(item.date) * 1000);
+      let myAddress = web3.givenProvider.selectedAddress;
+      console.log(`current address: ${myAddress}`);
+
+      const accountBalance = await cards.methods.balanceOf(myAddress).call();
+
+      for (let i = 0; i < accountBalance; i++) {
+        let item = await cards.methods.tokenOfOwnerByIndex(myAddress, i).call();
+        let item2 = await cards.methods.tokenByIndex(item).call();
+        console.log(item2);
+        let token = await cards.methods.marketCards(myAddress, item2).call();
+        // console.log(token);
+
+        console.log(item);
+
+        setMyCards((myCards) => [...myCards, token]);
+      }
+    };
 
     done();
   }, []);
 
   return (
     <AuthContext.Provider
-      value={{ nft, setNft, marketCards, setMarketCards, myInfos, setMyInfos }}
+      value={{
+        nft,
+        setNft,
+        marketCards,
+        setMarketCards,
+        myInfos,
+        setMyInfos,
+        myCards,
+        setMyCards,
+      }}
     >
       {props.children}
     </AuthContext.Provider>
