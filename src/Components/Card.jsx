@@ -1,5 +1,7 @@
-import React, { useRef } from "react";
+import React, { useRef, useContext } from "react";
 import styled from "styled-components";
+import { AuthContext } from "../providers/context";
+
 
 export const Container = styled.div``;
 
@@ -54,12 +56,33 @@ export const Img = styled.img`
 
 const Card = ({ card }) => {
   const ref = useRef();
-  const refCard = useRef();
+  const { nft, setNft, marketCards, setMarketCards, myInfos, setMyInfos } =
+  useContext(AuthContext);
+
   return (
     <Container>
       <CardHolder
-        onClick={(e) => {
+        onClick={async (e) => {
           console.log(card);
+          const currentAccount = myInfos.currentAddress 
+          const value = myInfos.web3.utils.toWei('0.1');
+          const price = card.price
+          // console.log(currentAccount);
+          // console.log(value);
+          // console.log(nft);
+          // const tx =  nft.methods.addAdmin("0x6599cA2767Fa78bE271ef85557E755C6687Ee3Ca");
+          // console.log(tx);
+          const tx = await nft.methods.buyCardFromMarket(card.id).send({from: currentAccount, value: price});
+          console.log(tx);
+
+          // instance.deposit(myData, {value: 100, from: myAccount, to: instance.address});
+
+          window.location.reload()
+
+        //   function buyCardFromMarket(uint256 _idCard)
+        // external
+        // payable
+        // returns (bool)
         }}
         onMouseMove={(e) => {
           ref.current.style.display = "flex";

@@ -8,6 +8,15 @@ contract Cards is ERC721Enumerable {
     address public admin;
     uint256 public nextItemId;
 
+    // event cardMinted();
+    event cardTransaction(
+        address exOwner,
+        address newOwner,
+        uint256 price,
+        uint256 timestamp,
+        string action
+    );
+
     struct Card {
         uint256 id;
         string title;
@@ -44,8 +53,34 @@ contract Cards is ERC721Enumerable {
 
         _mint(address(this), nextItemId);
         marketCards[address(this)][nextItemId] = card;
-
         nextItemId++;
+    }
+
+    function buyCardFromMarket(uint256 _idCard)
+        external
+        payable
+        returns (bool)
+    {
+        require(
+            marketCards[address(this)][_idCard].price <= msg.value,
+            "value is not enough"
+        );
+
+        Card memory card = marketCards[address(this)][_idCard];
+        delete marketCards[address(this)][_idCard];
+        myCards[msg.sender][_idCard] = card;
+
+        transferFrom(address(this), msg.sender, _idCard);
+
+        emit cardTransaction(
+            address(this),
+            msg.sender,
+            card.price,
+            block.timestamp,
+            "Buy"
+        );
+
+        return true;
     }
 
     function addAdmin(address _newAdmin) external returns (bool) {
