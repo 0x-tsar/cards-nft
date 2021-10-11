@@ -29,6 +29,7 @@ contract Cards is ERC721Enumerable {
         string memory _description,
         string memory _urlPicture
     ) external {
+        
         Card memory card = Card({
             id: nextItemId,
             owner: address(this),
