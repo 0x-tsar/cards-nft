@@ -55,6 +55,9 @@ const Card = ({ card }) => {
   return (
     <Container>
       <CardHolder
+        onClick={() => {
+          console.log(card);
+        }}
         onMouseMove={(e) => {
           ref.current.style.display = "flex";
           ref.current.style.left = `${e.pageX + 10}px`;

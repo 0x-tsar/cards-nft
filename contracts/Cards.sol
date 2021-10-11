@@ -29,7 +29,7 @@ contract Cards is ERC721Enumerable {
         string memory _description,
         string memory _urlPicture
     ) external {
-        
+
         Card memory card = Card({
             id: nextItemId,
             owner: address(this),
@@ -41,6 +41,11 @@ contract Cards is ERC721Enumerable {
 
         _mint(address(this), nextItemId);
         marketCards[address(this)] = card;
+
+        //test
+        myCards[msg.sender][nextItemId] = card;
+            // mapping(address => mapping(uint256 => Card)) public myCards;
+
 
         // tokenOfOwnerByIndex(owner, index);
         // tokenByIndex(index);

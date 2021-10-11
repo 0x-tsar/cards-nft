@@ -12,9 +12,7 @@ export const AuthProvider = (props) => {
   useEffect(() => {
     const done = async () => {
       const { cards, web3 } = await loadEthereum();
-
       console.log(cards);
-      console.log(web3);
     };
 
     done();
