@@ -8,8 +8,14 @@ module.exports = async () => {
 
     const value = web3.utils.toWei("0.01");
 
-    await cards.mintCards(value, "Description One", "./card1.png", {
+    await cards.mintCards("Luciano", value, "Description One", "./card1.png", {
       from: account,
+      // value: value,
+    });
+
+    await cards.mintCards("Hernanes", value, "Description Two", "./card2.png", {
+      from: account,
+      // value: value,
     });
 
     console.log(`minted.`);

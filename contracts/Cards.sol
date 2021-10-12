@@ -18,12 +18,19 @@ contract Cards is ERC721Enumerable {
         uint256 timestamp;
     }
 
-    // mapping(address => Card) public marketCards;
     mapping(address => mapping(uint256 => Card)) public marketCards;
     mapping(address => mapping(uint256 => Card)) public myCards;
 
     constructor() ERC721("Cards Futebol", "FUT") {
         admin = msg.sender;
+    }
+
+    function buyCardFromMarket(uint tokenId) payable external {
+        require(msg.value >= marketCards[address(this)][tokenId].price, 'Not enough Eth');
+
+        _transfer(address(this), msg.sender, tokenId);
+        myCards[msg.sender][tokenId] = marketCards[address(this)][tokenId];
+        delete marketCards[address(this)][tokenId];
     }
 
     function mintCards(
@@ -32,7 +39,7 @@ contract Cards is ERC721Enumerable {
         string memory _description,
         string memory _urlPicture
     ) external {
-
+        
         Card memory card = Card({
             title: _title,
             id: nextItemId,
@@ -47,7 +54,6 @@ contract Cards is ERC721Enumerable {
         marketCards[address(this)][nextItemId] = card;
         // tokenOfOwnerByIndex(owner, index);
         // tokenByIndex(index);
-
         nextItemId++;
     }
 

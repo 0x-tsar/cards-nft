@@ -1,5 +1,6 @@
-import React, { useRef } from "react";
+import React, { useRef, useContext } from "react";
 import styled from "styled-components";
+import { AuthContext } from "../providers/context";
 
 export const Container = styled.div``;
 
@@ -52,11 +53,35 @@ export const Img = styled.img`
 
 const Card = ({ card }) => {
   const ref = useRef();
+
+  const {
+    nft,
+    setNft,
+    marketCards,
+    setMarketCards,
+    myInfos,
+    setMyInfos,
+    myCards,
+    setMyCards,
+  } = useContext(AuthContext);
+
   return (
     <Container>
       <CardHolder
-        onClick={() => {
-          console.log(card);
+        onClick={async () => {
+          const account = myInfos.account;
+          const value = myInfos.web3.utils.toWei("0.01");
+          // account: account,
+          // balanceEther: balanceEther,
+          // cards: cards,
+          // web3: web3,
+
+          // console.log(card.id);
+          const tx = await myInfos.cards.methods
+            .buyCardFromMarket(card.id)
+            .send({ from: account, value: value });
+
+          console.log(tx);
         }}
         onMouseMove={(e) => {
           ref.current.style.display = "flex";
