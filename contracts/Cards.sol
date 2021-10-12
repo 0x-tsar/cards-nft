@@ -9,6 +9,7 @@ contract Cards is ERC721Enumerable {
     uint256 public nextItemId;
 
     struct Card {
+        string title;
         uint256 id;
         address owner;
         uint256 price;
@@ -17,7 +18,8 @@ contract Cards is ERC721Enumerable {
         uint256 timestamp;
     }
 
-    mapping(address => Card) public marketCards;
+    // mapping(address => Card) public marketCards;
+    mapping(address => mapping(uint256 => Card)) public marketCards;
     mapping(address => mapping(uint256 => Card)) public myCards;
 
     constructor() ERC721("Cards Futebol", "FUT") {
@@ -25,12 +27,14 @@ contract Cards is ERC721Enumerable {
     }
 
     function mintCards(
+        string memory _title,
         uint256 _price,
         string memory _description,
         string memory _urlPicture
     ) external {
 
         Card memory card = Card({
+            title: _title,
             id: nextItemId,
             owner: address(this),
             price: _price,
@@ -40,8 +44,7 @@ contract Cards is ERC721Enumerable {
         });
 
         _mint(address(this), nextItemId);
-        marketCards[address(this)] = card;
-
+        marketCards[address(this)][nextItemId] = card;
         // tokenOfOwnerByIndex(owner, index);
         // tokenByIndex(index);
 

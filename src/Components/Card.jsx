@@ -67,11 +67,13 @@ const Card = ({ card }) => {
           ref.current.style.display = "none";
         }}
       >
-        <Img src={card.card}></Img>
+        <Img src={card.urlPicture}></Img>
       </CardHolder>
       <LittleWindow style={{ color: "black" }} ref={ref}>
-        <div>{card.options.title}</div>
-        <div>{card.options.description}</div>
+        <div>{card.title ? card.title : <div></div>}</div>
+        <div>{card.owner}</div>
+        <div>{card.description}</div>
+        <div>{card.price}</div>
         <br></br>
       </LittleWindow>
     </Container>

@@ -10,7 +10,6 @@ module.exports = async () => {
 
     await cards.mintCards(value, "Description One", "./card1.png", {
       from: account,
-      value: value,
     });
 
     console.log(`minted.`);

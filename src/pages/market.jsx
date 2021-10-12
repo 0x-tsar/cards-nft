@@ -1,6 +1,7 @@
-import React, { useRef } from "react";
+import React, { useRef, useContext } from "react";
 import styled from "styled-components";
 import Card from "../Components/Card";
+import { AuthContext } from "../providers/context";
 
 export const Container = styled.div`
   display: flex;
@@ -23,9 +24,12 @@ const _cards = [
 ];
 
 const Market = () => {
+  const { nft, setNft, marketCards, setMarketCards, myInfos, setMyInfos } =
+    useContext(AuthContext);
+
   return (
     <Container>
-      {_cards.map((item, key) => {
+      {marketCards.map((item, key) => {
         return (
           <div key={key}>
             <Card card={item}></Card>
