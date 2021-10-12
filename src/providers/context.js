@@ -12,7 +12,21 @@ export const AuthProvider = (props) => {
   useEffect(() => {
     const done = async () => {
       const { cards, web3 } = await loadEthereum();
-      console.log(cards);
+      if (cards && web3) {
+        // console.log(cards._address);
+
+        // console.log(await cards.methods.admin().call());
+        const balance = await cards.methods.balanceOf(cards._address).call();
+        console.log(balance);
+        for (let i = 0; i < balance; i++) {
+          const tokenId = await cards.methods
+            .tokenOfOwnerByIndex(cards._address, I)
+            .call();
+          const token = await cards.methods.tokenByIndex(tokenId).call();
+
+          console.log(token);
+        }
+      }
     };
 
     done();

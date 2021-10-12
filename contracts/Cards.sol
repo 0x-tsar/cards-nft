@@ -42,11 +42,6 @@ contract Cards is ERC721Enumerable {
         _mint(address(this), nextItemId);
         marketCards[address(this)] = card;
 
-        //test
-        myCards[msg.sender][nextItemId] = card;
-            // mapping(address => mapping(uint256 => Card)) public myCards;
-
-
         // tokenOfOwnerByIndex(owner, index);
         // tokenByIndex(index);
 
