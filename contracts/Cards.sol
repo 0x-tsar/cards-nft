@@ -16,7 +16,6 @@ contract Cards is ERC721Enumerable {
         string description,
         string urlPicture,
         uint256 timestamp,
-        string club,
         uint256 totalAmount,
         address createdBy
     );
@@ -36,6 +35,8 @@ contract Cards is ERC721Enumerable {
         string description;
         string urlPicture;
         uint256 timestamp;
+        address createdBy;
+        uint256 totalAmount;
     }
 
     mapping(address => mapping(uint256 => Card)) public marketCards;
@@ -71,24 +72,25 @@ contract Cards is ERC721Enumerable {
                 price: _price,
                 description: _description,
                 urlPicture: _urlPicture,
-                timestamp: block.timestamp
+                timestamp: block.timestamp,
+                createdBy: msg.sender,
+                totalAmount: _totalAmount
             });
             _mint(address(this), nextItemId);
             marketCards[address(this)][nextItemId] = card;
             nextItemId++;
 
-            // emit cardMinted(
-            //     card.title,
-            //     card.id,
-            //     card.owner,
-            //     card.price,
-            //     card.description,
-            //     card.urlPicture,
-            //     card.timestamp,
-            //     card.club,
-            //     card.totalAmount,
-            //     card.createdBy
-            // );
+            emit cardMinted(
+                card.title,
+                card.id,
+                card.owner,
+                card.price,
+                card.description,
+                card.urlPicture,
+                card.timestamp,
+                card.totalAmount,
+                card.createdBy
+            );
         }
 
         // tokenOfOwnerByIndex(owner, index);
