@@ -42,6 +42,8 @@ export const LittleWindow = styled.div`
 export const Img = styled.img`
   width: 150px;
   height: 250px;
+  /* 270 */
+  /* 260 */
   transform: scale(1);
   transition-duration: 5s;
 
@@ -76,12 +78,14 @@ const Card = ({ card }) => {
           // cards: cards,
           // web3: web3,
 
-          // console.log(card.id);
-          const tx = await myInfos.cards.methods
-            .buyCardFromMarket(card.id)
-            .send({ from: account, value: value });
+          console.log(card.id);
+          // const tx = await myInfos.cards.methods
+          //   .buyCardFromMarket(card.id)
+          //   .send({ from: account, value: value });
 
-          console.log(tx);
+          // console.log(tx);
+          // //update
+          // window.location.reload();
         }}
         onMouseMove={(e) => {
           ref.current.style.display = "flex";

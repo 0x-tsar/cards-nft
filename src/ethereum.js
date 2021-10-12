@@ -53,13 +53,13 @@ export const loadEthereum = async () =>
             Cards.networks[chainId].address
           );
 
-          // window.ethereum.on("chainChanged", (change) => {
-          //   window.location.reload();
-          // });
+          window.ethereum.on("chainChanged", (change) => {
+            window.location.reload();
+          });
 
-          // window.ethereum.on("accountsChanged", (change) => {
-          //   window.location.reload();
-          // });
+          window.ethereum.on("accountsChanged", (change) => {
+            window.location.reload();
+          });
 
           resolve({ cards, web3 });
           // return { cards, web3 };

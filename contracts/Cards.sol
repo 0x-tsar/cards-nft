@@ -8,6 +8,26 @@ contract Cards is ERC721Enumerable {
     address public admin;
     uint256 public nextItemId;
 
+    event cardMinted(
+        string title,
+        uint256 id,
+        address owner,
+        uint256 price,
+        string description,
+        string urlPicture,
+        uint256 timestamp,
+        string club,
+        uint256 totalAmount,
+        address createdBy
+    );
+
+    event cardTransfered(
+        uint256 id,
+        address from,
+        address to,
+        uint256 timestamp
+    );
+
     struct Card {
         string title;
         uint256 id;
@@ -25,8 +45,11 @@ contract Cards is ERC721Enumerable {
         admin = msg.sender;
     }
 
-    function buyCardFromMarket(uint tokenId) payable external {
-        require(msg.value >= marketCards[address(this)][tokenId].price, 'Not enough Eth');
+    function buyCardFromMarket(uint256 tokenId) external payable {
+        require(
+            msg.value >= marketCards[address(this)][tokenId].price,
+            "Not enough Eth"
+        );
 
         _transfer(address(this), msg.sender, tokenId);
         myCards[msg.sender][tokenId] = marketCards[address(this)][tokenId];
@@ -37,24 +60,39 @@ contract Cards is ERC721Enumerable {
         string memory _title,
         uint256 _price,
         string memory _description,
-        string memory _urlPicture
+        string memory _urlPicture,
+        uint256 _totalAmount
     ) external {
-        
-        Card memory card = Card({
-            title: _title,
-            id: nextItemId,
-            owner: address(this),
-            price: _price,
-            description: _description,
-            urlPicture: _urlPicture,
-            timestamp: block.timestamp
-        });
+        for (uint256 i = 0; i < _totalAmount; i++) {
+            Card memory card = Card({
+                title: _title,
+                id: nextItemId,
+                owner: address(this),
+                price: _price,
+                description: _description,
+                urlPicture: _urlPicture,
+                timestamp: block.timestamp
+            });
+            _mint(address(this), nextItemId);
+            marketCards[address(this)][nextItemId] = card;
+            nextItemId++;
 
-        _mint(address(this), nextItemId);
-        marketCards[address(this)][nextItemId] = card;
+            // emit cardMinted(
+            //     card.title,
+            //     card.id,
+            //     card.owner,
+            //     card.price,
+            //     card.description,
+            //     card.urlPicture,
+            //     card.timestamp,
+            //     card.club,
+            //     card.totalAmount,
+            //     card.createdBy
+            // );
+        }
+
         // tokenOfOwnerByIndex(owner, index);
         // tokenByIndex(index);
-        nextItemId++;
     }
 
     function _baseURI() internal view virtual override returns (string memory) {
