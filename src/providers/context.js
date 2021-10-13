@@ -56,7 +56,27 @@ export const AuthProvider = (props) => {
 
         setMyCards((myCards) => [...myCards, item]);
       }
+
+      cards.events
+        .cardMinted({})
+        .on("data", async function (event) {
+          console.log(event.returnValues);
+          // Do something here
+        })
+        .on("error", console.error);
     };
+
+    //   emit cardMinted(
+    //     card.title,
+    //     card.id,
+    //     card.owner,
+    //     card.price,
+    //     card.description,
+    //     card.urlPicture,
+    //     card.timestamp,
+    //     card.totalAmount,
+    //     card.createdBy
+    // );
 
     done();
   }, []);

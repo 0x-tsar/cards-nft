@@ -4,24 +4,11 @@ import Card from "../Components/Card";
 import { AuthContext } from "../providers/context";
 
 export const Container = styled.div`
+  height: 0;
   display: flex;
-  flex-direction: row;
+  flex-wrap: wrap;
+  /* justify-content: center; */
 `;
-
-const _cards = [
-  {
-    card: "./card1.png",
-    options: { title: "Luciano", description: "Description 1" },
-  },
-  {
-    card: "./card2.png",
-    options: { title: "Hernanes", description: "Description 2" },
-  },
-  {
-    card: "./card3.png",
-    options: { title: "Reinaldo", description: "Description 3" },
-  },
-];
 
 const Market = () => {
   const { nft, setNft, marketCards, setMarketCards, myInfos, setMyInfos } =

@@ -2,32 +2,29 @@ import React, { useRef, useContext } from "react";
 import styled from "styled-components";
 import { AuthContext } from "../providers/context";
 
-export const Container = styled.div``;
+export const Container = styled.div`
+  /* display: flex; */
+  /* justify-content: center; */
+`;
 
 export const CardHolder = styled.div`
-  width: 200px;
-  height: 300px;
+  /* overflow: hidden; */
+  width: 150px;
+  height: 250px;
   background-color: #000000;
-  display: flex;
-  justify-content: center;
-  /* align-items: center; */
   margin: 10px;
   border-radius: 10px;
 `;
 
 // MAKE A COMPONENT WITH ALL THE CLUBS AND THEIR PAGES
 export const LittleWindow = styled.div`
-  width: 200px;
-  height: 100px;
+  width: auto;
+  height: auto;
   background-color: rgb(255, 255, 255);
-  /* background-color: rgb(140, 0, 107);
-  color: white; */
   border-radius: 10px;
   border: 2px solid rgb(0, 0, 0, 0.2);
   z-index: 999;
   position: absolute;
-  /* left: 100px;
-  top: 100px; */
   color: black;
   cursor: default;
   pointer-events: none;
@@ -40,6 +37,8 @@ export const LittleWindow = styled.div`
 `;
 
 export const Img = styled.img`
+  /* width: auto;
+  height: auto; */
   width: 150px;
   height: 250px;
   /* 270 */
@@ -79,11 +78,11 @@ const Card = ({ card }) => {
           // web3: web3,
 
           console.log(card.id);
-          // const tx = await myInfos.cards.methods
-          //   .buyCardFromMarket(card.id)
-          //   .send({ from: account, value: value });
+          const tx = await myInfos.cards.methods
+            .buyCardFromMarket(card.id)
+            .send({ from: account, value: value });
 
-          // console.log(tx);
+          console.log(tx);
           // //update
           // window.location.reload();
         }}
