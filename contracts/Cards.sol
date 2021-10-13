@@ -34,6 +34,7 @@ contract Cards is ERC721Enumerable {
         uint256 price;
         string description;
         string urlPicture;
+        string club;
         uint256 timestamp;
         address createdBy;
         uint256 totalAmount;
@@ -61,6 +62,7 @@ contract Cards is ERC721Enumerable {
         string memory _title,
         uint256 _price,
         string memory _description,
+        string memory _club,
         string memory _urlPicture,
         uint256 _totalAmount
     ) external {
@@ -72,6 +74,7 @@ contract Cards is ERC721Enumerable {
                 price: _price,
                 description: _description,
                 urlPicture: _urlPicture,
+                club: _club,
                 timestamp: block.timestamp,
                 createdBy: msg.sender,
                 totalAmount: _totalAmount

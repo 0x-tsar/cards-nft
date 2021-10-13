@@ -62,6 +62,7 @@ export const AuthProvider = (props) => {
         .on("data", async function (event) {
           console.log(event.returnValues);
           // Do something here
+          setMarketCards((marketCards) => [...marketCards, event.returnValues]);
         })
         .on("error", console.error);
     };

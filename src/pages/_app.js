@@ -7,7 +7,7 @@ import Head from "next/head";
 import { AuthProvider } from "../providers/context";
 
 export const Container = styled.div`
-  background-color: blue;
+  background-color: rgb(230, 230, 230);
   display: grid;
   grid-template-areas:
     "header header"

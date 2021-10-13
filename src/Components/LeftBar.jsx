@@ -3,8 +3,27 @@ import styled from "styled-components";
 import Link from "next/link";
 
 export const Container = styled.div`
-  background-color: #00ff6e;
+  background-color: #ffffff;
+  border-right: 1px solid rgb(0, 0, 0, 0.3);
   grid-area: leftbar;
+
+  ul {
+    padding: 0;
+    margin: 0;
+  }
+
+  ul li {
+    margin-top: 10px;
+    padding: 10px;
+    border-radius: 5px;
+  }
+
+  ul li:hover {
+    background-color: #00bfff;
+  }
+
+  display: flex;
+  justify-content: center;
 `;
 
 const LeftBar = () => {

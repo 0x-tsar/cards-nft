@@ -2,15 +2,12 @@ import React, { useRef, useContext } from "react";
 import styled from "styled-components";
 import { AuthContext } from "../providers/context";
 
-export const Container = styled.div`
-  /* display: flex; */
-  /* justify-content: center; */
-`;
+export const Container = styled.div``;
 
 export const CardHolder = styled.div`
   /* overflow: hidden; */
-  width: 150px;
-  height: 250px;
+  width: 180px;
+  height: 280px;
   background-color: #000000;
   margin: 10px;
   border-radius: 10px;
@@ -39,8 +36,8 @@ export const LittleWindow = styled.div`
 export const Img = styled.img`
   /* width: auto;
   height: auto; */
-  width: 150px;
-  height: 250px;
+  width: 180px;
+  height: 280px;
   /* 270 */
   /* 260 */
   transform: scale(1);
@@ -90,6 +87,7 @@ const Card = ({ card }) => {
           ref.current.style.display = "flex";
           ref.current.style.left = `${e.pageX + 10}px`;
           ref.current.style.top = `${e.pageY + 10}px`;
+          // console.log(window.screen.width);
         }}
         onMouseLeave={(e) => {
           ref.current.style.display = "none";
@@ -101,7 +99,11 @@ const Card = ({ card }) => {
         <div>{card.title ? card.title : <div></div>}</div>
         <div>{card.owner}</div>
         <div>{card.description}</div>
-        <div>{card.price}</div>
+        <div>price: {card.price}</div>
+        <div>id: {card.id}</div>
+        <div>Create at: {card.timestamp}</div>
+        <div>Created By: {card.createdBy}</div>
+        <div>Total Amount: {card.totalAmount}</div>
         <br></br>
       </LittleWindow>
     </Container>
