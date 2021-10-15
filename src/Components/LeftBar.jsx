@@ -14,11 +14,13 @@ export const Container = styled.div`
 
   ul li {
     margin-top: 10px;
-    padding: 10px;
+    /* padding: 10px; */
+    padding: 10px 70px;
     border-radius: 5px;
   }
 
   ul li:hover {
+    color: white;
     background-color: #00bfff;
   }
 

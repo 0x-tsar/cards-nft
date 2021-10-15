@@ -2,7 +2,9 @@ import React, { useRef, useContext } from "react";
 import styled from "styled-components";
 import { AuthContext } from "../providers/context";
 
-export const Container = styled.div``;
+export const Container = styled.div`
+   ;
+`;
 
 export const CardHolder = styled.div`
   /* overflow: hidden; */
@@ -27,7 +29,6 @@ export const LittleWindow = styled.div`
   pointer-events: none;
   padding: 10px;
   display: none;
-
   flex-direction: column;
   flex-wrap: wrap;
   justify-content: center;
@@ -68,7 +69,8 @@ const Card = ({ card }) => {
       <CardHolder
         onClick={async () => {
           const account = myInfos.account;
-          const value = myInfos.web3.utils.toWei("0.01");
+          // const value = myInfos.web3.utils.toWei("0.01");
+          const value = myInfos.web3.utils.toWei("1");
           // account: account,
           // balanceEther: balanceEther,
           // cards: cards,

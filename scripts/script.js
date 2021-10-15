@@ -6,7 +6,11 @@ module.exports = async () => {
     const [account, _] = await web3.eth.getAccounts();
     console.log(account);
 
-    const value = web3.utils.toWei("0.01");
+    const value = web3.utils.toWei("1");
+
+    const accruedFeesContract = await cards.retrieveFunds({ from: account });
+    const totalFundsCollected = await cards.totalFundsCollected();
+    console.log(parseInt(totalFundsCollected));
 
     // await cards.mintCards(
     //   "Luciano",
@@ -47,18 +51,18 @@ module.exports = async () => {
     //   }
     // );
 
-    await cards.mintCards(
-      "Messi vs Boateng",
-      value,
-      "Drible...",
-      // "Barcelona",
-      "./card4.png",
-      2,
-      {
-        from: account,
-        // value: value,
-      }
-    );
+    // await cards.mintCards(
+    //   "Messi vs Boateng",
+    //   value,
+    //   "Drible...",
+    //   "Barcelona",
+    //   "./card4.png",
+    //   2,
+    //   {
+    //     from: account,
+    //     // value: value,
+    //   }
+    // );
 
     console.log(`minted.`);
   } catch (error) {

@@ -8,13 +8,22 @@ import { AuthProvider } from "../providers/context";
 
 export const Container = styled.div`
   background-color: rgb(230, 230, 230);
+  /* background-color: tomato; */
   display: grid;
   grid-template-areas:
     "header header"
     "leftbar main";
 
+  overflow: hidden;
+
+  /* grid-column-gap: 6px; */
+  grid-row-gap: 1px;
+  /* grid-gap: 0px; */
+
   grid-template-columns: 200px 1fr;
   grid-template-rows: 60px calc(100vh - 60px);
+
+  overflow: hidden;
 `;
 
 function MyApp({ Component, pageProps }) {

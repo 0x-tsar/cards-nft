@@ -7,6 +7,42 @@ import "@openzeppelin/contracts/token/ERC721/extensions/ERC721Enumerable.sol";
 contract Cards is ERC721Enumerable {
     address public admin;
     uint256 public nextItemId;
+    uint256 public CONTRACT_FEE = 1000; //10% fee
+    uint256 public CREATORS_FEE = 2000; // 20% fee
+    //185 basis points = 1.85 pct
+
+    mapping(address => mapping(uint256 => Card)) public marketCards;
+    mapping(address => mapping(uint256 => Card)) public myCards;
+
+    //
+    mapping(address => bool) public creators;
+
+    //if any errors it my be the clubs I added to the params
+    //if any errors it my be the clubs I added to the params
+    //if any errors it my be the clubs I added to the params
+    //if any errors it my be the clubs I added to the params
+
+    //owner of the contract retrieving all of its fee's
+    function retrieveFunds() external {
+        require(msg.sender == admin, "YOU ARE NOT ALLOWED");
+        payable(admin).transfer(address(this).balance);
+    }
+
+    // adding card creators, just admin allowed to add
+    function addCreator(address _addr) external {
+        require(admin == msg.sender, "YOU ARE NOT ADMIN");
+        creators[_addr] = true;
+    }
+
+    // removing card creators, just admin allowed to remove
+    function removeCreator(address _addr) external {
+        require(admin == msg.sender, "YOU ARE NOT ADMIN");
+        creators[_addr] = false;
+    }
+
+    function totalFundsCollected() external view returns (uint256) {
+        return address(this).balance;
+    }
 
     event cardMinted(
         string title,
@@ -40,17 +76,19 @@ contract Cards is ERC721Enumerable {
         uint256 totalAmount;
     }
 
-    mapping(address => mapping(uint256 => Card)) public marketCards;
-    mapping(address => mapping(uint256 => Card)) public myCards;
-
     constructor() ERC721("Cards Futebol", "FUT") {
         admin = msg.sender;
     }
 
     function buyCardFromMarket(uint256 tokenId) external payable {
         require(
-            msg.value >= marketCards[address(this)][tokenId].price,
-            "Not enough Eth"
+            msg.value == marketCards[address(this)][tokenId].price,
+            "NOT THE RIGHT AMOUNT OF ETH, MAY BE MORE OR LESS"
+        );
+
+        uint256 _fee_contract = calculateFeeAdmin(msg.value); //msg.value - FEE
+        payable(marketCards[address(this)][tokenId].createdBy).transfer(
+            msg.value - _fee_contract
         );
 
         _transfer(address(this), msg.sender, tokenId);
@@ -98,6 +136,21 @@ contract Cards is ERC721Enumerable {
 
         // tokenOfOwnerByIndex(owner, index);
         // tokenByIndex(index);
+    }
+
+    //100 basis points = 1.00 pct
+    function calculateFeeAdmin(uint256 amount) private view returns (uint256) {
+        require((amount / 10000) * 10000 == amount, "too small");
+        return (amount * CONTRACT_FEE) / 10000;
+    }
+
+    function calculateFeeCreator(uint256 amount)
+        private
+        view
+        returns (uint256)
+    {
+        require((amount / 10000) * 10000 == amount, "too small");
+        return (amount * CREATORS_FEE) / 10000;
     }
 
     function _baseURI() internal view virtual override returns (string memory) {
