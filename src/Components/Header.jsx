@@ -1,6 +1,7 @@
 import React, { useContext, useState } from "react";
 import styled from "styled-components";
 import { AuthContext } from "../providers/context";
+import Router from "next/router";
 
 export const Container = styled.div`
   /* background-color: white; */
@@ -17,10 +18,11 @@ export const Container = styled.div`
 `;
 
 const Header = () => {
-  const { myInfos } = useContext(AuthContext);
-  const [search, setSearch] = useState("");
+  const { myInfos, search, setSearch } = useContext(AuthContext);
+  // const [searchh, setSearchh] = useState("");
 
   const handleForm = (e) => {
+    // setSearchh(e.target.value);
     setSearch(e.target.value);
   };
 
@@ -28,6 +30,8 @@ const Header = () => {
     e.preventDefault();
     //do solidity search here
     //display all cards from this club
+
+    Router.push("/searcher");
   };
 
   return (

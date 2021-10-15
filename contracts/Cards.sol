@@ -13,6 +13,10 @@ contract Cards is ERC721Enumerable {
 
     mapping(address => mapping(uint256 => Card)) public marketCards;
     mapping(address => mapping(uint256 => Card)) public myCards;
+    /*for now just add one creator per club, but when I want to increase more creators
+    for each club I just need to add mapping(string=>mapping(uint=>address)) 
+    */
+    // mapping(string => address) public clubToCreator;
 
     //
     mapping(address => bool) public creators;

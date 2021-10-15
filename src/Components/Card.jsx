@@ -101,9 +101,12 @@ const Card = ({ card }) => {
         <div>{card.title ? card.title : <div></div>}</div>
         <div>{card.owner}</div>
         <div>{card.description}</div>
-        <div>price: {card.price}</div>
+        <div>price: {parseFloat(card.price) / 10 ** 18}</div>
         <div>id: {card.id}</div>
-        <div>Create at: {card.timestamp}</div>
+        <div>club: {card.club}</div>
+        <div>
+          Create at: {new Date(Number(card.timestamp) * 1000).toTimeString()}
+        </div>
         <div>Created By: {card.createdBy}</div>
         <div>Total Amount: {card.totalAmount}</div>
         <br></br>

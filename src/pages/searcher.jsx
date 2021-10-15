@@ -1,6 +1,5 @@
 import React, { useContext } from "react";
 import { AuthContext } from "../providers/context";
-
 import styled from "styled-components";
 
 export const Container = styled.div`
@@ -8,8 +7,12 @@ export const Container = styled.div`
   color: white;
 `;
 
-const Explorer = () => {
-  return <Container></Container>;
+const Searcher = () => {
+  const { myInfos, search, setSearch } = useContext(AuthContext);
+
+  console.log(`searcher: ${search}`);
+
+  return <Container>searcher</Container>;
 };
 
-export default Explorer;
+export default Searcher;

@@ -9,6 +9,7 @@ export const AuthProvider = (props) => {
   const [marketCards, setMarketCards] = useState([]);
   const [myInfos, setMyInfos] = useState([]);
   const [whichTab, setWhichTab] = useState(0);
+  const [search, setSearch] = useState("");
 
   useEffect(() => {
     const done = async () => {
@@ -27,7 +28,7 @@ export const AuthProvider = (props) => {
             .marketCards(cards._address, token)
             .call();
 
-          console.log(item);
+          // console.log(item);
           setMarketCards((marketCards) => [...marketCards, item]);
         }
       }
@@ -53,7 +54,7 @@ export const AuthProvider = (props) => {
           .call();
         const token = await cards.methods.tokenByIndex(tokenId).call();
         const item = await cards.methods.myCards(account, token).call();
-        console.log(item);
+        // console.log(item);
 
         setMyCards((myCards) => [...myCards, item]);
       }
@@ -96,6 +97,8 @@ export const AuthProvider = (props) => {
         setMyCards,
         whichTab,
         setWhichTab,
+        search,
+        setSearch,
       }}
     >
       {props.children}
