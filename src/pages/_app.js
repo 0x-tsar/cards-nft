@@ -7,8 +7,10 @@ import Head from "next/head";
 import { AuthProvider } from "../providers/context";
 
 export const Container = styled.div`
-  background-color: rgb(230, 230, 230);
-  /* background-color: tomato; */
+  /* background-color: rgb(230, 230, 230); */
+  background-color: #1f262f;
+  /* background-color: rgb(26, 33, 42); */
+
   display: grid;
   grid-template-areas:
     "header header"
@@ -16,12 +18,12 @@ export const Container = styled.div`
 
   overflow: hidden;
 
-  /* grid-column-gap: 6px; */
+  grid-column-gap: 1px;
   grid-row-gap: 1px;
-  /* grid-gap: 0px; */
+  grid-gap: 1px;
 
-  grid-template-columns: 200px 1fr;
-  grid-template-rows: 60px calc(100vh - 60px);
+  grid-template-columns: 300px 1fr;
+  grid-template-rows: 80px calc(100vh - 80px);
 
   overflow: hidden;
 `;

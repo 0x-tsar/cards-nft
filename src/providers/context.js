@@ -8,6 +8,7 @@ export const AuthProvider = (props) => {
   const [myCards, setMyCards] = useState([]);
   const [marketCards, setMarketCards] = useState([]);
   const [myInfos, setMyInfos] = useState([]);
+  const [whichTab, setWhichTab] = useState(0);
 
   useEffect(() => {
     const done = async () => {
@@ -93,6 +94,8 @@ export const AuthProvider = (props) => {
         setMyInfos,
         myCards,
         setMyCards,
+        whichTab,
+        setWhichTab,
       }}
     >
       {props.children}

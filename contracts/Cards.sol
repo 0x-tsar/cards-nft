@@ -17,11 +17,6 @@ contract Cards is ERC721Enumerable {
     //
     mapping(address => bool) public creators;
 
-    //if any errors it my be the clubs I added to the params
-    //if any errors it my be the clubs I added to the params
-    //if any errors it my be the clubs I added to the params
-    //if any errors it my be the clubs I added to the params
-
     //owner of the contract retrieving all of its fee's
     function retrieveFunds() external {
         require(msg.sender == admin, "YOU ARE NOT ALLOWED");
