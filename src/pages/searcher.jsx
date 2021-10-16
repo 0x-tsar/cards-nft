@@ -17,7 +17,7 @@ export const Container = styled.div`
   /* flex-wrap: wrap; */
 `;
 
-const Searcher = () => {
+const Searcher = ({ changeVis }) => {
   // const [allCards, setAllCards] = useState([]);
   const {
     myInfos,
@@ -78,7 +78,7 @@ const Searcher = () => {
   return (
     <Container>
       {filtered.map((item, key) => {
-        return <Card key={key} card={item}></Card>;
+        return <Card changeVis={changeVis} key={key} card={item}></Card>;
       })}
     </Container>
   );

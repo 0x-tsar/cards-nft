@@ -80,10 +80,18 @@ const Card = ({ card, changeVis }) => {
           const tx = await myInfos.cards.methods
             .buyCardFromMarket(card.id)
             .send({ from: account, value: value })
-            .then((event) => {
-              console.log(event);
+            .then((error, result) => {
+              if (error) {
+                changeVis("none");
+                console.log(error);
+              }
+
               changeVis("none");
             });
+
+          //   function(error, result) {
+          //     if (!error)console.log(result);
+          //  });
 
           // //update
           // window.location.reload();

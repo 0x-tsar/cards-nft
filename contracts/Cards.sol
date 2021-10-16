@@ -98,6 +98,13 @@ contract Cards is ERC721Enumerable {
         _transfer(address(this), msg.sender, tokenId);
         myCards[msg.sender][tokenId] = marketCards[address(this)][tokenId];
         delete marketCards[address(this)][tokenId];
+
+        emit cardTransfered(
+            tokenId,
+            address(this),
+            msg.sender,
+            block.timestamp
+        );
     }
 
     function mintCards(
