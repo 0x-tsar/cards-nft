@@ -58,6 +58,7 @@ const Searcher = ({ changeVis }) => {
               .marketCards(cards._address, token)
               .call();
 
+            console.log(`club address ${clubAddress}`);
             if (
               item.createdBy === "0xAf94f8a506be9b64C505Eb25Ffb8d2298a81D801"
             ) {

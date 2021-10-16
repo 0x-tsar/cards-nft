@@ -32,7 +32,7 @@ export default function Home() {
       {myCards.map((item, key) => {
         return (
           <div key={key}>
-            <Card card={item}></Card>
+            <Card card={item} where="home"></Card>
           </div>
         );
       })}

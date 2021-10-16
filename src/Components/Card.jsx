@@ -50,7 +50,7 @@ export const Img = styled.img`
   }
 `;
 
-const Card = ({ card, changeVis }) => {
+const Card = ({ card, changeVis, where }) => {
   const ref = useRef();
 
   const {
@@ -74,21 +74,21 @@ const Card = ({ card, changeVis }) => {
 
           //adding load screen
           // changeVis("flex");
+          // console.log(card.id);
 
-          console.log(card.id);
-          await myInfos.cards.methods
-            .buyCardFromMarket(card.id)
-            .send({ from: account, value: value })
-            .then((error, result) => {
-              changeVis("none");
-            });
-
-          //   function(error, result) {
-          //     if (!error)console.log(result);
-          //  });
-
-          // //update
-          // window.location.reload();
+          if (where === "home") {
+            // ADD HERE SOME OPTIONS TO DO WITH THIS CARDS I OWN
+            console.log("home");
+          } else if (where === "market") {
+            console.log("market");
+            await myInfos.cards.methods
+              .buyCardFromMarket(card.id)
+              .send({ from: account, value: value })
+              .then((error, result) => {
+                // changeVis("none");
+                window.location.reload();
+              });
+          }
         }}
         onMouseMove={(e) => {
           ref.current.style.display = "flex";
