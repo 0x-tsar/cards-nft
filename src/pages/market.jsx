@@ -4,10 +4,12 @@ import Card from "../Components/Card";
 import { AuthContext } from "../providers/context";
 
 export const Container = styled.div`
-  height: min-content;
   display: flex;
   flex-wrap: wrap;
   justify-content: center;
+
+  height: min-content;
+  min-height: calc(100vh - 91px);
 `;
 
 const Market = ({ changeVis }) => {

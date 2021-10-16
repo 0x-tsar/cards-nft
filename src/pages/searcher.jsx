@@ -13,6 +13,7 @@ export const Container = styled.div`
   justify-content: center;
 
   height: min-content;
+  min-height: calc(100vh - 90px);
 
   /* min-height: max-content; */
   /* justify-content: center; */

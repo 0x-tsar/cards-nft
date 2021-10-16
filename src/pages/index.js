@@ -8,6 +8,11 @@ import Card from "../Components/Card";
 export const Container = styled.div`
   grid-area: main;
   display: flex;
+  flex-wrap: wrap;
+  justify-content: center;
+
+  height: min-content;
+  min-height: calc(100vh - 91px);
 `;
 
 export default function Home() {
