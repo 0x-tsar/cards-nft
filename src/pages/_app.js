@@ -23,7 +23,10 @@ export const Container = styled.div`
   grid-gap: 1px;
 
   grid-template-columns: 300px 1fr;
-  grid-template-rows: 80px calc(100vh - 80px);
+  grid-template-rows: 80px;
+
+  height: 100vh;
+  /* grid-template-rows: 80px calc(100vh - 80px); */
 
   overflow: hidden;
 `;

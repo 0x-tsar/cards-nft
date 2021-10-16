@@ -33,6 +33,10 @@ const Header = () => {
     //display all cards from this club
 
     setChanged(true);
+
+    setTimeout(() => {
+      setChanged(false);
+    }, 100);
     Router.push("/searcher");
   };
 

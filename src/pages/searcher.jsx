@@ -1,11 +1,20 @@
 import React, { useContext, useEffect, useState } from "react";
 import { AuthContext } from "../providers/context";
 import styled from "styled-components";
-import Web3 from "web3";
+import Card from "../Components/Card";
 
 export const Container = styled.div`
-  background-color: #1f262f;
+  /* background-color: #1f262f; */
   color: white;
+  /* width: 100%; */
+  height: 100vh;
+  display: flex;
+  flex-wrap: wrap;
+  justify-content: center;
+
+  /* min-height: max-content; */
+  /* justify-content: center; */
+  /* flex-wrap: wrap; */
 `;
 
 const Searcher = () => {
@@ -24,14 +33,10 @@ const Searcher = () => {
   useEffect(() => {
     if (change) {
       console.log("called");
-
-      setChanged(false);
-
-      setFiltered([]);
-
       const done = async () => {
         const cards = myInfos.cards;
         if (cards && filtered.length == 0) {
+          // setChanged(false);
           const lowerSearch = search.toLowerCase();
           //getting the creator of searched team
           const clubAddress = await cards.methods
@@ -50,19 +55,33 @@ const Searcher = () => {
               .marketCards(cards._address, token)
               .call();
 
-            // if (item.createdBy === "0x95a2bA7C5F810b286dAF8d251aBaF188126640f0") {
-            //   setFiltered((filtered) => [...filtered, item]);
-            // }
+            if (
+              item.createdBy === "0x95a2bA7C5F810b286dAF8d251aBaF188126640f0"
+            ) {
+              setFiltered((filtered) => [...filtered, item]);
+            }
 
             // setMyCards((myCards) => [...myCards, item]);
           }
         }
       };
       done();
+
+      console.log(filtered);
+
+      // setInterval(() => {
+      //   console.log(filtered);
+      // }, 1000);
     }
   }, [change]);
 
-  return <Container>{search}</Container>;
+  return (
+    <Container>
+      {filtered.map((item, key) => {
+        return <Card key={key} card={item}></Card>;
+      })}
+    </Container>
+  );
 };
 
 export default Searcher;
