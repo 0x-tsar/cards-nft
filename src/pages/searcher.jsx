@@ -56,7 +56,7 @@ const Searcher = () => {
               .call();
 
             if (
-              item.createdBy === "0x95a2bA7C5F810b286dAF8d251aBaF188126640f0"
+              item.createdBy === "0xAf94f8a506be9b64C505Eb25Ffb8d2298a81D801"
             ) {
               setFiltered((filtered) => [...filtered, item]);
             }

@@ -5,6 +5,7 @@ import LeftBar from "../Components/LeftBar";
 import Head from "next/head";
 
 import { AuthProvider } from "../providers/context";
+import { useState } from "react";
 
 export const Container = styled.div`
   /* background-color: rgb(230, 230, 230); */
@@ -31,7 +32,32 @@ export const Container = styled.div`
   overflow: hidden;
 `;
 
+export const LoadingScreen = styled.div`
+  width: 300px;
+  height: 300px;
+  background-color: red;
+  color: white;
+  background-color: black;
+  /* background: linear-gradient(20deg, blue, blueviolet); */
+  z-index: 5;
+  border-radius: 10px;
+
+  position: relative;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  align-self: center;
+  font-size: 25px;
+  display: ${(props) => props.visibility};
+`;
+
 function MyApp({ Component, pageProps }) {
+  const [vis, setVis] = useState("none");
+
+  const changeVis = (v) => {
+    setVis(v);
+  };
+
   return (
     <AuthProvider>
       <Head>
@@ -46,10 +72,33 @@ function MyApp({ Component, pageProps }) {
         /> */}
       </Head>
 
+      <div
+        style={{
+          // display: "flex",
+          // justifyContent: "center",
+          // alignItems: "center",
+          position: "absolute",
+          marginLeft: "50%",
+          marginTop: "30vh",
+        }}
+      >
+        {/* flex or none */}
+        <LoadingScreen visibility={vis}>
+          <div>
+            <img
+              src="./loading.gif"
+              width="100px"
+              style={{ marginLeft: "75px" }}
+            ></img>
+            <div>Processing payment..</div>
+          </div>
+        </LoadingScreen>
+      </div>
+
       <Container>
         <Header />
         <LeftBar />
-        <Component {...pageProps} />
+        <Component changeVis={changeVis} {...pageProps} />
       </Container>
     </AuthProvider>
   );

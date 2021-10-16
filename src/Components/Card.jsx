@@ -13,6 +13,7 @@ export const CardHolder = styled.div`
   background-color: #000000;
   margin: 10px;
   border-radius: 10px;
+  position: relative;
 `;
 
 // MAKE A COMPONENT WITH ALL THE CLUBS AND THEIR PAGES
@@ -22,7 +23,7 @@ export const LittleWindow = styled.div`
   background-color: rgb(255, 255, 255);
   border-radius: 10px;
   border: 2px solid rgb(0, 0, 0, 0.2);
-  z-index: 999;
+  z-index: 2;
   position: absolute;
   color: black;
   cursor: default;
@@ -50,7 +51,7 @@ export const Img = styled.img`
   }
 `;
 
-const Card = ({ card }) => {
+const Card = ({ card, changeVis }) => {
   const ref = useRef();
 
   const {
@@ -71,17 +72,19 @@ const Card = ({ card }) => {
           const account = myInfos.account;
           // const value = myInfos.web3.utils.toWei("0.01");
           const value = myInfos.web3.utils.toWei("1");
-          // account: account,
-          // balanceEther: balanceEther,
-          // cards: cards,
-          // web3: web3,
+
+          //adding load screen
+          changeVis("flex");
 
           console.log(card.id);
           const tx = await myInfos.cards.methods
             .buyCardFromMarket(card.id)
-            .send({ from: account, value: value });
+            .send({ from: account, value: value })
+            .then((event) => {
+              console.log(event);
+              changeVis("none");
+            });
 
-          console.log(tx);
           // //update
           // window.location.reload();
         }}
