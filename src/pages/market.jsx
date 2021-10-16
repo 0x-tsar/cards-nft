@@ -14,7 +14,7 @@ const Market = () => {
   const { nft, setNft, marketCards, setMarketCards, myInfos, setMyInfos } =
     useContext(AuthContext);
 
-  console.log(marketCards);
+  // console.log(marketCards);
 
   return (
     <Container>

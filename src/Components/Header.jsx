@@ -18,7 +18,8 @@ export const Container = styled.div`
 `;
 
 const Header = () => {
-  const { myInfos, search, setSearch } = useContext(AuthContext);
+  const { myInfos, search, setSearch, changed, setChanged } =
+    useContext(AuthContext);
   // const [searchh, setSearchh] = useState("");
 
   const handleForm = (e) => {
@@ -31,6 +32,7 @@ const Header = () => {
     //do solidity search here
     //display all cards from this club
 
+    setChanged(true);
     Router.push("/searcher");
   };
 
@@ -48,6 +50,7 @@ const Header = () => {
               height: "40px",
               fontSize: "20px",
               outline: "none",
+              borderRadius: "6px",
             }}
             onChange={(e) => handleForm(e)}
             placeholder="Pesquise um time.."

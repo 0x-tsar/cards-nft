@@ -16,9 +16,12 @@ contract Cards is ERC721Enumerable {
     /*for now just add one creator per club, but when I want to increase more creators
     for each club I just need to add mapping(string=>mapping(uint=>address)) 
     */
-    // mapping(string => address) public clubToCreator;
 
-    //
+    //MIGRATE CONTRACT FIRST BEFORE ANYTHING, OF COURSE
+    // first get the clubToCreator address of what team i want, then loop through marketCards
+    // filtering just the cards `createdBy` that address and return it to the user
+
+    mapping(string => address) public clubToCreator;
     mapping(address => bool) public creators;
 
     //owner of the contract retrieving all of its fee's
@@ -28,15 +31,17 @@ contract Cards is ERC721Enumerable {
     }
 
     // adding card creators, just admin allowed to add
-    function addCreator(address _addr) external {
+    function addCreator(address _addr, string memory _club) external {
         require(admin == msg.sender, "YOU ARE NOT ADMIN");
         creators[_addr] = true;
+        clubToCreator[_club] = _addr;
     }
 
     // removing card creators, just admin allowed to remove
-    function removeCreator(address _addr) external {
+    function removeCreator(address _addr, string memory _club) external {
         require(admin == msg.sender, "YOU ARE NOT ADMIN");
         creators[_addr] = false;
+        delete clubToCreator[_club];
     }
 
     function totalFundsCollected() external view returns (uint256) {

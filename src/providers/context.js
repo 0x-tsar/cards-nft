@@ -10,6 +10,8 @@ export const AuthProvider = (props) => {
   const [myInfos, setMyInfos] = useState([]);
   const [whichTab, setWhichTab] = useState(0);
   const [search, setSearch] = useState("");
+  const [filtered, setFiltered] = useState([]);
+  const [change, setChanged] = useState();
 
   useEffect(() => {
     const done = async () => {
@@ -54,7 +56,7 @@ export const AuthProvider = (props) => {
           .call();
         const token = await cards.methods.tokenByIndex(tokenId).call();
         const item = await cards.methods.myCards(account, token).call();
-        // console.log(item);
+        console.log(item);
 
         setMyCards((myCards) => [...myCards, item]);
       }
@@ -62,7 +64,7 @@ export const AuthProvider = (props) => {
       cards.events
         .cardMinted({})
         .on("data", async function (event) {
-          console.log(event.returnValues);
+          // console.log(event.returnValues);
           // Do something here
           setMarketCards((marketCards) => [...marketCards, event.returnValues]);
         })
@@ -99,6 +101,10 @@ export const AuthProvider = (props) => {
         setWhichTab,
         search,
         setSearch,
+        filtered,
+        setFiltered,
+        change,
+        setChanged,
       }}
     >
       {props.children}

@@ -12,18 +12,18 @@ module.exports = async () => {
     const totalFundsCollected = await cards.totalFundsCollected();
     console.log(parseInt(totalFundsCollected));
 
-    // await cards.mintCards(
-    //   "Luciano",
-    //   value,
-    //   "Description One",
-    //   "Sao Paulo",
-    //   "./card1.png",
-    //   5,
-    //   {
-    //     from: account,
-    //     // value: value,
-    //   }
-    // );
+    await cards.mintCards(
+      "Luciano",
+      value,
+      "Description One",
+      "Sao Paulo",
+      "./card1.png",
+      5,
+      {
+        from: account,
+        // value: value,
+      }
+    );
 
     // await cards.mintCards(
     //   "Hernanes",
