@@ -14,7 +14,8 @@ export const Container = styled.div`
   /* color: #1c1c1c; */
   color: white;
   border-bottom: 1px solid rgb(0, 0, 0, 0.3);
-  padding: 5px;
+  padding: 10px;
+  font-size: 21px;
 `;
 
 const Header = () => {

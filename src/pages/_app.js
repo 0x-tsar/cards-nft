@@ -17,19 +17,20 @@ export const Container = styled.div`
     "header header"
     "leftbar main";
 
-  overflow: hidden;
+  /* overflow: hidden; */
 
   grid-column-gap: 1px;
   grid-row-gap: 1px;
   grid-gap: 1px;
 
   grid-template-columns: 300px 1fr;
-  grid-template-rows: 80px;
+  grid-template-rows: 90px 1fr;
 
-  height: 100vh;
+  /* grid-template-rows: 80px 100vmax; */
+  /* height: min-content; */
   /* grid-template-rows: 80px calc(100vh - 80px); */
 
-  overflow: hidden;
+  /* overflow: hidden; */
 `;
 
 export const LoadingScreen = styled.div`
@@ -48,6 +49,7 @@ export const LoadingScreen = styled.div`
   align-items: center;
   align-self: center;
   font-size: 25px;
+  /* display: "none"; */
   display: ${(props) => props.visibility};
 `;
 

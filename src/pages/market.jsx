@@ -4,7 +4,7 @@ import Card from "../Components/Card";
 import { AuthContext } from "../providers/context";
 
 export const Container = styled.div`
-  height: 0;
+  height: min-content;
   display: flex;
   flex-wrap: wrap;
   justify-content: center;

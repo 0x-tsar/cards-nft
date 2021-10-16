@@ -1,5 +1,6 @@
 import React, { createContext, useEffect, useState } from "react";
 import loadEthereum from "../ethereum";
+import { ethErrors } from "eth-rpc-errors";
 
 export const AuthContext = createContext({});
 
@@ -67,6 +68,18 @@ export const AuthProvider = (props) => {
           // console.log(event.returnValues);
           // Do something here
           setMarketCards((marketCards) => [...marketCards, event.returnValues]);
+        })
+        .on("error", console.error);
+
+      //
+      cards.events
+        .cardTransfered({})
+        .on("data", async function (event) {
+          // console.log(event.returnValues);
+          // Do something here
+          // changeVis("none");
+          window.location.reload();
+          // setMarketCards((marketCards) => [...marketCards, event.returnValues]);
         })
         .on("error", console.error);
     };

@@ -1,10 +1,9 @@
 import React, { useRef, useContext } from "react";
 import styled from "styled-components";
 import { AuthContext } from "../providers/context";
+import { ethErrors } from "eth-rpc-errors";
 
-export const Container = styled.div`
-   ;
-`;
+export const Container = styled.div``;
 
 export const CardHolder = styled.div`
   /* overflow: hidden; */
@@ -74,18 +73,13 @@ const Card = ({ card, changeVis }) => {
           const value = myInfos.web3.utils.toWei("1");
 
           //adding load screen
-          changeVis("flex");
+          // changeVis("flex");
 
           console.log(card.id);
-          const tx = await myInfos.cards.methods
+          await myInfos.cards.methods
             .buyCardFromMarket(card.id)
             .send({ from: account, value: value })
             .then((error, result) => {
-              if (error) {
-                changeVis("none");
-                console.log(error);
-              }
-
               changeVis("none");
             });
 

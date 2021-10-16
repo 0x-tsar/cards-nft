@@ -34,7 +34,7 @@ module.exports = async () => {
     //   "./card2.png",
     //   4,
     //   {
-    //     from: account,
+    //     from: account2,
     //     // value: value,
     //   }
     // );
@@ -58,7 +58,7 @@ module.exports = async () => {
       "Drible...",
       "Barcelona",
       "./card4.png",
-      2,
+      20,
       {
         from: account2,
         // value: value,
