@@ -54,6 +54,7 @@ export const loadEthereum = async () =>
           );
 
           window.ethereum.on("chainChanged", (change) => {
+            console.log("change it");
             window.location.reload();
           });
 

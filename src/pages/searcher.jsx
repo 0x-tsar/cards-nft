@@ -35,16 +35,20 @@ const Searcher = ({ changeVis }) => {
 
   useEffect(() => {
     if (change) {
+      setFiltered([]);
       console.log("called");
       const done = async () => {
         const cards = myInfos.cards;
-        if (cards && filtered.length == 0) {
-          // setChanged(false);
+        if (cards) {
           const lowerSearch = search.toLowerCase();
           //getting the creator of searched team
           const clubAddress = await cards.methods
             .clubToCreator(lowerSearch)
             .call();
+
+          console.log(`clubaddress: ${clubAddress}`);
+          if (clubAddress === "0x0000000000000000000000000000000000000000")
+            return;
           // const market = await cards.methods.marketCards().call();
           // mapping(address => mapping(uint256 => Card)) public marketCards;
 

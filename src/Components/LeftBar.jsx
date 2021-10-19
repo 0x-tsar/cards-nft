@@ -10,6 +10,9 @@ export const Container = styled.div`
   background-color: rgb(26, 33, 42);
   color: white;
 
+  display: flex;
+  flex-wrap: wrap;
+
   ul {
     padding: 0;
     margin: 0;
@@ -29,6 +32,22 @@ export const Container = styled.div`
 
   display: flex;
   justify-content: center;
+`;
+
+export const HolderCreator = styled.div`
+  width: 100%;
+  height: 200px;
+  /* background-color: red; */
+
+  display: flex;
+  justify-content: center;
+  /* padding: 100px 0; */
+  align-items: center;
+  flex-wrap: wrap;
+
+  button {
+    height: 60px;
+  }
 `;
 
 const LeftBar = () => {
@@ -52,43 +71,55 @@ const LeftBar = () => {
   // funWhich(whichTab)
   return (
     <Container>
-      <ul style={{ listStyleType: "none" }}>
-        <Link href={"/"}>
-          <a onClick={() => setWhichTab(1)}>
-            {whichTab === 1 ? (
-              <li style={{ backgroundColor: "#11af5b", color: "white" }}>
-                Home
-              </li>
-            ) : (
-              <li>Home</li>
-            )}
-          </a>
-        </Link>
+      <div>
+        <ul style={{ listStyleType: "none" }}>
+          <Link href={"/"}>
+            <a onClick={() => setWhichTab(1)}>
+              {whichTab === 1 ? (
+                <li style={{ backgroundColor: "#11af5b", color: "white" }}>
+                  Home
+                </li>
+              ) : (
+                <li>Home</li>
+              )}
+            </a>
+          </Link>
 
-        <Link href={"/market"}>
-          <a onClick={() => setWhichTab(2)}>
-            {whichTab === 2 ? (
-              <li style={{ backgroundColor: "#11af5b", color: "white" }}>
-                Market
-              </li>
-            ) : (
-              <li>Market</li>
-            )}
-          </a>
-        </Link>
+          <Link href={"/market"}>
+            <a onClick={() => setWhichTab(2)}>
+              {whichTab === 2 ? (
+                <li style={{ backgroundColor: "#11af5b", color: "white" }}>
+                  Market
+                </li>
+              ) : (
+                <li>Market</li>
+              )}
+            </a>
+          </Link>
 
-        <Link href={"/explorer"}>
-          <a onClick={() => setWhichTab(3)}>
-            {whichTab === 3 ? (
-              <li style={{ backgroundColor: "#11af5b", color: "white" }}>
-                Explorer
-              </li>
-            ) : (
-              <li>Explorer</li>
-            )}
-          </a>
-        </Link>
-      </ul>
+          <Link href={"/explorer"}>
+            <a onClick={() => setWhichTab(3)}>
+              {whichTab === 3 ? (
+                <li style={{ backgroundColor: "#11af5b", color: "white" }}>
+                  Explorer
+                </li>
+              ) : (
+                <li>Explorer</li>
+              )}
+            </a>
+          </Link>
+        </ul>
+      </div>
+
+      <HolderCreator>
+        <button type="button" className="btn btn-primary">
+          Require for Card Creator
+        </button>
+
+        <button type="button" className="btn btn-secondary">
+          Require for Card Creator
+        </button>
+      </HolderCreator>
     </Container>
   );
 };
