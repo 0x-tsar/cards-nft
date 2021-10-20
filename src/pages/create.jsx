@@ -42,15 +42,60 @@ const Create = () => {
   const handleSubmit = async (e) => {
     e.preventDefault();
 
+    //check if all fields all fullfiled
+
+    console.log(newCard);
+
+    if (
+      newCard.amount === "" &&
+      newCard.cardName === "" &&
+      newCard.cardPrice === "" &&
+      newCard.club === "" &&
+      newCard.urlPicture === "" &&
+      newCard.description === ""
+    ) {
+      console.log("ERROR! ALL FIELD MUST BE FULLFILED");
+      return;
+    }
+
     const cards = await myInfos.cards;
     const account = await myInfos.account;
     const price = myInfos.web3.utils.toWei("0.011");
     //call contract Mintcard here..
     //first deploy new contract, then gives permission for some account to mint
+
+    // console.log(
+    //   newCard.amount,
+    //   newCard.cardName,
+    //   newCard.cardPrice,
+    //   newCard.club,
+    //   newCard.urlPicture,
+    //   newCard.description
+    // );
+
+    // string memory _title,
+    // uint256 _price,
+    // string memory _description,
+    // string memory _club,
+    // string memory _urlPicture,
+    // uint256 _totalAmount
+
+    // const isCreator = await cards.methods.isCreator(account).call();
+    // console.log(`${account} isCreator?: ${isCreator}`);
+
+    console.log(
+      newCard.cardName,
+      parseInt(newCard.cardPrice),
+      newCard.club,
+      newCard.urlPicture,
+      parseInt(newCard.amount),
+      newCard.description
+    );
+
     await cards.methods
       .mintCards(
-        newCard.name,
-        newCard.price,
+        newCard.cardName,
+        newCard.cardPrice,
         newCard.club,
         newCard.urlPicture,
         newCard.amount,
@@ -58,43 +103,49 @@ const Create = () => {
       )
       .send({ from: account });
 
-    // setState({ ...state, price: e.target.value });
-    // <input type="file" onChange={setStorage} />
-    // const setStorage = async (e) => {
-    //   const data = e.target.files[0];
+    // const tx = await info.bookContract.methods
+    //   .createNewBook(state.title, state.price, state.url)
+    //   .send({ from: info.currentAddress });
+    // console.log(tx);
+    // setData((data) => [...data, ""]);
 
-    //   try {
-    //     const uploadedFile = await fleekStorage.upload({
-    //       apiKey: "+Gxl/Kv/k+cdc1W4dTyP4Q==",
-    //       apiSecret: "+ldkPR3rw+7jp6j74Koi5/8JHHPD2zwx40uxekH1hEw=",
-    //       key: data.name,
-    //       data: data,
-    //     });
-
-    //     // const tx = await info.bookContract.methods
-    //     //   .createNewBook("book 2", value, bookUrl)
-    //     //   .send({ from: info.currentAddress });
-    //     // console.log(tx);
-
-    //     console.log(`picture was uploaded to IPFS`);
-    //     console.log(uploadedFile);
-    //     setState({ ...state, url: uploadedFile.hash });
-    //     //first try with IPFS later with Fleek
-    //     // setState({ ...state, url: `https://ipfs.io/ipfs/${uploadedFile.hash}`});
-
-    //     // setVideo(`https://ipfs.io/ipfs/${uploadedFile.hash}`);
-
-    //     // const url = `https://ipfs.infura.io/ipfs/${added.path}`;
-    //     // updateFileUrl(url);
-    //     // console.log(`url ipfs: ${url}`);
-    //   } catch (error) {
-    //     console.log("Error uploading file: ", error);
-    //   }
-    // };
-
-    console.log(e);
+    // console.log(e);
   };
 
+  // <input type="file" onChange={setStorage} />
+  const setStorage = async (e) => {
+    const data = e.target.files[0];
+
+    try {
+      // const uploadedFile = await fleekStorage.upload({
+      //   apiKey: "+Gxl/Kv/k+cdc1W4dTyP4Q==",
+      //   apiSecret: "+ldkPR3rw+7jp6j74Koi5/8JHHPD2zwx40uxekH1hEw=",
+      //   key: data.name,
+      //   data: data,
+      // });
+
+      const uploadedFile = { hash: "HASH_EXAMLE" };
+
+      // const tx = await info.bookContract.methods
+      //   .createNewBook("book 2", value, bookUrl)
+      //   .send({ from: info.currentAddress });
+      // console.log(tx);
+
+      console.log(`picture was uploaded to IPFS`);
+      console.log(uploadedFile);
+      // setState({ ...state, url: uploadedFile.hash });
+      //first try with IPFS later with Fleek
+      // setState({ ...state, url: `https://ipfs.io/ipfs/${uploadedFile.hash}`});
+
+      // setVideo(`https://ipfs.io/ipfs/${uploadedFile.hash}`);
+      setNewCard({
+        ...newCard,
+        urlPicture: `https://ipfs.io/ipfs/${uploadedFile.hash}`,
+      });
+    } catch (error) {
+      console.log("Error uploading file: ", error);
+    }
+  };
   return (
     <Container>
       {/* CARD NAME */}
@@ -106,11 +157,12 @@ const Create = () => {
             value={newCard.name}
             onChange={(e) => {
               console.log(e.currentTarget.value);
-              setNewCard({
-                ...(newCard) => {
-                  newCard, e.currentTarget.value;
-                },
-              });
+              // setNewCard({
+              //   ...(newCard) => {
+              //     newCard, e.currentTarget.value;
+              //   },
+              // });
+              setNewCard({ ...newCard, cardName: e.target.value });
             }}
             type="text"
             className="form-control p-3"
@@ -119,7 +171,7 @@ const Create = () => {
             placeholder="Card Name"
           />
           <small id="cardName" className="form-text text-muted">
-            Type exactly what you set before
+            Type the Card's Title
           </small>
         </div>
         {/* CARD PRICE */}
@@ -130,11 +182,12 @@ const Create = () => {
             value={newCard.price}
             onChange={(e) => {
               console.log(e.currentTarget.value);
-              setNewCard({
-                ...(newCard) => {
-                  newCard, e.currentTarget.value;
-                },
-              });
+              // setNewCard({
+              //   ...(newCard) => {
+              //     newCard, e.currentTarget.value;
+              //   },
+              // });
+              setNewCard({ ...newCard, cardPrice: e.target.value });
             }}
             type="text"
             className="form-control p-3"
@@ -155,42 +208,19 @@ const Create = () => {
             value={newCard.clubName}
             onChange={(e) => {
               console.log(e.currentTarget.value);
-              setNewCard({
-                ...(newCard) => {
-                  newCard, e.currentTarget.value;
-                },
-              });
+              // setNewCard({
+              //   ...(newCard) => {
+              //     newCard, e.currentTarget.value;
+              //   },
+              // });
+
+              setNewCard({ ...newCard, club: e.target.value });
             }}
             type="text"
             className="form-control p-3"
             id="clubName"
             aria-describedby="clubName"
             placeholder="Club Name"
-          />
-          <small id="clubDescription" className="form-text text-muted">
-            You must be allowed to create a card for your club
-          </small>
-        </div>
-
-        {/* URL PICTURE */}
-        {/* URL PICTURE */}
-        <div className="form-group">
-          <label htmlFor="urlPicture">Url Picture</label>
-          <input
-            value={newCard.urlPicture}
-            onChange={(e) => {
-              console.log(e.currentTarget.value);
-              setNewCard({
-                ...(newCard) => {
-                  newCard, e.currentTarget.value;
-                },
-              });
-            }}
-            type="text"
-            className="form-control p-3"
-            id="urlPicture"
-            aria-describedby="urlPicture"
-            placeholder="Url Picture"
           />
           <small id="clubDescription" className="form-text text-muted">
             You must be allowed to create a card for your club
@@ -205,11 +235,8 @@ const Create = () => {
             value={newCard.cardAmount}
             onChange={(e) => {
               console.log(e.currentTarget.value);
-              setNewCard({
-                ...(newCard) => {
-                  newCard, e.currentTarget.value;
-                },
-              });
+
+              setNewCard({ ...newCard, amount: e.target.value });
             }}
             type="text"
             className="form-control p-3"
@@ -222,15 +249,24 @@ const Create = () => {
           </small>
         </div>
 
-        {/* <div className="form-group">
-          <label htmlFor="exampleInputPassword1">Card Description</label>
+        {/* CARD INPUT */}
+        {/* CARD INPUT */}
+        <div className="form-group">
+          <label htmlFor="pictureUrl">Picture Url</label>
           <input
-            type="text-area"
+            type="file"
+            onChange={setStorage}
+            value={newCard.pictureUrl}
             className="form-control p-3"
-            id="cardDescription"
-            placeholder="Card Description"
+            id="pictureUrl"
+            aria-describedby="pictureUrl"
+            // placeholder="Card Input"
           />
-        </div> */}
+          <small id="pictureUrl" className="form-text text-muted">
+            Pick the image of your card, see the rules here: www...
+          </small>
+        </div>
+
         <br />
         <div className="form-group">
           <label htmlFor="cardDescription">Card Description</label>
@@ -239,6 +275,9 @@ const Create = () => {
             id="cardDescription"
             rows="5"
             placeholder="Put the card description all of your new minted cards will have."
+            onChange={(e) => {
+              setNewCard({ ...newCard, description: e.target.value });
+            }}
           ></textarea>
         </div>
         {/* <div className="form-check">
