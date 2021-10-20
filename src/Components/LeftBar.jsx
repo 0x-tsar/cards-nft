@@ -113,7 +113,11 @@ const LeftBar = () => {
 
       <HolderCreator>
         <button type="button" className="btn btn-primary">
-          Require for Card Creator
+          <Link href={"/create"}>
+            <a>
+              <li style={{ color: "white", listStyle: "none" }}> Create new</li>
+            </a>
+          </Link>
         </button>
 
         <button type="button" className="btn btn-secondary">

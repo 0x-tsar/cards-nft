@@ -24,6 +24,54 @@ contract Cards is ERC721Enumerable {
     mapping(string => address) public clubToCreator;
     mapping(address => bool) public creators;
 
+    function mintCards(
+        string memory _title,
+        uint256 _price,
+        string memory _description,
+        string memory _club,
+        string memory _urlPicture,
+        uint256 _totalAmount
+    ) external {
+        require(creators[msg.sender], "YOU ARE NOT A CREATOR");
+        require(
+            clubToCreator[_club] == msg.sender,
+            "YOU ARE NOT CREATOR OF THIS CLUB"
+        );
+
+        for (uint256 i = 0; i < _totalAmount; i++) {
+            Card memory card = Card({
+                title: _title,
+                id: nextItemId,
+                owner: address(this),
+                price: _price,
+                description: _description,
+                urlPicture: _urlPicture,
+                club: _club,
+                timestamp: block.timestamp,
+                createdBy: msg.sender,
+                totalAmount: _totalAmount
+            });
+            _mint(address(this), nextItemId);
+            marketCards[address(this)][nextItemId] = card;
+            nextItemId++;
+
+            emit cardMinted(
+                card.title,
+                card.id,
+                card.owner,
+                card.price,
+                card.description,
+                card.urlPicture,
+                card.timestamp,
+                card.totalAmount,
+                card.createdBy
+            );
+        }
+
+        // tokenOfOwnerByIndex(owner, index);
+        // tokenByIndex(index);
+    }
+
     //owner of the contract retrieving all of its fee's
     function retrieveFunds() external {
         require(msg.sender == admin, "YOU ARE NOT ALLOWED");
@@ -82,6 +130,11 @@ contract Cards is ERC721Enumerable {
 
     constructor() ERC721("Cards Futebol", "FUT") {
         admin = msg.sender;
+        creators[msg.sender] = true;
+    }
+
+    function isCreator(address _addr) external view returns (bool) {
+        return creators[_addr];
     }
 
     function buyCardFromMarket(uint256 tokenId) external payable {
@@ -107,47 +160,7 @@ contract Cards is ERC721Enumerable {
         );
     }
 
-    function mintCards(
-        string memory _title,
-        uint256 _price,
-        string memory _description,
-        string memory _club,
-        string memory _urlPicture,
-        uint256 _totalAmount
-    ) external {
-        for (uint256 i = 0; i < _totalAmount; i++) {
-            Card memory card = Card({
-                title: _title,
-                id: nextItemId,
-                owner: address(this),
-                price: _price,
-                description: _description,
-                urlPicture: _urlPicture,
-                club: _club,
-                timestamp: block.timestamp,
-                createdBy: msg.sender,
-                totalAmount: _totalAmount
-            });
-            _mint(address(this), nextItemId);
-            marketCards[address(this)][nextItemId] = card;
-            nextItemId++;
-
-            emit cardMinted(
-                card.title,
-                card.id,
-                card.owner,
-                card.price,
-                card.description,
-                card.urlPicture,
-                card.timestamp,
-                card.totalAmount,
-                card.createdBy
-            );
-        }
-
-        // tokenOfOwnerByIndex(owner, index);
-        // tokenByIndex(index);
-    }
+    //PUT MINT FN HERE
 
     //100 basis points = 1.00 pct
     function calculateFeeAdmin(uint256 amount) private view returns (uint256) {
