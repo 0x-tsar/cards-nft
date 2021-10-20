@@ -19,11 +19,11 @@ module.exports = async () => {
     //     clubToCreator[_club] = _addr;
     // }
 
+    // function addCreator(address _addr, string memory _club)
+
     // adding creator
-    // const addingCreator = await cards.addCreator(
-    //   "0x6BBaB440067780da9fe5cb77E463152B16aBF107",
-    //   "sao paulo"
-    // );
+    const addingCreator = await cards.addCreator(account, "spfc");
+    console.log("account added");
 
     //checking if is creator
     // const isCreator = await cards.isCreator(account3);
@@ -42,18 +42,18 @@ module.exports = async () => {
     //   }
     // );
 
-    await cards.mintCards(
-      "Hernanes",
-      value,
-      "Description Two",
-      "Sao Paulo",
-      "./card2.png",
-      4,
-      {
-        from: account2,
-        // value: value,
-      }
-    );
+    // await cards.mintCards(
+    //   "Hernanes",
+    //   value,
+    //   "Description Two",
+    //   "Sao Paulo",
+    //   "./card2.png",
+    //   4,
+    //   {
+    //     from: account2,
+    //     // value: value,
+    //   }
+    // );
 
     // await cards.mintCards(
     //   "Reinaldo",

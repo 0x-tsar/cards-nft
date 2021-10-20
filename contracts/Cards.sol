@@ -137,6 +137,15 @@ contract Cards is ERC721Enumerable {
         return creators[_addr];
     }
 
+    function isClubCreator(string memory _club) external view returns (bool) {
+        require(
+            clubToCreator[_club] == msg.sender,
+            "YOU ARE NOT CREATOR OF THIS CLUB"
+        );
+
+        return true;
+    }
+
     function buyCardFromMarket(uint256 tokenId) external payable {
         require(
             msg.value == marketCards[address(this)][tokenId].price,

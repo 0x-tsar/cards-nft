@@ -20,7 +20,14 @@ export const Container = styled.div`
 `;
 
 const Create = () => {
-  const [newCard, setNewCard] = useState([]);
+  const [newCard, setNewCard] = useState({
+    cardName: "card name",
+    cardPrice: 2222222,
+    description: "some description here",
+    club: "spfc",
+    urlPicture: "hash_picture",
+    amount: 2,
+  });
 
   const {
     marketCards,
@@ -83,23 +90,17 @@ const Create = () => {
     // const isCreator = await cards.methods.isCreator(account).call();
     // console.log(`${account} isCreator?: ${isCreator}`);
 
-    console.log(
-      newCard.cardName,
-      parseInt(newCard.cardPrice),
-      newCard.club,
-      newCard.urlPicture,
-      parseInt(newCard.amount),
-      newCard.description
-    );
+    const isClubCreator = await cards.methods.isClubCreator("spfc").call();
+    console.log(`${account} isClubCreator?: ${isClubCreator}`);
 
     await cards.methods
       .mintCards(
         newCard.cardName,
-        newCard.cardPrice,
+        parseInt(newCard.cardPrice),
+        newCard.description,
         newCard.club,
         newCard.urlPicture,
-        newCard.amount,
-        newCard.description
+        parseInt(newCard.amount)
       )
       .send({ from: account });
 
