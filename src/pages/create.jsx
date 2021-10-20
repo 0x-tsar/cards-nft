@@ -102,7 +102,10 @@ const Create = () => {
         newCard.urlPicture,
         parseInt(newCard.amount)
       )
-      .send({ from: account });
+      .send({ from: account })
+      .then((hash) => {
+        console.log(hash);
+      });
 
     // const tx = await info.bookContract.methods
     //   .createNewBook(state.title, state.price, state.url)
