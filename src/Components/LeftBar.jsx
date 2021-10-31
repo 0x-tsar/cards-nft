@@ -18,7 +18,15 @@ export const Container = styled.div`
     margin: 0;
   }
 
+  a {
+    color: rgba(0, 0, 0, 0);
+  }
+
   ul li {
+    text-decoration: none;
+
+    outline: none;
+    color: white;
     margin-top: 10px;
     /* padding: 10px; */
     padding: 10px 70px;

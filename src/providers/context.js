@@ -34,54 +34,60 @@ export const AuthProvider = (props) => {
           // console.log(item);
           setMarketCards((marketCards) => [...marketCards, item]);
         }
+
+        //////////////////////
+        //////////////////////
+        //////////////////////
+        // reading users items
+
+        // const account = await web3.currentProvider.selectedAddress;
+        if (account) {
+          const balanceEther = await web3.eth.getBalance(account);
+          setMyInfos({
+            account: account,
+            balanceEther: balanceEther,
+            cards: cards,
+            web3: web3,
+          });
+
+          const balanceUser = await cards.methods.balanceOf(account).call();
+          console.log(`balance user: ${balanceUser}`);
+          for (let i = 0; i < balanceUser; i++) {
+            const tokenId = await cards.methods
+              .tokenOfOwnerByIndex(account, i)
+              .call();
+            const token = await cards.methods.tokenByIndex(tokenId).call();
+            const item = await cards.methods.myCards(account, token).call();
+            console.log(item);
+
+            setMyCards((myCards) => [...myCards, item]);
+          }
+
+          cards.events
+            .cardMinted({})
+            .on("data", async function (event) {
+              // console.log(event.returnValues);
+              // Do something here
+              setMarketCards((marketCards) => [
+                ...marketCards,
+                event.returnValues,
+              ]);
+            })
+            .on("error", console.error);
+
+          //
+          cards.events
+            .cardTransfered({})
+            .on("data", async function (event) {
+              // console.log(event.returnValues);
+              // Do something here
+              // changeVis("none");
+              window.location.reload();
+              // setMarketCards((marketCards) => [...marketCards, event.returnValues]);
+            })
+            .on("error", console.error);
+        }
       }
-      //////////////////////
-      //////////////////////
-      //////////////////////
-      // reading users items
-
-      const account = await web3.currentProvider.selectedAddress;
-      const balanceEther = await web3.eth.getBalance(account);
-      setMyInfos({
-        account: account,
-        balanceEther: balanceEther,
-        cards: cards,
-        web3: web3,
-      });
-
-      const balanceUser = await cards.methods.balanceOf(account).call();
-      console.log(`balance user: ${balanceUser}`);
-      for (let i = 0; i < balanceUser; i++) {
-        const tokenId = await cards.methods
-          .tokenOfOwnerByIndex(account, i)
-          .call();
-        const token = await cards.methods.tokenByIndex(tokenId).call();
-        const item = await cards.methods.myCards(account, token).call();
-        console.log(item);
-
-        setMyCards((myCards) => [...myCards, item]);
-      }
-
-      cards.events
-        .cardMinted({})
-        .on("data", async function (event) {
-          // console.log(event.returnValues);
-          // Do something here
-          setMarketCards((marketCards) => [...marketCards, event.returnValues]);
-        })
-        .on("error", console.error);
-
-      //
-      cards.events
-        .cardTransfered({})
-        .on("data", async function (event) {
-          // console.log(event.returnValues);
-          // Do something here
-          // changeVis("none");
-          window.location.reload();
-          // setMarketCards((marketCards) => [...marketCards, event.returnValues]);
-        })
-        .on("error", console.error);
     };
 
     //   emit cardMinted(

@@ -45,7 +45,9 @@ export const loadEthereum = async () =>
         window.ethereum.enable();
         let chainId = await window.ethereum.networkVersion;
 
-        if (chainId !== "5777") {
+        console.log(chainId);
+
+        if (chainId !== "42") {
           alert("change to 5777 network");
         } else {
           const cards = new web3.eth.Contract(
@@ -63,7 +65,6 @@ export const loadEthereum = async () =>
           });
 
           resolve({ cards, web3 });
-          // return { cards, web3 };
         }
         resolve({ cards: undefined, web3: undefined });
       } else {

@@ -23,7 +23,7 @@ module.exports = async () => {
 
     // adding creator
     const addingCreator = await cards.addCreator(account, "spfc");
-    console.log("account added");
+    console.log(`${account} account added to spfc`);
 
     //checking if is creator
     // const isCreator = await cards.isCreator(account3);
