@@ -22,8 +22,12 @@ module.exports = async () => {
     // function addCreator(address _addr, string memory _club)
 
     // adding creator
-    const addingCreator = await cards.addCreator(account, "spfc");
-    console.log(addingCreator);
+    // const addingCreator = await cards.addCreator(account, "spfc");
+    // console.log(addingCreator);
+
+    // const admin = await cards.admin.call();
+    // console.log(admin);
+
     // console.log(`${account} account added to spfc`);
 
     // //checking if is creator

@@ -5,7 +5,7 @@ import "@openzeppelin/contracts/token/ERC721/ERC721.sol";
 import "@openzeppelin/contracts/token/ERC721/extensions/ERC721Enumerable.sol";
 
 contract Cards is ERC721Enumerable {
-    address private immutable admin;
+    address public immutable admin;
     uint256 public nextItemId;
     uint256 public CONTRACT_FEE = 1000; //10% fee
     uint256 public CREATORS_FEE = 2000; // 20% fee
@@ -137,8 +137,6 @@ contract Cards is ERC721Enumerable {
     constructor() ERC721("Cards Futebol", "FUT") {
         admin = msg.sender;
         creators[msg.sender] = true;
-        // clubToCreator["spfc"] = msg.sender;
-        // clubToCreator["sao paulo"] = msg.sender;
     }
 
     function isCreator(address _addr) external view returns (bool) {
