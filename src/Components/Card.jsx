@@ -112,6 +112,7 @@ const Card = ({ card, changeVis, where }) => {
           // const value = myInfos.web3.utils.toWei("1");
           //adding load screen
           // changeVis("flex");
+          confetis();
 
           if (where === "home") {
             // ADD HERE SOME OPTIONS TO DO WITH THIS CARDS I OWN
@@ -123,8 +124,6 @@ const Card = ({ card, changeVis, where }) => {
             //   spread: 70,
             //   origin: { y: 0.5, y: 1.2 },
             // });
-
-            confetis();
 
             await myInfos.cards.methods
               .buyCardFromMarket(card.id)

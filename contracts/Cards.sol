@@ -30,7 +30,7 @@ contract Cards is ERC721Enumerable {
         external
     {
         require(
-            clubToCreator[_club] == msg.sender,
+            clubToCreator[_club] == msg.sender || admin == msg.sender,
             "YOUR ARE NOT A CREATOR OF THIS CLUB"
         );
         urlClubBadge[_club] = _newClubBadge;
@@ -46,7 +46,7 @@ contract Cards is ERC721Enumerable {
     ) external {
         require(creators[msg.sender], "YOU ARE NOT A CREATOR");
         require(
-            clubToCreator[_club] == msg.sender,
+            clubToCreator[_club] == msg.sender || admin == msg.sender,
             "YOU ARE NOT CREATOR OF THIS CLUB"
         );
 
