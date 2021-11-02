@@ -26,7 +26,7 @@ const Header = () => {
   const handleForm = (e) => {
     // setSearchh(e.target.value);
     setSearch(e.target.value);
-    console.log(e.target.value);
+    // console.log(e.target.value);
   };
 
   const handleSubmit = (e) => {
@@ -39,13 +39,12 @@ const Header = () => {
     setChanged(true);
 
     setTimeout(() => {
-      console.log("test");
       setChanged(false);
     }, 300);
-    // Router.push("/searcher");
   };
 
   useEffect(() => {
+    console.log("WORKS!");
     Router.push("/searcher");
   }, [changed]);
 
