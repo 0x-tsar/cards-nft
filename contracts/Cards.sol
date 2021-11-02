@@ -21,8 +21,20 @@ contract Cards is ERC721Enumerable {
     // first get the clubToCreator address of what team i want, then loop through marketCards
     // filtering just the cards `createdBy` that address and return it to the user
 
+    mapping(string => string) private urlClubBadge;
     mapping(string => address) public clubToCreator;
     mapping(address => bool) public creators;
+
+    //type the club's the same you are authorized to post for
+    function setClubBadge(string memory _club, string memory _newClubBadge)
+        external
+    {
+        require(
+            clubToCreator[_club] == msg.sender,
+            "YOUR ARE NOT A CREATOR OF THIS CLUB"
+        );
+        urlClubBadge[_club] = _newClubBadge;
+    }
 
     function mintCards(
         string memory _title,
@@ -33,10 +45,10 @@ contract Cards is ERC721Enumerable {
         uint256 _totalAmount
     ) external {
         require(creators[msg.sender], "YOU ARE NOT A CREATOR");
-        // require(
-        //     clubToCreator[_club] == msg.sender,
-        //     "YOU ARE NOT CREATOR OF THIS CLUB"
-        // );
+        require(
+            clubToCreator[_club] == msg.sender,
+            "YOU ARE NOT CREATOR OF THIS CLUB"
+        );
 
         for (uint256 i = 0; i < _totalAmount; i++) {
             Card memory card = Card({
@@ -51,6 +63,7 @@ contract Cards is ERC721Enumerable {
                 createdBy: msg.sender,
                 totalAmount: _totalAmount
             });
+
             _mint(address(this), nextItemId);
             marketCards[address(this)][nextItemId] = card;
             nextItemId++;
@@ -124,6 +137,8 @@ contract Cards is ERC721Enumerable {
     constructor() ERC721("Cards Futebol", "FUT") {
         admin = msg.sender;
         creators[msg.sender] = true;
+        // clubToCreator["spfc"] = msg.sender;
+        // clubToCreator["sao paulo"] = msg.sender;
     }
 
     function isCreator(address _addr) external view returns (bool) {
@@ -132,8 +147,8 @@ contract Cards is ERC721Enumerable {
 
     function isClubCreator(string memory _club) external view returns (bool) {
         require(
-            clubToCreator[_club] == msg.sender,
-            "YOU ARE NOT CREATOR OF THIS CLUB"
+            clubToCreator[_club] == msg.sender || admin == msg.sender,
+            "YOU ARE NOT CREATOR OF THIS CLUB NOR ADMIN"
         );
 
         return true;
@@ -170,7 +185,6 @@ contract Cards is ERC721Enumerable {
     }
 
     //PUT MINT FN HERE
-
     //100 basis points = 1.00 pct
     function calculateFeeAdmin(uint256 amount) private view returns (uint256) {
         require((amount / 10000) * 10000 == amount, "too small");
