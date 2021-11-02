@@ -39,6 +39,7 @@ const Searcher = ({ changeVis }) => {
 
       const done = async () => {
         const cards = myInfos.cards;
+        // console.log(myInfos);
         if (cards) {
           const lowerSearch = search.toLowerCase();
           //getting the creator of searched team
@@ -46,9 +47,10 @@ const Searcher = ({ changeVis }) => {
             .clubToCreator(lowerSearch)
             .call();
 
+          console.log(`CREATOR: ${clubAddress}`);
           setChanged(false);
 
-          console.log(`clubaddress: ${clubAddress}`);
+          //check if this name is valid and if there is an owner
           if (clubAddress === "0x0000000000000000000000000000000000000000")
             return;
           // const market = await cards.methods.marketCards().call();
@@ -64,9 +66,9 @@ const Searcher = ({ changeVis }) => {
               .marketCards(cards._address, token)
               .call();
 
-            console.log(`club address ${clubAddress}`);
+            //!IMPORTANT; //THIS IS A HARDCODED, CHANGE IT LATER
             if (
-              item.createdBy === "0xAf94f8a506be9b64C505Eb25Ffb8d2298a81D801"
+              item.createdBy === "0x79DafDE4e44Cd62e3EF1b8ff50fbe3785141Fb35"
             ) {
               setFiltered((filtered) => [...filtered, item]);
             }
