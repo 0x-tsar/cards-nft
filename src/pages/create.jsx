@@ -52,8 +52,9 @@ const Create = () => {
   const handleSubmit = async (e) => {
     e.preventDefault();
 
-    console.log(newCard);
+    // console.log(newCard.cardPrice);
 
+    // console.log(Web3.utils.toWei(newCard.cardPrice));
     if (
       newCard.cardAmount === "" ||
       newCard.cardName === "" ||
@@ -68,44 +69,44 @@ const Create = () => {
 
     const cards = await myInfos.cards;
     const account = await myInfos.account;
-    const price = myInfos.web3.utils.toWei("0.011");
+    const price = myInfos.web3.utils.toWei("0.0001");
     // //first deploy new contract, then gives permission for some account to mint
 
     // // console.log(account);
     const isCreator = await cards.methods.isCreator(account).call();
     console.log(`${account} isCreator?: ${isCreator}`);
 
-    const isClubCreator = await cards.methods.isClubCreator("spfc").call();
-    // console.log(`${account} isClubCreator?: ${isClubCreator}`);
+    // const isClubCreator = await cards.methods.isClubCreator("spfc").call();
+    // // console.log(`${account} isClubCreator?: ${isClubCreator}`);
 
     // // console.log("------");
-    // console.log(
-    //   newCard.cardName,
-    //   newCard.cardPrice,
-    //   newCard.cardDescription,
-    //   newCard.cardClub,
-    //   newCard.cardUrlPicture,
-    //   newCard.cardAmount
-    // );
+    console.log(
+      newCard.cardName,
+      Web3.utils.toWei(newCard.cardPrice),
+      newCard.cardDescription,
+      newCard.cardClub,
+      newCard.cardUrlPicture,
+      newCard.cardAmount
+    );
 
-    // await cards.methods
-    //   .mintCards(
-    //     newCard.cardName,
-    //     newCard.cardPrice,
-    //     newCard.cardDescription,
-    //     newCard.cardClub,
-    //     newCard.cardUrlPicture,
-    //     newCard.cardAmount
-    //   )
-    //   .send({
-    //     from: account,
-    //     maxPriorityFeePerGas: null,
-    //     maxFeePerGas: null,
-    //   })
-    //   .then((hash) => {
-    //     console.log(hash);
-    //     window.location.href = "http://localhost:3000/market";
-    //   });
+    await cards.methods
+      .mintCards(
+        newCard.cardName,
+        Web3.utils.toWei(newCard.cardPrice),
+        newCard.cardDescription,
+        newCard.cardClub,
+        newCard.cardUrlPicture,
+        newCard.cardAmount
+      )
+      .send({
+        from: account,
+        maxPriorityFeePerGas: null,
+        maxFeePerGas: null,
+      })
+      .then((hash) => {
+        console.log(hash);
+        window.location.href = "http://localhost:3000/market";
+      });
 
     // const tx = await info.bookContract.methods
     //   .createNewBook(state.title, state.price, state.url)
