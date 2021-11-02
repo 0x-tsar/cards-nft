@@ -13,6 +13,7 @@ export const AuthProvider = (props) => {
   const [search, setSearch] = useState("");
   const [filtered, setFiltered] = useState([]);
   const [changed, setChanged] = useState(false);
+  const [isLoading, , setIsLoading] = useState(false);
 
   useEffect(() => {
     const done = async () => {
@@ -126,6 +127,8 @@ export const AuthProvider = (props) => {
         setFiltered,
         changed,
         setChanged,
+        isLoading,
+        setIsLoading,
       }}
     >
       {props.children}

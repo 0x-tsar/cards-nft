@@ -4,8 +4,6 @@ import Header from "../Components/Header";
 import LeftBar from "../Components/LeftBar";
 import Head from "next/head";
 
-import Router from "next/router";
-
 import "bootstrap/dist/css/bootstrap.css";
 
 import { AuthContext, AuthProvider } from "../providers/context";
@@ -37,45 +35,61 @@ export const Container = styled.div`
   /* overflow: hidden; */
 `;
 
-export const LoadingScreen = styled.div`
-  width: 300px;
-  height: 300px;
-  background-color: red;
-  color: white;
-  background-color: black;
-  /* background: linear-gradient(20deg, blue, blueviolet); */
-  z-index: 5;
-  border-radius: 10px;
+// export const LoadingScreen = styled.div`
+//   width: 300px;
+//   height: 300px;
+//   background-color: red;
+//   color: white;
+//   background-color: black;
+//   /* background: linear-gradient(20deg, blue, blueviolet); */
+//   z-index: 5;
+//   border-radius: 10px;
 
-  position: relative;
+//   position: relative;
+//   display: flex;
+//   justify-content: center;
+//   align-items: center;
+//   align-self: center;
+//   font-size: 25px;
+//   /* display: "none"; */
+//   display: ${(props) => props.visibility};
+// `;
+
+export const Load = styled.div`
+  /* position: absolute; */
+  /* display: block; */
+  display: flex;
+  position: absolute;
+  width: calc(100vw - 300px);
+  height: calc(100vh - 90px);
+  margin-top: 90px;
+  margin-left: 300px;
+  z-index: 20000000;
+  background-color: rgba(0, 0, 0, 0.8);
+
   display: flex;
   justify-content: center;
   align-items: center;
-  align-self: center;
-  font-size: 25px;
-  /* display: "none"; */
+  color: white;
+
+  /* font-size: 50px; */
+  /* font-size: 100px; */
+  font-family: monospace;
+  flex-wrap: wrap;
+  word-wrap: break-word;
+  overflow: hidden;
+
   display: ${(props) => props.visibility};
 `;
 
 function MyApp({ Component, pageProps }) {
   const [vis, setVis] = useState("none");
+  // const [visible, setVisible] = useState("none");
 
   const changeVis = (v) => {
     setVis(v);
+    console.log(v);
   };
-
-  const { change, setChanged } = useContext(AuthContext);
-
-  // const [once, setOnce] = useState(false);
-
-  // useEffect(() => {
-  //   console.log("here");
-  //   if (!once) {
-  //     console.log("WORKS!");
-  //     setOnce(true);
-  //   }
-  //   // Router.push("/searcher");
-  // }, [change]);
 
   return (
     <AuthProvider>
@@ -106,30 +120,10 @@ function MyApp({ Component, pageProps }) {
         /> */}
       </Head>
 
-      <div
-        style={{
-          // display: "flex",
-          // justifyContent: "center",
-          // alignItems: "center",
-          position: "absolute",
-          marginLeft: "50%",
-          marginTop: "30vh",
-        }}
-      >
-        {/* flex or none */}
-        <LoadingScreen visibility={vis}>
-          <div>
-            <img
-              src="./loading.gif"
-              width="100px"
-              style={{ marginLeft: "75px" }}
-            ></img>
-            <div>Processing payment..</div>
-          </div>
-        </LoadingScreen>
-      </div>
-
       <Container>
+        <Load visibility={vis}>
+          <h1>LOADING BLOCKCHAIN...</h1>
+        </Load>
         <Header />
         <LeftBar />
         <Component changeVis={changeVis} {...pageProps} />

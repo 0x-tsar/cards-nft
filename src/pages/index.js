@@ -18,7 +18,7 @@ export const Container = styled.div`
   height: min-content;
 `;
 
-export default function Home() {
+export default function Home({ changeVis }) {
   const {
     nft,
     setNft,
@@ -32,17 +32,11 @@ export default function Home() {
     setSearch,
     changed,
     setChanged,
+    isLoading,
+    setIsLoading,
   } = useContext(AuthContext);
 
-  // useEffect(() => {
-  //   setTimeout(() => {
-  //     setChanged(false);
-  //   }, 300);
-  // }, []);
-
-  // useEffect(() => {
-  //   Router.push("/searcher");
-  // }, [changed]);
+  changeVis("flex");
 
   return (
     <Container>

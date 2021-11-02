@@ -79,7 +79,7 @@ const Card = ({ card, changeVis, where }) => {
       var end = Date.now() + 10 * 1000;
 
       // go Buckeyes!
-      var colors = ["#00bb19", "#ffffff"];
+      var colors = ["#00bb6d", "#ffffff"];
 
       (function frame() {
         confetti({

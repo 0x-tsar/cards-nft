@@ -25,6 +25,11 @@ contract Cards is ERC721Enumerable {
     mapping(string => address) public clubToCreator;
     mapping(address => bool) public creators;
 
+    constructor() ERC721("Cards Futebol", "FUT") {
+        admin = msg.sender;
+        creators[msg.sender] = true;
+    }
+
     //type the club's the same you are authorized to post for
     function setClubBadge(string memory _club, string memory _newClubBadge)
         external
@@ -132,11 +137,6 @@ contract Cards is ERC721Enumerable {
         uint256 timestamp;
         address createdBy;
         uint256 totalAmount;
-    }
-
-    constructor() ERC721("Cards Futebol", "FUT") {
-        admin = msg.sender;
-        creators[msg.sender] = true;
     }
 
     function isCreator(address _addr) external view returns (bool) {
