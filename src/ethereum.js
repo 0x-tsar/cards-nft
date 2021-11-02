@@ -48,7 +48,7 @@ export const loadEthereum = async () =>
         console.log(chainId);
 
         if (chainId !== "42") {
-          alert("change to 5777 network");
+          alert("change to 5777 || 42 or 69 network");
         } else {
           const cards = new web3.eth.Contract(
             Cards.abi,
