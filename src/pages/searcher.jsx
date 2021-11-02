@@ -29,14 +29,13 @@ const Searcher = ({ changeVis }) => {
     marketCards,
     filtered,
     setFiltered,
-    change,
+    changed,
     setChanged,
   } = useContext(AuthContext);
 
   useEffect(() => {
-    if (change) {
+    if (changed) {
       setFiltered([]);
-      // console.log("called");
 
       const done = async () => {
         const cards = myInfos.cards;
@@ -78,12 +77,12 @@ const Searcher = ({ changeVis }) => {
       };
       done();
 
-      console.log(filtered);
+      if (filtered.length > 0) console.log(filtered);
     }
-  }, [change]);
+  }, [changed]);
 
   useEffect(() => {
-    console.log(filtered);
+    if (filtered.length > 0) console.log(filtered);
   }, [filtered]);
 
   return (

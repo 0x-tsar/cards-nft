@@ -31,11 +31,8 @@ const Header = () => {
 
   const handleSubmit = (e) => {
     e.preventDefault();
-    //router missing on other pages
-
     //do solidity search here
     //display all cards from this club
-
     setChanged(true);
 
     setTimeout(() => {
@@ -44,7 +41,7 @@ const Header = () => {
   };
 
   useEffect(() => {
-    console.log("WORKS!");
+    //go to searcher
     Router.push("/searcher");
   }, [changed]);
 
