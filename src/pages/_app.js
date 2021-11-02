@@ -3,10 +3,13 @@ import styled from "styled-components";
 import Header from "../Components/Header";
 import LeftBar from "../Components/LeftBar";
 import Head from "next/head";
+
+import Router from "next/router";
+
 import "bootstrap/dist/css/bootstrap.css";
 
-import { AuthProvider } from "../providers/context";
-import { useState } from "react";
+import { AuthContext, AuthProvider } from "../providers/context";
+import { useState, useEffect, useContext } from "react";
 
 export const Container = styled.div`
   /* background-color: rgb(230, 230, 230); */
@@ -60,6 +63,19 @@ function MyApp({ Component, pageProps }) {
   const changeVis = (v) => {
     setVis(v);
   };
+
+  const { change, setChanged } = useContext(AuthContext);
+
+  // const [once, setOnce] = useState(false);
+
+  // useEffect(() => {
+  //   console.log("here");
+  //   if (!once) {
+  //     console.log("WORKS!");
+  //     setOnce(true);
+  //   }
+  //   // Router.push("/searcher");
+  // }, [change]);
 
   return (
     <AuthProvider>

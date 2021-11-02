@@ -36,7 +36,8 @@ const Searcher = ({ changeVis }) => {
   useEffect(() => {
     if (change) {
       setFiltered([]);
-      console.log("called");
+      // console.log("called");
+
       const done = async () => {
         const cards = myInfos.cards;
         if (cards) {
@@ -45,6 +46,8 @@ const Searcher = ({ changeVis }) => {
           const clubAddress = await cards.methods
             .clubToCreator(lowerSearch)
             .call();
+
+          setChanged(false);
 
           console.log(`clubaddress: ${clubAddress}`);
           if (clubAddress === "0x0000000000000000000000000000000000000000")
@@ -76,12 +79,12 @@ const Searcher = ({ changeVis }) => {
       done();
 
       console.log(filtered);
-
-      // setInterval(() => {
-      //   console.log(filtered);
-      // }, 1000);
     }
   }, [change]);
+
+  useEffect(() => {
+    console.log(filtered);
+  }, [filtered]);
 
   return (
     <Container>

@@ -1,4 +1,4 @@
-import React, { useContext, useState } from "react";
+import React, { useContext, useState, useEffect } from "react";
 import styled from "styled-components";
 import { AuthContext } from "../providers/context";
 import Router from "next/router";
@@ -26,20 +26,28 @@ const Header = () => {
   const handleForm = (e) => {
     // setSearchh(e.target.value);
     setSearch(e.target.value);
+    console.log(e.target.value);
   };
 
   const handleSubmit = (e) => {
     e.preventDefault();
+    //router missing on other pages
+
     //do solidity search here
     //display all cards from this club
 
     setChanged(true);
 
     setTimeout(() => {
+      console.log("test");
       setChanged(false);
-    }, 100);
-    Router.push("/searcher");
+    }, 300);
+    // Router.push("/searcher");
   };
+
+  useEffect(() => {
+    Router.push("/searcher");
+  }, [changed]);
 
   return (
     <Container>

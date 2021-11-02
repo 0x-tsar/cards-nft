@@ -12,7 +12,7 @@ export const AuthProvider = (props) => {
   const [whichTab, setWhichTab] = useState(0);
   const [search, setSearch] = useState("");
   const [filtered, setFiltered] = useState([]);
-  const [change, setChanged] = useState();
+  const [changed, setChanged] = useState(false);
 
   useEffect(() => {
     const done = async () => {
@@ -124,7 +124,7 @@ export const AuthProvider = (props) => {
         setSearch,
         filtered,
         setFiltered,
-        change,
+        changed,
         setChanged,
       }}
     >

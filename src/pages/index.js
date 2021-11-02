@@ -1,9 +1,11 @@
 import Head from "next/head";
 import styles from "../../styles/Home.module.css";
 import styled from "styled-components";
-import { useContext } from "react";
+import { useContext, useEffect } from "react";
 import { AuthContext } from "../providers/context";
 import Card from "../Components/Card";
+
+import Router from "next/router";
 
 export const Container = styled.div`
   grid-area: main;
@@ -25,7 +27,21 @@ export default function Home() {
     setMyInfos,
     myCards,
     setMyCards,
+    search,
+    setSearch,
+    changed,
+    setChanged,
   } = useContext(AuthContext);
+
+  // useEffect(() => {
+  //   setTimeout(() => {
+  //     setChanged(false);
+  //   }, 300);
+  // }, []);
+
+  // useEffect(() => {
+  //   Router.push("/searcher");
+  // }, [changed]);
 
   return (
     <Container>
