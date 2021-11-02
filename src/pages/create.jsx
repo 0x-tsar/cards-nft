@@ -23,7 +23,14 @@ export const Container = styled.div`
 const Create = () => {
   const _price = Web3.utils.toWei("0.011");
 
-  const [newCard, setNewCard] = useState([]);
+  const [newCard, setNewCard] = useState({
+    cardAmount: "",
+    cardName: "",
+    cardPrice: "",
+    cardClub: "",
+    cardUrlPicture: "",
+    cardDescription: "",
+  });
 
   const {
     marketCards,
@@ -48,11 +55,11 @@ const Create = () => {
     console.log(newCard);
 
     if (
-      newCard.cardAmount === "" &&
-      newCard.cardName === "" &&
-      newCard.cardPrice === "" &&
-      newCard.cardClub === "" &&
-      newCard.cardUrlPicture === "" &&
+      newCard.cardAmount === "" ||
+      newCard.cardName === "" ||
+      newCard.cardPrice === "" ||
+      newCard.cardClub === "" ||
+      newCard.cardUrlPicture === "" ||
       newCard.cardDescription === ""
     ) {
       console.log("ERROR! ALL FIELD MUST BE FULLFILED");
@@ -62,31 +69,31 @@ const Create = () => {
     const cards = await myInfos.cards;
     const account = await myInfos.account;
     const price = myInfos.web3.utils.toWei("0.011");
-    //first deploy new contract, then gives permission for some account to mint
+    // //first deploy new contract, then gives permission for some account to mint
 
-    // console.log(account);
+    // // console.log(account);
     const isCreator = await cards.methods.isCreator(account).call();
     console.log(`${account} isCreator?: ${isCreator}`);
 
     const isClubCreator = await cards.methods.isClubCreator("spfc").call();
-    console.log(`${account} isClubCreator?: ${isClubCreator}`);
+    // console.log(`${account} isClubCreator?: ${isClubCreator}`);
 
-    // console.log("------");
-    console.log(
-      newCard.cardName,
-      newCard.cardPrice,
-      newCard.cardDescription,
-      newCard.cardClub,
-      newCard.cardUrlPicture,
-      newCard.cardAmount
-    );
+    // // console.log("------");
+    // console.log(
+    //   newCard.cardName,
+    //   newCard.cardPrice,
+    //   newCard.cardDescription,
+    //   newCard.cardClub,
+    //   newCard.cardUrlPicture,
+    //   newCard.cardAmount
+    // );
 
     // await cards.methods
     //   .mintCards(
     //     newCard.cardName,
     //     newCard.cardPrice,
     //     newCard.cardDescription,
-    //     newCard.cardClub,s
+    //     newCard.cardClub,
     //     newCard.cardUrlPicture,
     //     newCard.cardAmount
     //   )

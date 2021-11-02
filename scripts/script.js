@@ -3,9 +3,9 @@ const Cards = artifacts.require("Cards");
 module.exports = async () => {
   try {
     const cards = await Cards.deployed();
-    const [account, account2, account3, _] = await web3.eth.getAccounts();
+    // const [account, account2, account3, _] = await web3.eth.getAccounts();
+    const [account] = await web3.eth.getAccounts();
     console.log(`account ${account}`);
-    console.log(`account2 ${account2}`);
 
     const value = web3.utils.toWei("1");
 
@@ -23,17 +23,21 @@ module.exports = async () => {
 
     // adding creator
     const addingCreator = await cards.addCreator(account, "spfc");
-    console.log(`${account} account added to spfc`);
+    console.log(addingCreator);
+    // console.log(`${account} account added to spfc`);
 
-    //checking if is creator
-    // const isCreator = await cards.isCreator(account3);
-    // console.log(`3 ${isCreator}`);
+    // //checking if is creator
+    // const isCreator = await cards.isCreator(account);
+    // console.log(`${isCreator}`);
+
+    // const isClubCreator = await cards.isClubCreator("spfc");
+    // console.log(`${isClubCreator}`);
 
     // await cards.mintCards(
     //   "Luciano",
     //   value,
     //   "Description One",
-    //   "Sao Paulo",
+    //   "spfc",
     //   "./card1.png",
     //   5,
     //   {

@@ -78,13 +78,6 @@ contract Cards is ERC721Enumerable {
         payable(admin).transfer(address(this).balance);
     }
 
-    // adding card creators, just admin allowed to add
-    function addCreator(address _addr, string memory _club) external {
-        require(admin == msg.sender, "YOU ARE NOT ADMIN");
-        creators[_addr] = true;
-        clubToCreator[_club] = _addr;
-    }
-
     // removing card creators, just admin allowed to remove
     function removeCreator(address _addr, string memory _club) external {
         require(admin == msg.sender, "YOU ARE NOT ADMIN");
@@ -144,6 +137,13 @@ contract Cards is ERC721Enumerable {
         );
 
         return true;
+    }
+
+    // adding card creators, just admin allowed to add
+    function addCreator(address _addr, string memory _club) external {
+        require(admin == msg.sender, "YOU ARE NOT ADMIN");
+        creators[_addr] = true;
+        clubToCreator[_club] = _addr;
     }
 
     function buyCardFromMarket(uint256 tokenId) external payable {

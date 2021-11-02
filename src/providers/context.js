@@ -31,6 +31,8 @@ export const AuthProvider = (props) => {
             .marketCards(cards._address, token)
             .call();
 
+          console.log(item);
+
           // console.log(item);
           setMarketCards((marketCards) => [...marketCards, item]);
         }

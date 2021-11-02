@@ -1,0 +1,5 @@
+Script started on Sat Oct 30 23:05:24 2021
+command: scripts/script.js --network kovan
+script: scripts/script.js: Permission denied
+
+Script done on Sat Oct 30 23:05:24 2021
