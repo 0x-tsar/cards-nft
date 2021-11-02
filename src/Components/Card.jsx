@@ -11,9 +11,14 @@ export const CardHolder = styled.div`
   width: 180px;
   height: 280px;
   background-color: #000000;
+
   margin: 10px;
+
+  padding: 0;
+  /* max-height: min-content; */
+
   border-radius: 10px;
-  position: relative;
+  /* position: relative; */
 `;
 
 // MAKE A COMPONENT WITH ALL THE CLUBS AND THEIR PAGES
@@ -118,6 +123,7 @@ const Card = ({ card, changeVis, where }) => {
             //   spread: 70,
             //   origin: { y: 0.5, y: 1.2 },
             // });
+
             confetis();
 
             await myInfos.cards.methods

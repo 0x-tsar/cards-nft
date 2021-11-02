@@ -6,11 +6,21 @@ import { AuthContext } from "../providers/context";
 import Router from "next/router";
 
 export const Container = styled.div`
-  display: flex;
+  /* display: flex;
   flex-wrap: wrap;
-  justify-content: center;
+  justify-content: center; */
 
-  height: min-content;
+  display: flex;
+  /* flex-direction: column; */
+  flex-wrap: wrap;
+  /* align-content: flex-start; */
+  align-content: flex-start;
+  /* align-self: flex-start; */
+  justify-content: center;
+  align-items: center;
+  /* background-color: red; */
+
+  /* height: min-content; */
   min-height: calc(100vh - 91px);
 `;
 

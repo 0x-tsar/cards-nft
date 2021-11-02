@@ -11,10 +11,11 @@ export const Container = styled.div`
   grid-area: main;
   display: flex;
   flex-wrap: wrap;
+  align-content: flex-start;
   justify-content: center;
 
-  height: min-content;
   min-height: calc(100vh - 91px);
+  height: min-content;
 `;
 
 export default function Home() {
