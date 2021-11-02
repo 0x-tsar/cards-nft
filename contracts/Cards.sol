@@ -5,7 +5,7 @@ import "@openzeppelin/contracts/token/ERC721/ERC721.sol";
 import "@openzeppelin/contracts/token/ERC721/extensions/ERC721Enumerable.sol";
 
 contract Cards is ERC721Enumerable {
-    address public admin;
+    address private immutable admin;
     uint256 public nextItemId;
     uint256 public CONTRACT_FEE = 1000; //10% fee
     uint256 public CREATORS_FEE = 2000; // 20% fee
@@ -33,10 +33,10 @@ contract Cards is ERC721Enumerable {
         uint256 _totalAmount
     ) external {
         require(creators[msg.sender], "YOU ARE NOT A CREATOR");
-        require(
-            clubToCreator[_club] == msg.sender,
-            "YOU ARE NOT CREATOR OF THIS CLUB"
-        );
+        // require(
+        //     clubToCreator[_club] == msg.sender,
+        //     "YOU ARE NOT CREATOR OF THIS CLUB"
+        // );
 
         for (uint256 i = 0; i < _totalAmount; i++) {
             Card memory card = Card({
