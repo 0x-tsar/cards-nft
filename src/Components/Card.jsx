@@ -2,6 +2,7 @@ import React, { useRef, useContext } from "react";
 import styled from "styled-components";
 import { AuthContext } from "../providers/context";
 import { ethErrors } from "eth-rpc-errors";
+import confetti from "canvas-confetti";
 
 export const Container = styled.div``;
 
@@ -64,29 +65,70 @@ const Card = ({ card, changeVis, where }) => {
     setMyCards,
   } = useContext(AuthContext);
 
+  function confetis() {
+    var duration = 15 * 1000;
+    var animationEnd = Date.now() + duration;
+    var skew = 1;
+
+    function randomInRange(min, max) {
+      var end = Date.now() + 10 * 1000;
+
+      // go Buckeyes!
+      var colors = ["#bb0000", "#ffffff"];
+
+      (function frame() {
+        confetti({
+          particleCount: 2,
+          angle: 60,
+          spread: 55,
+          origin: { x: 0 },
+          colors: colors,
+        });
+        confetti({
+          particleCount: 2,
+          angle: 120,
+          spread: 55,
+          origin: { x: 1 },
+          colors: colors,
+        });
+
+        if (Date.now() < end) {
+          requestAnimationFrame(frame);
+        }
+      })();
+    }
+  }
+
   return (
     <Container>
       <CardHolder
         onClick={async () => {
           const account = myInfos.account;
-          // const value = myInfos.web3.utils.toWei("0.01");
-          const value = myInfos.web3.utils.toWei("1");
-
+          // const value = myInfos.web3.utils.toWei("1");
           //adding load screen
           // changeVis("flex");
-          // console.log(card.id);
 
           if (where === "home") {
             // ADD HERE SOME OPTIONS TO DO WITH THIS CARDS I OWN
             console.log("home");
           } else if (where === "market") {
             console.log("market");
+            // confetti({
+            //   particleCount: 100,
+            //   spread: 70,
+            //   origin: { y: 0.5, y: 1.2 },
+            // });
+            confetis();
+
             await myInfos.cards.methods
               .buyCardFromMarket(card.id)
-              .send({ from: account, value: value })
+              .send({ from: account, value: card.price })
               .then((error, result) => {
                 // changeVis("none");
+                //SET FIREWORKS HERE
+                // setTimeout(() => {
                 window.location.reload();
+                // }, 2500);
               });
           }
         }}

@@ -31,7 +31,7 @@ export const AuthProvider = (props) => {
             .marketCards(cards._address, token)
             .call();
 
-          console.log(item);
+          // console.log(item);
 
           // console.log(item);
           setMarketCards((marketCards) => [...marketCards, item]);
@@ -60,7 +60,7 @@ export const AuthProvider = (props) => {
               .call();
             const token = await cards.methods.tokenByIndex(tokenId).call();
             const item = await cards.methods.myCards(account, token).call();
-            console.log(item);
+            // console.log(item);
 
             setMyCards((myCards) => [...myCards, item]);
           }
