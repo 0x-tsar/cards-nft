@@ -13,8 +13,6 @@ export const Container = styled.div`
   flex-wrap: wrap;
   align-content: flex-start;
 
-  /* display: flex; */
-
   ul {
     padding: 0;
     margin: 0;
@@ -97,11 +95,11 @@ export const HolderTeams = styled.div`
 
 const clubsChart = (active) => {
   if (active === 0) {
-    return <img src="a.png" width="100%" height="70%" />;
+    return <img src="/a.png" width="100%" height="70%" />;
   } else if (active === 1) {
-    return <img src="b.png" width="100%" height="70%" />;
+    return <img src="/b.png" width="100%" height="70%" />;
   } else {
-    return <img src="e.png" width="100%" height="70%" />;
+    return <img src="/e.png" width="100%" height="70%" />;
   }
 };
 

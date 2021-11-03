@@ -42,8 +42,10 @@ export const LittleWindow = styled.div`
 export const Img = styled.img`
   /* width: auto;
   height: auto; */
-  width: 180px;
-  height: 280px;
+  width: ${(props) => props.width};
+  height: ${(props) => props.height};
+  /* 280px; */
+  /* 180px; */
   /* 270 */
   /* 260 */
   transform: scale(1);
@@ -172,7 +174,7 @@ const Card = ({ card, changeVis, which }) => {
           ref.current.style.display = "none";
         }}
       >
-        <Img src={card.urlPicture}></Img>
+        <Img src={card.urlPicture} width={"180px"} height={"280px"}></Img>
         {/* //HARDCODED, CHANGE IT LATER */}
         {card.club.toLowerCase() === "spfc" ? (
           <ImgBadge src="spfc.png" />
