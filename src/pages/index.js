@@ -36,14 +36,12 @@ export default function Home({ changeVis }) {
     setIsLoading,
   } = useContext(AuthContext);
 
-  changeVis("flex");
-
   return (
     <Container>
       {myCards.map((item, key) => {
         return (
           <div key={key}>
-            <Card card={item} where="home"></Card>
+            <Card card={item} where="home" changeVis={changeVis}></Card>
           </div>
         );
       })}

@@ -84,10 +84,12 @@ export const Load = styled.div`
 
 function MyApp({ Component, pageProps }) {
   const [vis, setVis] = useState("none");
+  const [messageLoading, setMessageLoading] = useState("");
   // const [visible, setVisible] = useState("none");
 
-  const changeVis = (v) => {
+  const changeVis = (v, message) => {
     setVis(v);
+    setMessageLoading(message);
     console.log(v);
   };
 
@@ -122,7 +124,7 @@ function MyApp({ Component, pageProps }) {
 
       <Container>
         <Load visibility={vis}>
-          <h1>LOADING BLOCKCHAIN...</h1>
+          <h1>{messageLoading}</h1>
         </Load>
         <Header />
         <LeftBar />

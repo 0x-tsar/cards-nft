@@ -71,12 +71,12 @@ const Card = ({ card, changeVis, where }) => {
   } = useContext(AuthContext);
 
   function confetis() {
-    var duration = 15 * 1000;
+    var duration = 1 * 300;
     var animationEnd = Date.now() + duration;
     var skew = 1;
 
     function randomInRange(min, max) {
-      var end = Date.now() + 10 * 1000;
+      var end = Date.now() + 1 * 300;
 
       // go Buckeyes!
       var colors = ["#00bb6d", "#ffffff"];
@@ -85,14 +85,14 @@ const Card = ({ card, changeVis, where }) => {
         confetti({
           particleCount: 2,
           angle: 60,
-          spread: 55,
+          // spread: 55,
           origin: { x: 0 },
           colors: colors,
         });
         confetti({
           particleCount: 2,
           angle: 120,
-          spread: 55,
+          // spread: 20,
           origin: { x: 1 },
           colors: colors,
         });
@@ -102,7 +102,11 @@ const Card = ({ card, changeVis, where }) => {
         }
       })();
     }
+
+    randomInRange(0, 0);
   }
+
+  // confetis();
 
   return (
     <Container>
@@ -112,7 +116,7 @@ const Card = ({ card, changeVis, where }) => {
           // const value = myInfos.web3.utils.toWei("1");
           //adding load screen
           // changeVis("flex");
-          confetis();
+          changeVis("flex", "Buying Card");
 
           if (where === "home") {
             // ADD HERE SOME OPTIONS TO DO WITH THIS CARDS I OWN
@@ -129,11 +133,15 @@ const Card = ({ card, changeVis, where }) => {
               .buyCardFromMarket(card.id)
               .send({ from: account, value: card.price })
               .then((error, result) => {
-                // changeVis("none");
-                //SET FIREWORKS HERE
-                // setTimeout(() => {
-                window.location.reload();
-                // }, 2500);
+                changeVis("none", "MESSAGE HERE");
+                <div style={{ zIndex: "9999999999999" }}>confetis();</div>;
+                setTimeout(() => {
+                  window.location.reload();
+                }, 2000);
+              })
+              .catch((e) => {
+                console.log("Not accepted by the user");
+                changeVis("none", "REJECTED");
               });
           }
         }}
