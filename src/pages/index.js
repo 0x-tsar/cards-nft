@@ -34,6 +34,7 @@ export default function Home({ changeVis }) {
     setChanged,
     isLoading,
     setIsLoading,
+    readyToLoad,
   } = useContext(AuthContext);
 
   return (

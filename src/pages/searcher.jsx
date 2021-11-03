@@ -29,6 +29,7 @@ const Market = ({ changeVis }) => {
     setMyInfos,
     changed,
     setChanged,
+    readyToLoad,
   } = useContext(AuthContext);
 
   // useEffect(() => {
@@ -41,7 +42,7 @@ const Market = ({ changeVis }) => {
   //   Router.push("/searcher");
   // }, [changed]);
 
-  marketCards.sort(() => 0.5 - Math.random());
+  // marketCards.sort(() => 0.5 - Math.random());
 
   return (
     <Container>

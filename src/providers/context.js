@@ -1,6 +1,5 @@
 import React, { createContext, useEffect, useState } from "react";
 import loadEthereum from "../ethereum";
-import { ethErrors } from "eth-rpc-errors";
 
 export const AuthContext = createContext({});
 
@@ -14,6 +13,7 @@ export const AuthProvider = (props) => {
   const [filtered, setFiltered] = useState([]);
   const [changed, setChanged] = useState(false);
   const [isLoading, , setIsLoading] = useState(false);
+  const [readyToLoad, setReadyToLoad] = useState(false);
 
   useEffect(() => {
     const done = async () => {
@@ -32,9 +32,8 @@ export const AuthProvider = (props) => {
             .marketCards(cards._address, token)
             .call();
 
-          // console.log(item);
+          console.log(item);
 
-          console.log(`i: ${i}, total: ${balance}`);
           setMarketCards((marketCards) => [...marketCards, item]);
         }
 
@@ -129,6 +128,7 @@ export const AuthProvider = (props) => {
         setChanged,
         isLoading,
         setIsLoading,
+        readyToLoad,
       }}
     >
       {props.children}
