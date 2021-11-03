@@ -55,6 +55,23 @@ export const Img = styled.img`
   }
 `;
 
+export const ImgBadge = styled.img`
+  width: 50px;
+  height: 50px;
+
+  transform: scale(1);
+  transition-duration: 1s;
+  margin-top: -30px;
+  /* margin-left: 20px; */
+  margin-right: -15px;
+  float: right;
+
+  :hover {
+    /* transform: scale(1.5) rotate(1.2deg); */
+    cursor: pointer;
+  }
+`;
+
 const Card = ({ card, changeVis, which }) => {
   const ref = useRef();
 
@@ -156,6 +173,12 @@ const Card = ({ card, changeVis, which }) => {
         }}
       >
         <Img src={card.urlPicture}></Img>
+        {/* //HARDCODED, CHANGE IT LATER */}
+        {card.club === "spfc" ? (
+          <ImgBadge src="spfc.png" />
+        ) : (
+          <ImgBadge src="barcelona.png" />
+        )}
       </CardHolder>
       <LittleWindow style={{ color: "black" }} ref={ref}>
         <div>{card.title ? card.title : <div></div>}</div>

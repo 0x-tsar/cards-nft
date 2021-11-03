@@ -58,6 +58,8 @@ export const HolderCreator = styled.div`
   }
 `;
 
+export const HolderTeams = styled.div``;
+
 const LeftBar = () => {
   return (
     <Container>
@@ -96,6 +98,8 @@ const LeftBar = () => {
           Require for Card Creator
         </button>
       </HolderCreator>
+
+      <HolderTeams></HolderTeams>
     </Container>
   );
 };
