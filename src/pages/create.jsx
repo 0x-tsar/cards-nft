@@ -79,7 +79,6 @@ const Create = () => {
     // const isClubCreator = await cards.methods.isClubCreator("spfc").call();
     // // console.log(`${account} isClubCreator?: ${isClubCreator}`);
 
-    // // console.log("------");
     console.log(
       newCard.cardName,
       Web3.utils.toWei(newCard.cardPrice),

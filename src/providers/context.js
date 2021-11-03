@@ -14,98 +14,103 @@ export const AuthProvider = (props) => {
   const [changed, setChanged] = useState(false);
   const [isLoading, , setIsLoading] = useState(false);
   const [readyToLoad, setReadyToLoad] = useState(false);
+  // const [currentTab, setCurrentTab] = useState("");
 
-  useEffect(() => {
-    const done = async () => {
-      const { cards, web3 } = await loadEthereum();
-      if (cards && web3) {
-        const account = await web3.currentProvider.selectedAddress;
-        // console.log(await cards.methods.admin().call());
-        const balance = await cards.methods.balanceOf(cards._address).call();
-        console.log(balance);
-        for (let i = 0; i < balance; i++) {
-          const tokenId = await cards.methods
-            .tokenOfOwnerByIndex(cards._address, i)
-            .call();
-          const token = await cards.methods.tokenByIndex(tokenId).call();
-          const item = await cards.methods
-            .marketCards(cards._address, token)
-            .call();
+  // useEffect(() => {
+  //   const done = async () => {
+  //     //get location url
+  //     // let url = document.URL;
+  //     // let url2 = window.location.href.toString();
 
-          console.log(item);
+  //     const { cards, web3 } = await loadEthereum();
+  //     if (cards && web3) {
+  //       const account = await web3.currentProvider.selectedAddress;
+  //       // console.log(await cards.methods.admin().call());
+  //       const balance = await cards.methods.balanceOf(cards._address).call();
+  //       console.log(balance);
+  //       for (let i = 0; i < balance; i++) {
+  //         const tokenId = await cards.methods
+  //           .tokenOfOwnerByIndex(cards._address, i)
+  //           .call();
+  //         const token = await cards.methods.tokenByIndex(tokenId).call();
+  //         const item = await cards.methods
+  //           .marketCards(cards._address, token)
+  //           .call();
 
-          setMarketCards((marketCards) => [...marketCards, item]);
-        }
+  //         // console.log(item);
 
-        //////////////////////
-        //////////////////////
-        //////////////////////
-        // reading users items
+  //         setMarketCards((marketCards) => [...marketCards, item]);
+  //       }
 
-        // const account = await web3.currentProvider.selectedAddress;
-        if (account) {
-          const balanceEther = await web3.eth.getBalance(account);
-          setMyInfos({
-            account: account,
-            balanceEther: balanceEther,
-            cards: cards,
-            web3: web3,
-          });
+  //       //////////////////////
+  //       //////////////////////
+  //       //////////////////////
+  //       // reading users items
 
-          const balanceUser = await cards.methods.balanceOf(account).call();
-          console.log(`balance user: ${balanceUser}`);
-          for (let i = 0; i < balanceUser; i++) {
-            const tokenId = await cards.methods
-              .tokenOfOwnerByIndex(account, i)
-              .call();
-            const token = await cards.methods.tokenByIndex(tokenId).call();
-            const item = await cards.methods.myCards(account, token).call();
-            // console.log(item);
+  //       // const account = await web3.currentProvider.selectedAddress;
+  //       if (account) {
+  //         const balanceEther = await web3.eth.getBalance(account);
+  //         setMyInfos({
+  //           account: account,
+  //           balanceEther: balanceEther,
+  //           cards: cards,
+  //           web3: web3,
+  //         });
 
-            setMyCards((myCards) => [...myCards, item]);
-          }
+  //         const balanceUser = await cards.methods.balanceOf(account).call();
+  //         console.log(`balance user: ${balanceUser}`);
+  //         for (let i = 0; i < balanceUser; i++) {
+  //           const tokenId = await cards.methods
+  //             .tokenOfOwnerByIndex(account, i)
+  //             .call();
+  //           const token = await cards.methods.tokenByIndex(tokenId).call();
+  //           const item = await cards.methods.myCards(account, token).call();
+  //           // console.log(item);
 
-          cards.events
-            .cardMinted({})
-            .on("data", async function (event) {
-              // console.log(event.returnValues);
-              // Do something here
-              setMarketCards((marketCards) => [
-                ...marketCards,
-                event.returnValues,
-              ]);
-            })
-            .on("error", console.error);
+  //           setMyCards((myCards) => [...myCards, item]);
+  //         }
 
-          //
-          cards.events
-            .cardTransfered({})
-            .on("data", async function (event) {
-              // console.log(event.returnValues);
-              // Do something here
-              // changeVis("none");
-              window.location.reload();
-              // setMarketCards((marketCards) => [...marketCards, event.returnValues]);
-            })
-            .on("error", console.error);
-        }
-      }
-    };
+  //         cards.events
+  //           .cardMinted({})
+  //           .on("data", async function (event) {
+  //             // console.log(event.returnValues);
+  //             // Do something here
+  //             setMarketCards((marketCards) => [
+  //               ...marketCards,
+  //               event.returnValues,
+  //             ]);
+  //           })
+  //           .on("error", console.error);
 
-    //   emit cardMinted(
-    //     card.title,
-    //     card.id,
-    //     card.owner,
-    //     card.price,
-    //     card.description,
-    //     card.urlPicture,
-    //     card.timestamp,
-    //     card.totalAmount,
-    //     card.createdBy
-    // );
+  //         //
+  //         cards.events
+  //           .cardTransfered({})
+  //           .on("data", async function (event) {
+  //             // console.log(event.returnValues);
+  //             // Do something here
+  //             // changeVis("none");
+  //             window.location.reload();
+  //             // setMarketCards((marketCards) => [...marketCards, event.returnValues]);
+  //           })
+  //           .on("error", console.error);
+  //       }
+  //     }
+  //   };
 
-    done();
-  }, []);
+  //   //   emit cardMinted(
+  //   //     card.title,
+  //   //     card.id,
+  //   //     card.owner,
+  //   //     card.price,
+  //   //     card.description,
+  //   //     card.urlPicture,
+  //   //     card.timestamp,
+  //   //     card.totalAmount,
+  //   //     card.createdBy
+  //   // );
+
+  //   done();
+  // }, []);
 
   return (
     <AuthContext.Provider
@@ -129,6 +134,10 @@ export const AuthProvider = (props) => {
         isLoading,
         setIsLoading,
         readyToLoad,
+        // currentTab,
+        // setCurrentTab,
+        whichTab,
+        setWhichTab,
       }}
     >
       {props.children}

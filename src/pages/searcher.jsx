@@ -3,13 +3,7 @@ import styled from "styled-components";
 import Card from "../Components/Card";
 import { AuthContext } from "../providers/context";
 
-import Router from "next/router";
-
 export const Container = styled.div`
-  /* display: flex;
-  flex-wrap: wrap;
-  justify-content: center; */
-
   display: flex;
   flex-wrap: wrap;
   align-content: flex-start;
@@ -19,7 +13,7 @@ export const Container = styled.div`
   min-height: calc(100vh - 91px);
 `;
 
-const Market = ({ changeVis }) => {
+const Searcher = ({ changeVis }) => {
   const {
     nft,
     setNft,
@@ -31,16 +25,6 @@ const Market = ({ changeVis }) => {
     setChanged,
     readyToLoad,
   } = useContext(AuthContext);
-
-  // useEffect(() => {
-  //   setTimeout(() => {
-  //     setChanged(false);
-  //   }, 300);
-  // }, []);
-
-  // useEffect(() => {
-  //   Router.push("/searcher");
-  // }, [changed]);
 
   // marketCards.sort(() => 0.5 - Math.random());
 
@@ -57,4 +41,4 @@ const Market = ({ changeVis }) => {
   );
 };
 
-export default Market;
+export default Searcher;

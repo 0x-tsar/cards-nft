@@ -1,7 +1,6 @@
 import React, { useRef, useContext } from "react";
 import styled from "styled-components";
 import { AuthContext } from "../providers/context";
-import { ethErrors } from "eth-rpc-errors";
 import confetti from "canvas-confetti";
 
 export const Container = styled.div``;
@@ -11,12 +10,9 @@ export const CardHolder = styled.div`
   width: 180px;
   height: 280px;
   background-color: #000000;
-
   margin: 10px;
-
   padding: 0;
   /* max-height: min-content; */
-
   border-radius: 10px;
   /* position: relative; */
 `;
@@ -56,7 +52,7 @@ export const Img = styled.img`
   }
 `;
 
-const Card = ({ card, changeVis, where }) => {
+const Card = ({ card, changeVis }) => {
   const ref = useRef();
 
   const {

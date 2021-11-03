@@ -34,6 +34,8 @@ const Market = ({ changeVis }) => {
     setMyInfos,
     changed,
     setChanged,
+    currentTab,
+    setCurrentTab,
   } = useContext(AuthContext);
 
   // useEffect(() => {

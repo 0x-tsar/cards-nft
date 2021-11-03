@@ -5,7 +5,7 @@ import { useContext, useEffect } from "react";
 import { AuthContext } from "../providers/context";
 import Card from "../Components/Card";
 
-import Router from "next/router";
+// import Router from "next/router";
 
 export const Container = styled.div`
   grid-area: main;
@@ -35,6 +35,10 @@ export default function Home({ changeVis }) {
     isLoading,
     setIsLoading,
     readyToLoad,
+    currentTab,
+    setCurrentTab,
+    whichTab,
+    setWhichTab,
   } = useContext(AuthContext);
 
   return (
@@ -42,7 +46,7 @@ export default function Home({ changeVis }) {
       {myCards.map((item, key) => {
         return (
           <div key={key}>
-            <Card card={item} where="home" changeVis={changeVis}></Card>
+            <Card card={item} changeVis={changeVis}></Card>
           </div>
         );
       })}

@@ -59,61 +59,25 @@ export const HolderCreator = styled.div`
 `;
 
 const LeftBar = () => {
-  // const [whichTab, setWhichTab] = useState(1);
-  const { whichTab, setWhichTab } = useContext(AuthContext);
-  const funWhich = (which) => {
-    if (which === 1) {
-      return (
-        <li style={{ backgroundColor: "#11af5b", color: "white" }}>Home</li>
-      );
-    } else if (which === 2) {
-      return (
-        <li style={{ backgroundColor: "#11af5b", color: "white" }}>Market</li>
-      );
-    } else if (which === 3) {
-      return (
-        <li style={{ backgroundColor: "#11af5b", color: "white" }}>Explorer</li>
-      );
-    }
-  };
-  // funWhich(whichTab)
   return (
     <Container>
       <div>
         <ul style={{ listStyleType: "none" }}>
           <Link href={"/"}>
             <a onClick={() => setWhichTab(1)}>
-              {whichTab === 1 ? (
-                <li style={{ backgroundColor: "#11af5b", color: "white" }}>
-                  Home
-                </li>
-              ) : (
-                <li>Home</li>
-              )}
+              <li>Home</li>
             </a>
           </Link>
 
           <Link href={"/market"}>
-            <a onClick={() => setWhichTab(2)}>
-              {whichTab === 2 ? (
-                <li style={{ backgroundColor: "#11af5b", color: "white" }}>
-                  Market
-                </li>
-              ) : (
-                <li>Market</li>
-              )}
+            <a>
+              <li>Market</li>
             </a>
           </Link>
 
           <Link href={"/explorer"}>
-            <a onClick={() => setWhichTab(3)}>
-              {whichTab === 3 ? (
-                <li style={{ backgroundColor: "#11af5b", color: "white" }}>
-                  Explorer
-                </li>
-              ) : (
-                <li>Explorer</li>
-              )}
+            <a>
+              <li>Explorer</li>
             </a>
           </Link>
         </ul>
