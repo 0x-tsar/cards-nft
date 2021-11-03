@@ -42,7 +42,7 @@ const Header = () => {
 
   useEffect(() => {
     //go to searcher
-    Router.push("/searcher");
+    // Router.push("/searcher");
   }, [changed]);
 
   return (

@@ -13,7 +13,7 @@ export const Container = styled.div`
   min-height: calc(100vh - 91px);
 `;
 
-const Searcher = ({ changeVis }) => {
+const Searcher = () => {
   const {
     nft,
     setNft,
@@ -33,7 +33,7 @@ const Searcher = ({ changeVis }) => {
       {marketCards.map((item, key) => {
         return (
           <div key={key}>
-            <Card changeVis={changeVis} card={item} where="market"></Card>
+            <Card card={item}></Card>
           </div>
         );
       })}

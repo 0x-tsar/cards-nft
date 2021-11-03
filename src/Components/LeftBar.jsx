@@ -64,7 +64,7 @@ const LeftBar = () => {
       <div>
         <ul style={{ listStyleType: "none" }}>
           <Link href={"/"}>
-            <a onClick={() => setWhichTab(1)}>
+            <a>
               <li>Home</li>
             </a>
           </Link>
