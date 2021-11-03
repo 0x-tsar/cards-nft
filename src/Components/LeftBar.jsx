@@ -9,9 +9,11 @@ export const Container = styled.div`
   grid-area: leftbar;
   background-color: rgb(26, 33, 42);
   color: white;
-
-  display: flex;
+  /* height: 100vh; */
   flex-wrap: wrap;
+  align-content: flex-start;
+
+  /* display: flex; */
 
   ul {
     padding: 0;
@@ -44,30 +46,31 @@ export const Container = styled.div`
 
 export const HolderCreator = styled.div`
   width: 100%;
-  height: 200px;
+  /* height: 200px; */
   /* background-color: red; */
-
+  align-content: flex-start;
   display: flex;
   justify-content: center;
   /* padding: 100px 0; */
-  align-items: center;
+  /* align-items: center; */
   flex-wrap: wrap;
 
   button {
     height: 60px;
+    margin: 10px;
   }
 `;
 
 export const HolderTeams = styled.div`
   width: 100%;
-  height: 400px;
-  background-color: blueviolet;
+  /* background-color: #000000; */
+  margin-top: 100px;
 
   div {
+    margin-bottom: 10px;
     display: flex;
     flex-direction: row;
     justify-content: center;
-    /* margin: 10px; */
     cursor: pointer;
     /* background-color: black; */
 
@@ -77,27 +80,38 @@ export const HolderTeams = styled.div`
 
     .seriea:hover {
       color: white;
-      background-color: black;
+      background-color: #20c997;
     }
 
     .serieb:hover {
       color: white;
-      background-color: black;
+      background-color: #20c997;
     }
 
     .europa:hover {
       color: white;
-      background-color: black;
+      background-color: #20c997;
     }
   }
 `;
 
+const clubsChart = (active) => {
+  if (active === 0) {
+    return <img src="a.png" width="100%" height="70%" />;
+  } else if (active === 1) {
+    return <img src="b.png" width="100%" height="70%" />;
+  } else {
+    return <img src="e.png" width="100%" height="70%" />;
+  }
+};
+
 const LeftBar = () => {
   const { refresh, setRefresh } = useContext(AuthContext);
+  const [isActive, setIsActive] = useState(0);
 
   return (
     <Container>
-      <div>
+      <div style={{ backgroundColor: "red", marginBottom: "100px" }}>
         <ul style={{ listStyleType: "none" }}>
           <Link href={"/"}>
             <a onClick={() => setRefresh(!refresh)}>
@@ -135,15 +149,38 @@ const LeftBar = () => {
 
       <HolderTeams>
         <div>
-          <div className="seriea">Série A</div>
-          <div className="serieb">Série B</div>
-          <div className="europa">Série Europa</div>
+          <div
+            className="seriea"
+            isactive={isActive}
+            onClick={() => setIsActive(0)}
+            //
+          >
+            Série A
+          </div>
+          <div
+            className="serieb"
+            isactive={isActive}
+            onClick={() => setIsActive(1)}
+          >
+            Série B
+          </div>
+          <div
+            className="europa"
+            isactive={isActive}
+            onClick={() => setIsActive(2)}
+          >
+            Série Europa
+          </div>
         </div>
 
-        <div style={{ width: "100%", height: "100%" }}>
-          <img src="a.png" width="100%" height="95%" />
-          {/* <img src="b.png" width="100%" height="95%" />
-          <img src="e.png" width="100%" height="95%" /> */}
+        <div
+          style={
+            {
+              // marginTop: "20px"
+            }
+          }
+        >
+          {clubsChart(isActive)}
         </div>
       </HolderTeams>
     </Container>
