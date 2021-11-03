@@ -34,23 +34,20 @@ const Searcher = ({ changedVis }) => {
   } = useContext(AuthContext);
 
   useEffect(() => {
-    console.log(changed);
     if (changed) {
-      console.log(myInfos);
-
       setFiltered([]);
       const done = async () => {
         const cards = myInfos.cards;
         if (cards) {
+          setChanged(false);
+          setFiltered([]);
           const lowerSearch = search.toLowerCase();
           //getting the creator of searched team
           const clubAddress = await cards.methods
             .clubToCreator(lowerSearch)
             .call();
 
-          console.log(clubAddress);
-
-          console.log(`clubaddress: ${clubAddress}`);
+          // console.log(`clubaddress: ${clubAddress}`);
           if (clubAddress === "0x0000000000000000000000000000000000000000")
             return;
           // const market = await cards.methods.marketCards().call();
@@ -66,9 +63,8 @@ const Searcher = ({ changedVis }) => {
               .marketCards(cards._address, token)
               .call();
 
-            console.log(`club address ${clubAddress}`);
+            // console.log(`club address ${clubAddress}`);
             if (item.createdBy === clubAddress) {
-              console.log("it wass");
               setFiltered((filtered) => [...filtered, item]);
             }
 
@@ -77,19 +73,20 @@ const Searcher = ({ changedVis }) => {
         }
       };
       done();
-
-      console.log(filtered);
-
-      // setInterval(() => {
-      //   console.log(filtered);
-      // }, 1000);
     }
   }, [changed]);
 
   return (
     <Container>
       {filtered.map((item, key) => {
-        return <Card changedVis={changedVis} key={key} card={item}></Card>;
+        return (
+          <Card
+            // changedVis={changedVis}
+            key={key}
+            card={item}
+            which={"searcher"}
+          ></Card>
+        );
       })}
     </Container>
   );

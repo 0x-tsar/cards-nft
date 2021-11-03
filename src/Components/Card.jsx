@@ -10,9 +10,12 @@ export const CardHolder = styled.div`
   width: 180px;
   height: 280px;
   background-color: #000000;
+
   margin: 10px;
+
   padding: 0;
   /* max-height: min-content; */
+
   border-radius: 10px;
   /* position: relative; */
 `;
@@ -52,7 +55,7 @@ export const Img = styled.img`
   }
 `;
 
-const Card = ({ card, changeVis }) => {
+const Card = ({ card, changeVis, which }) => {
   const ref = useRef();
 
   const {
@@ -102,23 +105,23 @@ const Card = ({ card, changeVis }) => {
     randomInRange(0, 0);
   }
 
-  // confetis();
-
   return (
     <Container>
       <CardHolder
         onClick={async () => {
-          const account = myInfos.account;
-          // const value = myInfos.web3.utils.toWei("1");
-          //adding load screen
-          // changeVis("flex");
-          changeVis("flex", "Buying Card");
+          if (which === "home") {
+            console.log("home..");
+          } else if (which === "market" || which === "searcher") {
+            const account = myInfos.account;
+            // const value = myInfos.web3.utils.toWei("1");
+            //adding load screen
+            // changeVis("flex", "Buying Card");
 
-          if (where === "home") {
-            // ADD HERE SOME OPTIONS TO DO WITH THIS CARDS I OWN
-            console.log("home");
-          } else if (where === "market") {
-            console.log("market");
+            // if (where === "home") {
+            //   // ADD HERE SOME OPTIONS TO DO WITH THIS CARDS I OWN
+            //   console.log("home");
+            // } else if (where === "market") {
+            //   console.log("market");
             // confetti({
             //   particleCount: 100,
             //   spread: 70,
@@ -129,7 +132,7 @@ const Card = ({ card, changeVis }) => {
               .buyCardFromMarket(card.id)
               .send({ from: account, value: card.price })
               .then((error, result) => {
-                changeVis("none", "MESSAGE HERE");
+                // changeVis("none", "MESSAGE HERE");
                 <div style={{ zIndex: "9999999999999" }}>confetis();</div>;
                 setTimeout(() => {
                   window.location.reload();
@@ -137,8 +140,9 @@ const Card = ({ card, changeVis }) => {
               })
               .catch((e) => {
                 console.log("Not accepted by the user");
-                changeVis("none", "REJECTED");
+                // changeVis("none", "REJECTED");
               });
+          } else {
           }
         }}
         onMouseMove={(e) => {

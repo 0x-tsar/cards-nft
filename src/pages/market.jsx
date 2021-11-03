@@ -55,7 +55,7 @@ const Market = ({ changeVis }) => {
       {marketCards.map((item, key) => {
         return (
           <div key={key}>
-            <Card changeVis={changeVis} card={item} where="market"></Card>
+            <Card changeVis={changeVis} card={item} which={"market"}></Card>
           </div>
         );
       })}

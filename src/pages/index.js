@@ -46,7 +46,7 @@ export default function Home({ changeVis }) {
       {myCards.map((item, key) => {
         return (
           <div key={key}>
-            <Card card={item} changeVis={changeVis}></Card>
+            <Card card={item} changeVis={changeVis} which={"home"}></Card>
           </div>
         );
       })}

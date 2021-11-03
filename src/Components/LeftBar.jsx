@@ -75,11 +75,11 @@ const LeftBar = () => {
             </a>
           </Link>
 
-          <Link href={"/explorer"}>
+          {/* <Link href={"/explorer"}>
             <a>
               <li>Explorer</li>
             </a>
-          </Link>
+          </Link> */}
         </ul>
       </div>
 

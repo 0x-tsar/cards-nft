@@ -35,11 +35,11 @@ const Header = () => {
     //display all cards from this club
 
     setChanged(true);
-    Router.push("/searcher");
+    Router.push({ pathname: "/searcher" });
 
-    setTimeout(() => {
-      setChanged(false);
-    }, 300);
+    // setTimeout(() => {
+    //   setChanged(false);
+    // }, 1000);
   };
 
   // useEffect(() => {
