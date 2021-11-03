@@ -42,7 +42,7 @@ export const AuthProvider = (props) => {
             .call();
           const token = await cards.methods.tokenByIndex(tokenId).call();
           const item = await cards.methods.myCards(account, token).call();
-          // console.log(item);
+          console.log(item);
 
           setMyCards((myCards) => [...myCards, item]);
         }
@@ -58,24 +58,36 @@ export const AuthProvider = (props) => {
             .marketCards(cards._address, token)
             .call();
 
-          // console.log(item);
-
           setMarketCards((marketCards) => [...marketCards, item]);
         }
+
+        //events
+        //events
+        cards.events
+          .cardMinted({})
+          .on("data", async function (event) {
+            // console.log(event.returnValues);
+            // Do something here
+            setMarketCards((marketCards) => [
+              ...marketCards,
+              event.returnValues,
+            ]);
+          })
+          .on("error", console.error);
+
+        //
+        cards.events
+          .cardTransfered({})
+          .on("data", async function (event) {
+            // console.log(event.returnValues);
+            // Do something here
+            // changeVis("none");
+            window.location.reload();
+            // setMarketCards((marketCards) => [...marketCards, event.returnValues]);
+          })
+          .on("error", console.error);
       }
     };
-
-    //   //   emit cardMinted(
-    //   //     card.title,
-    //   //     card.id,
-    //   //     card.owner,
-    //   //     card.price,
-    //   //     card.description,
-    //   //     card.urlPicture,
-    //   //     card.timestamp,
-    //   //     card.totalAmount,
-    //   //     card.createdBy
-    //   // );
 
     done();
   }, []);

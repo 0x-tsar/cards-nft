@@ -20,7 +20,7 @@ export const Container = styled.div`
   /* flex-wrap: wrap; */
 `;
 
-const Searcher = ({ changeVis }) => {
+const Searcher = ({ changedVis }) => {
   // const [allCards, setAllCards] = useState([]);
   const {
     myInfos,
@@ -29,14 +29,16 @@ const Searcher = ({ changeVis }) => {
     marketCards,
     filtered,
     setFiltered,
-    change,
+    changed,
     setChanged,
   } = useContext(AuthContext);
 
   useEffect(() => {
-    if (change) {
+    console.log(changed);
+    if (changed) {
+      console.log(myInfos);
+
       setFiltered([]);
-      console.log("called");
       const done = async () => {
         const cards = myInfos.cards;
         if (cards) {
@@ -45,6 +47,8 @@ const Searcher = ({ changeVis }) => {
           const clubAddress = await cards.methods
             .clubToCreator(lowerSearch)
             .call();
+
+          console.log(clubAddress);
 
           console.log(`clubaddress: ${clubAddress}`);
           if (clubAddress === "0x0000000000000000000000000000000000000000")
@@ -63,9 +67,8 @@ const Searcher = ({ changeVis }) => {
               .call();
 
             console.log(`club address ${clubAddress}`);
-            if (
-              item.createdBy === "0xAf94f8a506be9b64C505Eb25Ffb8d2298a81D801"
-            ) {
+            if (item.createdBy === clubAddress) {
+              console.log("it wass");
               setFiltered((filtered) => [...filtered, item]);
             }
 
@@ -81,12 +84,12 @@ const Searcher = ({ changeVis }) => {
       //   console.log(filtered);
       // }, 1000);
     }
-  }, [change]);
+  }, [changed]);
 
   return (
     <Container>
       {filtered.map((item, key) => {
-        return <Card changeVis={changeVis} key={key} card={item}></Card>;
+        return <Card changedVis={changedVis} key={key} card={item}></Card>;
       })}
     </Container>
   );

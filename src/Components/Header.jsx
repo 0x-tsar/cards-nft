@@ -33,6 +33,7 @@ const Header = () => {
     e.preventDefault();
     //do solidity search here
     //display all cards from this club
+
     setChanged(true);
     Router.push("/searcher");
 
