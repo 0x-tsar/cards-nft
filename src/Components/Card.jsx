@@ -174,7 +174,7 @@ const Card = ({ card, changeVis, which }) => {
       >
         <Img src={card.urlPicture}></Img>
         {/* //HARDCODED, CHANGE IT LATER */}
-        {card.club === "spfc" ? (
+        {card.club.toLowerCase() === "spfc" ? (
           <ImgBadge src="spfc.png" />
         ) : (
           <ImgBadge src="barcelona.png" />

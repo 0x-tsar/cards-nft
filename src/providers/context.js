@@ -14,6 +14,8 @@ export const AuthProvider = (props) => {
   const [changed, setChanged] = useState(false);
   const [isLoading, , setIsLoading] = useState(false);
   const [readyToLoad, setReadyToLoad] = useState(false);
+  const [teamTab, setTeamTab] = useState(0);
+  const [refresh, setRefresh] = useState(false);
   // const [currentTab, setCurrentTab] = useState("");
 
   useEffect(() => {
@@ -118,6 +120,10 @@ export const AuthProvider = (props) => {
         // setCurrentTab,
         whichTab,
         setWhichTab,
+        teamTab,
+        setTeamTab,
+        refresh,
+        setRefresh,
       }}
     >
       {props.children}

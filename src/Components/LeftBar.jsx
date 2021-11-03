@@ -58,21 +58,55 @@ export const HolderCreator = styled.div`
   }
 `;
 
-export const HolderTeams = styled.div``;
+export const HolderTeams = styled.div`
+  width: 100%;
+  height: 400px;
+  background-color: blueviolet;
+
+  div {
+    display: flex;
+    flex-direction: row;
+    justify-content: center;
+    /* margin: 10px; */
+    cursor: pointer;
+    /* background-color: black; */
+
+    div {
+      padding: 4px;
+    }
+
+    .seriea:hover {
+      color: white;
+      background-color: black;
+    }
+
+    .serieb:hover {
+      color: white;
+      background-color: black;
+    }
+
+    .europa:hover {
+      color: white;
+      background-color: black;
+    }
+  }
+`;
 
 const LeftBar = () => {
+  const { refresh, setRefresh } = useContext(AuthContext);
+
   return (
     <Container>
       <div>
         <ul style={{ listStyleType: "none" }}>
           <Link href={"/"}>
-            <a>
+            <a onClick={() => setRefresh(!refresh)}>
               <li>Home</li>
             </a>
           </Link>
 
           <Link href={"/market"}>
-            <a>
+            <a onClick={() => setRefresh(!refresh)}>
               <li>Market</li>
             </a>
           </Link>
@@ -99,7 +133,19 @@ const LeftBar = () => {
         </button>
       </HolderCreator>
 
-      <HolderTeams></HolderTeams>
+      <HolderTeams>
+        <div>
+          <div className="seriea">Série A</div>
+          <div className="serieb">Série B</div>
+          <div className="europa">Série Europa</div>
+        </div>
+
+        <div style={{ width: "100%", height: "100%" }}>
+          <img src="a.png" width="100%" height="95%" />
+          {/* <img src="b.png" width="100%" height="95%" />
+          <img src="e.png" width="100%" height="95%" /> */}
+        </div>
+      </HolderTeams>
     </Container>
   );
 };
