@@ -34,7 +34,7 @@ export const AuthProvider = (props) => {
 
           // console.log(item);
 
-          // console.log(item);
+          console.log(`i: ${i}, total: ${balance}`);
           setMarketCards((marketCards) => [...marketCards, item]);
         }
 

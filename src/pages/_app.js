@@ -27,12 +27,6 @@ export const Container = styled.div`
 
   grid-template-columns: 300px 1fr;
   grid-template-rows: 90px 1fr;
-
-  /* grid-template-rows: 80px 100vmax; */
-  /* height: min-content; */
-  /* grid-template-rows: 80px calc(100vh - 80px); */
-
-  /* overflow: hidden; */
 `;
 
 // export const LoadingScreen = styled.div`
