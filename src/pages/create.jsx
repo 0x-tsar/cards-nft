@@ -104,7 +104,7 @@ const Create = () => {
       })
       .then((hash) => {
         console.log(hash);
-        window.location.href = "http://localhost:3000/market";
+        window.location.href = "/market";
       });
 
     // const tx = await info.bookContract.methods

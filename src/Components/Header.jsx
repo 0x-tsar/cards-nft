@@ -34,16 +34,17 @@ const Header = () => {
     //do solidity search here
     //display all cards from this club
     setChanged(true);
+    Router.push("/searcher");
 
     setTimeout(() => {
       setChanged(false);
     }, 300);
   };
 
-  useEffect(() => {
-    //go to searcher
-    // Router.push("/searcher");
-  }, [changed]);
+  // useEffect(() => {
+  //go to searcher
+  // Router.push("/searcher");
+  // }, [changed]);
 
   return (
     <Container>
