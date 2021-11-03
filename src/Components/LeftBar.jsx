@@ -111,7 +111,7 @@ const LeftBar = () => {
 
   return (
     <Container>
-      <div style={{ backgroundColor: "red", marginBottom: "100px" }}>
+      <div style={{ marginBottom: "100px" }}>
         <ul style={{ listStyleType: "none" }}>
           <Link href={"/"}>
             <a onClick={() => setRefresh(!refresh)}>
