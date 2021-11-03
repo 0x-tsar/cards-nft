@@ -13,6 +13,12 @@ module.exports = async () => {
     // const totalFundsCollected = await cards.totalFundsCollected();
     // console.log(parseInt(totalFundsCollected));
 
+    const retrieveFunds = await cards.retrieveFunds();
+    console.log(retrieveFunds);
+
+    // funds before retrieve 501524389676134521
+    // funds before retrieve 541459907176134521
+
     //   function addCreator(address _addr, string memory _club) external {
     //     require(admin == msg.sender, "YOU ARE NOT ADMIN");
     //     creators[_addr] = true;
@@ -21,9 +27,10 @@ module.exports = async () => {
 
     // function addCreator(address _addr, string memory _club)
 
+    // 0x66F1901c243E33E87a6cdeb881c78505aBD9568f
     // adding creator
-    const addingCreator = await cards.addCreator(account, "spfc");
-    console.log(addingCreator);
+    // const addingCreator = await cards.addCreator(account, "sao paulo");
+    // console.log(addingCreator);
 
     // const admin = await cards.admin.call();
     // console.log(admin);

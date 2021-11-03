@@ -7,8 +7,8 @@ import "@openzeppelin/contracts/token/ERC721/extensions/ERC721Enumerable.sol";
 contract Cards is ERC721Enumerable {
     address public immutable admin;
     uint256 public nextItemId;
-    uint256 public CONTRACT_FEE = 1000; //10% fee
-    uint256 public CREATORS_FEE = 2000; // 20% fee
+    uint256 public CONTRACT_FEE = 9500; //95% fee
+    // uint256 public CREATORS_FEE = 2000; // 20% fee
     //185 basis points = 1.85 pct
 
     mapping(address => mapping(uint256 => Card)) public marketCards;
@@ -189,16 +189,16 @@ contract Cards is ERC721Enumerable {
         return (amount * CONTRACT_FEE) / 10000;
     }
 
-    function calculateFeeCreator(uint256 amount)
-        private
-        view
-        returns (uint256)
-    {
-        require((amount / 10000) * 10000 == amount, "too small");
-        return (amount * CREATORS_FEE) / 10000;
-    }
+    // function calculateFeeCreator(uint256 amount)
+    //     private
+    //     view
+    //     returns (uint256)
+    // {
+    //     require((amount / 10000) * 10000 == amount, "too small");
+    //     return (amount * CREATORS_FEE) / 10000;
+    // }
 
-    function _baseURI() internal view virtual override returns (string memory) {
-        return "";
-    }
+    // function _baseURI() internal view virtual override returns (string memory) {
+    //     return "";
+    // }
 }
