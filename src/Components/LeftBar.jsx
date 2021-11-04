@@ -61,8 +61,15 @@ export const HolderCreator = styled.div`
 
 export const HolderTeams = styled.div`
   width: 100%;
-  /* background-color: #000000; */
+  height: min-content;
+  /* background-color: red; */
   margin-top: 100px;
+  align-content: flex-start;
+
+  display: flex;
+  flex-wrap: wrap;
+  justify-content: center;
+  /* word-wrap: break-word; */
 
   div {
     margin-bottom: 10px;
@@ -70,7 +77,6 @@ export const HolderTeams = styled.div`
     flex-direction: row;
     justify-content: center;
     cursor: pointer;
-    /* background-color: black; */
 
     div {
       padding: 4px;
@@ -93,13 +99,125 @@ export const HolderTeams = styled.div`
   }
 `;
 
+export const EachTeam = styled.div`
+  width: 60px;
+  height: 60px;
+  /* background-color: black; */
+  border-radius: 2px;
+  margin: 2px;
+  cursor: pointer;
+`;
+
+const teams_badges_a = [
+  { name: "Atlético Goianiense", picture: "/alteticogo.png" },
+  { name: "América Mineiro", picture: "/america-mg.png" },
+  { name: "Atlético Mineiro", picture: "/atleticomg.png" },
+  { name: "Bahia", picture: "/bahia.png" },
+  { name: "Bragantino", picture: "/bragantino.png" },
+  { name: "Ceará", picture: "/ceara.png" },
+  { name: "Chapecoense", picture: "/chapecoense.png" },
+  { name: "Corinthians", picture: "/corinthians.png" },
+  { name: "Cuiabá", picture: "/cuiaba.png" },
+  { name: "Flamengo", picture: "/flamengo.png" },
+  { name: "Fluminense", picture: "/fluminense.png" },
+  { name: "Fortaleza", picture: "/fortaleza.png" },
+  { name: "Grêmio", picture: "/gremio.png" },
+  { name: "Internacional", picture: "/internacional.png" },
+  { name: "Juventude", picture: "/juventude.png" },
+  { name: "Palmeiras", picture: "/palmeiras.png" },
+  { name: "Athletico Paranaense", picture: "/paranaense.png" },
+  { name: "Santos", picture: "/santos.png" },
+  { name: "São Paulo", picture: "/spfc.png" },
+  { name: "Sport", picture: "/sport.png" },
+];
+
+const teams_badges_b = [
+  { name: "Avaí", picture: "/avai.png" },
+  { name: "Botafogo", picture: "/botafogo.png" },
+  { name: "Brasil de Pelotas", picture: "/brasildepelotas.png" },
+  { name: "Brusque", picture: "/brusque.png" },
+  { name: "Confiança", picture: "/confianca.png" },
+  { name: "CRB", picture: "/crb.png" },
+  { name: "Cruzeiro", picture: "/cruzeiro.png" },
+  { name: "CSA", picture: "/csa.png" },
+  { name: "Goiás", picture: "/goias.png" },
+  { name: "Guarani", picture: "/guarani.png" },
+  { name: "Londrina", picture: "/londrina.png" },
+  { name: "Nautico", picture: "/nautico.png" },
+  { name: "Operário", picture: "/operario.png" },
+  { name: "Ponte Preta", picture: "/pontepreta.png" },
+  { name: "Remo", picture: "/remo.png" },
+  { name: "Sampaio Correa", picture: "/sampaiocorrea.png" },
+  { name: "Vasco", picture: "/vasco.png" },
+  { name: "Vasco", picture: "/vasco.png" },
+  { name: "Vila Nova", picture: "/vilanova.png" },
+  { name: "Vitória", picture: "/vitoria.png" },
+];
+
+const teams_badges_europe = [
+  { name: "Arsenal", picture: "/arsenal.png" },
+  { name: "Atletico Madrid", picture: "/atleticomadrid.png" },
+  { name: "Barcelona", picture: "/barcelona.png" },
+  { name: "Bayern", picture: "/bayern.png" },
+  { name: "Benfica", picture: "/benfica.png" },
+  { name: "Borussia", picture: "/bvb.png" },
+  { name: "Chelsea", picture: "/chelsea.png" },
+  { name: "Manchester City", picture: "/city.png" },
+  { name: "Internazionale", picture: "/internazionale.png" },
+  { name: "Juventus", picture: "/juventus.png" },
+  { name: "Liverpool", picture: "/liverpool.png" },
+  { name: "Lyon", picture: "/lyon.png" },
+  { name: "Real Madrid", picture: "/madrid.png" },
+  { name: "Manchester United", picture: "/manunited.png" },
+  { name: "Milan", picture: "/milan.png" },
+  { name: "Napoli", picture: "/napoli.png" },
+  { name: "Porto", picture: "/porto.png" },
+  { name: "PSG", picture: "/psg.png" },
+  { name: "Roma", picture: "/roma.png" },
+  { name: "Tottenham", picture: "/tottenham.png" },
+];
+
 const clubsChart = (active) => {
   if (active === 0) {
-    return <img src="/a.png" width="100%" height="70%" />;
+    return (
+      <>
+        {teams_badges_a.map((item, key) => {
+          return (
+            <EachTeam key={key}>
+              <img src={`/seriea/${item.picture}`} alt={item.name} />
+            </EachTeam>
+          );
+        })}
+      </>
+    );
+
+    // return <img src="/a.png" width="100%" height="70%" />;
   } else if (active === 1) {
-    return <img src="/b.png" width="100%" height="70%" />;
+    return (
+      <>
+        {teams_badges_b.map((item, key) => {
+          return (
+            <EachTeam key={key}>
+              <img src={`/serieb/${item.picture}`} alt={item.name} />
+            </EachTeam>
+          );
+        })}
+      </>
+    );
+    // return <img src="/b.png" width="100%" height="70%" />;
   } else {
-    return <img src="/e.png" width="100%" height="70%" />;
+    return (
+      <>
+        {teams_badges_europe.map((item, key) => {
+          return (
+            <EachTeam key={key}>
+              <img src={`/europe/${item.picture}`} alt={item.name} />
+            </EachTeam>
+          );
+        })}
+      </>
+    );
+    // return <img src="/e.png" width="100%" height="70%" />;
   }
 };
 
@@ -217,11 +335,11 @@ const LeftBar = () => {
         </div>
 
         <div
-          style={
-            {
-              // marginTop: "20px"
-            }
-          }
+          style={{
+            // marginTop: "20px",
+            display: "flex",
+            flexWrap: "wrap",
+          }}
         >
           {clubsChart(isActive)}
         </div>
