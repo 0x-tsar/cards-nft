@@ -137,6 +137,7 @@ const teams_badges_b = [
   { name: "Brasil de Pelotas", picture: "/brasildepelotas.png" },
   { name: "Brusque", picture: "/brusque.png" },
   { name: "Confiança", picture: "/confianca.png" },
+  { name: "Coritiba", picture: "/coritiba.png" },
   { name: "CRB", picture: "/crb.png" },
   { name: "Cruzeiro", picture: "/cruzeiro.png" },
   { name: "CSA", picture: "/csa.png" },
@@ -148,7 +149,6 @@ const teams_badges_b = [
   { name: "Ponte Preta", picture: "/pontepreta.png" },
   { name: "Remo", picture: "/remo.png" },
   { name: "Sampaio Correa", picture: "/sampaiocorrea.png" },
-  { name: "Vasco", picture: "/vasco.png" },
   { name: "Vasco", picture: "/vasco.png" },
   { name: "Vila Nova", picture: "/vilanova.png" },
   { name: "Vitória", picture: "/vitoria.png" },
@@ -183,9 +183,15 @@ const clubsChart = (active) => {
       <>
         {teams_badges_a.map((item, key) => {
           return (
-            <EachTeam key={key}>
-              <img src={`/seriea/${item.picture}`} alt={item.name} />
-            </EachTeam>
+            <Link href={`/clubs/${item.name.toLowerCase()}`} key={key}>
+              <a
+              // onClick={() => setRefresh(!refresh)}
+              >
+                <EachTeam>
+                  <img src={`/seriea/${item.picture}`} alt={item.name} />
+                </EachTeam>
+              </a>
+            </Link>
           );
         })}
       </>
@@ -197,9 +203,15 @@ const clubsChart = (active) => {
       <>
         {teams_badges_b.map((item, key) => {
           return (
-            <EachTeam key={key}>
-              <img src={`/serieb/${item.picture}`} alt={item.name} />
-            </EachTeam>
+            <Link href={`/clubs/${item.name.toLowerCase()}`} key={key}>
+              <a
+              // onClick={() => setRefresh(!refresh)}
+              >
+                <EachTeam>
+                  <img src={`/serieb/${item.picture}`} alt={item.name} />
+                </EachTeam>
+              </a>
+            </Link>
           );
         })}
       </>
@@ -210,9 +222,15 @@ const clubsChart = (active) => {
       <>
         {teams_badges_europe.map((item, key) => {
           return (
-            <EachTeam key={key}>
-              <img src={`/europe/${item.picture}`} alt={item.name} />
-            </EachTeam>
+            <Link href={`/clubs/${item.name.toLowerCase()}`} key={key}>
+              <a
+              // onClick={() => setRefresh(!refresh)}
+              >
+                <EachTeam>
+                  <img src={`/europe/${item.picture}`} alt={item.name} />
+                </EachTeam>
+              </a>
+            </Link>
           );
         })}
       </>
@@ -330,7 +348,7 @@ const LeftBar = () => {
             isactive={isActive}
             onClick={() => setIsActive(2)}
           >
-            Série Europa
+            Europa
           </div>
         </div>
 
