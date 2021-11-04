@@ -109,26 +109,46 @@ export const EachTeam = styled.div`
 `;
 
 const teams_badges_a = [
-  { name: "Atlético Goianiense", picture: "/alteticogo.png" },
-  { name: "América Mineiro", picture: "/america-mg.png" },
-  { name: "Atlético Mineiro", picture: "/atleticomg.png" },
-  { name: "Bahia", picture: "/bahia.png" },
-  { name: "Bragantino", picture: "/bragantino.png" },
-  { name: "Ceará", picture: "/ceara.png" },
-  { name: "Chapecoense", picture: "/chapecoense.png" },
-  { name: "Corinthians", picture: "/corinthians.png" },
-  { name: "Cuiabá", picture: "/cuiaba.png" },
-  { name: "Flamengo", picture: "/flamengo.png" },
-  { name: "Fluminense", picture: "/fluminense.png" },
-  { name: "Fortaleza", picture: "/fortaleza.png" },
-  { name: "Grêmio", picture: "/gremio.png" },
-  { name: "Internacional", picture: "/internacional.png" },
-  { name: "Juventude", picture: "/juventude.png" },
-  { name: "Palmeiras", picture: "/palmeiras.png" },
-  { name: "Athletico Paranaense", picture: "/paranaense.png" },
-  { name: "Santos", picture: "/santos.png" },
-  { name: "São Paulo", picture: "/spfc.png" },
-  { name: "Sport", picture: "/sport.png" },
+  {
+    ticker: "atletico-goianiense",
+    name: "Atlético Goianiense",
+    picture: "/alteticogo.png",
+  },
+  {
+    ticker: "america-mineiro",
+    name: "América Mineiro",
+    picture: "/america-mg.png",
+  },
+  {
+    ticker: "atletico-mineiro",
+    name: "Atlético Mineiro",
+    picture: "/atleticomg.png",
+  },
+  { ticker: "bahia", name: "Bahia", picture: "/bahia.png" },
+  { ticker: "bragantino", name: "Bragantino", picture: "/bragantino.png" },
+  { ticker: "ceara", name: "Ceará", picture: "/ceara.png" },
+  { ticker: "chapecoense", name: "Chapecoense", picture: "/chapecoense.png" },
+  { ticker: "corinthians", name: "Corinthians", picture: "/corinthians.png" },
+  { ticker: "cuiaba", name: "Cuiabá", picture: "/cuiaba.png" },
+  { ticker: "flamengo", name: "Flamengo", picture: "/flamengo.png" },
+  { ticker: "fluminense", name: "Fluminense", picture: "/fluminense.png" },
+  { ticker: "fortaleza", name: "Fortaleza", picture: "/fortaleza.png" },
+  { ticker: "gremio", name: "Grêmio", picture: "/gremio.png" },
+  {
+    ticker: "internacional",
+    name: "Internacional",
+    picture: "/internacional.png",
+  },
+  { ticker: "juventude", name: "Juventude", picture: "/juventude.png" },
+  { ticker: "palmeiras", name: "Palmeiras", picture: "/palmeiras.png" },
+  {
+    ticker: "athletico-paranaense",
+    name: "Athletico Paranaense",
+    picture: "/paranaense.png",
+  },
+  { ticker: "santos", name: "Santos", picture: "/santos.png" },
+  { ticker: "sao-paulo", name: "São Paulo", picture: "/spfc.png" },
+  { ticker: "sport", name: "Sport", picture: "/sport.png" },
 ];
 
 const teams_badges_b = [
@@ -183,12 +203,12 @@ const clubsChart = (active) => {
       <>
         {teams_badges_a.map((item, key) => {
           return (
-            <Link href={`/clubs/${item.name.toLowerCase()}`} key={key}>
+            <Link href={`/clubs/${item.ticker.toLowerCase()}`} key={key}>
               <a
               // onClick={() => setRefresh(!refresh)}
               >
                 <EachTeam>
-                  <img src={`/seriea/${item.picture}`} alt={item.name} />
+                  <img src={`/seriea/${item.picture}`} alt={item.ticker} />
                 </EachTeam>
               </a>
             </Link>
@@ -203,12 +223,12 @@ const clubsChart = (active) => {
       <>
         {teams_badges_b.map((item, key) => {
           return (
-            <Link href={`/clubs/${item.name.toLowerCase()}`} key={key}>
+            <Link href={`/clubs/${item.ticker.toLowerCase()}`} key={key}>
               <a
               // onClick={() => setRefresh(!refresh)}
               >
                 <EachTeam>
-                  <img src={`/serieb/${item.picture}`} alt={item.name} />
+                  <img src={`/serieb/${item.picture}`} alt={item.ticker} />
                 </EachTeam>
               </a>
             </Link>
@@ -222,12 +242,12 @@ const clubsChart = (active) => {
       <>
         {teams_badges_europe.map((item, key) => {
           return (
-            <Link href={`/clubs/${item.name.toLowerCase()}`} key={key}>
+            <Link href={`/clubs/${item.ticker.toLowerCase()}`} key={key}>
               <a
               // onClick={() => setRefresh(!refresh)}
               >
                 <EachTeam>
-                  <img src={`/europe/${item.picture}`} alt={item.name} />
+                  <img src={`/europe/${item.picture}`} alt={item.ticker} />
                 </EachTeam>
               </a>
             </Link>

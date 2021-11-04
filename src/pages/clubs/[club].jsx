@@ -22,7 +22,7 @@ const Club = () => {
   const router = useRouter();
   const { club } = router.query;
 
-  const [clubCards, setClubCards] = useState([]);
+  // const [clubCards, setClubCards] = useState([]);
 
   const {
     nft,
@@ -44,23 +44,17 @@ const Club = () => {
     setCurrentTab,
     whichTab,
     setWhichTab,
+    clubCards,
+    setClubCards,
+    searchEachClub,
   } = useContext(AuthContext);
 
-  const done = async () => {
-    const { cards, web3 } = await loadEthereum();
-    console.log(cards);
-    if (cards && web3) {
-      const account = await web3.currentProvider.selectedAddress;
-      const balanceEther = await web3.eth.getBalance(account);
-
-      console.log(club);
-      // const thisCards = await cards.methods.clubToCreator(club).call();
-      // console.log(thisCards);
-      // const balanceUser = await cards.methods.balanceOf(account).call();
-    }
-  };
-
-  done();
+  useEffect(() => {
+    const done = async () => {
+      searchEachClub();
+    };
+    done();
+  }, [searchEachClub]);
 
   return (
     <Container>
@@ -78,7 +72,7 @@ const Club = () => {
     </Container>
   );
 
-  return <Container>HELLO FROM CLUB: {club}</Container>;
+  // return <Container>HELLO FROM CLUB: {club}</Container>;
 };
 
 export default Club;

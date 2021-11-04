@@ -16,6 +16,7 @@ export const AuthProvider = (props) => {
   const [readyToLoad, setReadyToLoad] = useState(false);
   const [teamTab, setTeamTab] = useState(0);
   const [refresh, setRefresh] = useState(false);
+  const [clubCards, setClubCards] = useState([]);
   // const [currentTab, setCurrentTab] = useState("");
 
   const done = async () => {
@@ -95,6 +96,12 @@ export const AuthProvider = (props) => {
     done();
   }, [refresh]);
 
+  //
+  const searchEachClub = async () => {
+    console.log("teste");
+    console.log(myInfos);
+  };
+
   return (
     <AuthContext.Provider
       value={{
@@ -125,6 +132,9 @@ export const AuthProvider = (props) => {
         setTeamTab,
         refresh,
         setRefresh,
+        clubCards,
+        setClubCards,
+        searchEachClub,
       }}
     >
       {props.children}
