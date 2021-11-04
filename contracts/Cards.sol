@@ -7,7 +7,7 @@ import "@openzeppelin/contracts/token/ERC721/extensions/ERC721Enumerable.sol";
 contract Cards is ERC721Enumerable {
     address public immutable admin;
     uint256 public nextItemId;
-    uint256 public CONTRACT_FEE = 9500; //5% fee, the rest of 9500 == 95%
+    uint256 public CONTRACT_FEE = 9500; //5% fee, the rest goes to the creator, 95% == 9500
     // uint256 public CREATORS_FEE = 2000; // 20% fee
     //185 basis points = 1.85 pct
 
@@ -24,6 +24,17 @@ contract Cards is ERC721Enumerable {
     mapping(string => string) private urlClubBadge;
     mapping(string => address) public clubToCreator;
     mapping(address => bool) public creators;
+
+    //waiting for admin approval
+    // uint256 numPendingCreators = 0;
+    mapping(address => string) public pendingCreator;
+
+    // adding card creators, just admin allowed to add
+    function addCreator(address _addr, string memory _club) external {
+        require(admin == msg.sender, "YOU ARE NOT ADMIN");
+        creators[_addr] = true;
+        clubToCreator[_club] = _addr;
+    }
 
     constructor() ERC721("Cards Futebol", "FUT") {
         admin = msg.sender;
@@ -150,13 +161,6 @@ contract Cards is ERC721Enumerable {
         );
 
         return true;
-    }
-
-    // adding card creators, just admin allowed to add
-    function addCreator(address _addr, string memory _club) external {
-        require(admin == msg.sender, "YOU ARE NOT ADMIN");
-        creators[_addr] = true;
-        clubToCreator[_club] = _addr;
     }
 
     function buyCardFromMarket(uint256 tokenId) external payable {

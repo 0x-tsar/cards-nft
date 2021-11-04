@@ -111,6 +111,9 @@ const LeftBar = () => {
   const handleSubmit = (e) => {
     e.preventDefault();
     console.log("submit");
+
+    //send to contract a request for admin
+    //address/name or name/address or both?
   };
 
   const onChange = (e) => {
@@ -157,19 +160,19 @@ const LeftBar = () => {
           </Link>
         </button>
 
-        <form
+        {/* <form
           onSubmit={(e) => handleSubmit(e)}
           style={{
-            backgroundColor: "olive",
+            // backgroundColor: "olive",
             display: "flex",
             justifyContent: "center",
             alignItems: "center",
             flexDirection: "column",
             padding: "10px",
           }}
-        >
-          {/* &nbsp; */}
-          <input
+        > */}
+        {/* &nbsp; */}
+        {/* <input
             type="text"
             placeholder="Type the club"
             style={{ height: "50px" }}
@@ -178,13 +181,13 @@ const LeftBar = () => {
           <small>Type the club you want to be a creator for</small>
 
           <button
-            type="button"
             className="btn btn-secondary"
+            type="submit"
             style={{ marginBottom: "20px" }}
           >
             Require for Card Creator
           </button>
-        </form>
+        </form> */}
       </HolderCreator>
 
       <HolderTeams>
