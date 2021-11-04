@@ -45,10 +45,10 @@ export const Container = styled.div`
 export const HolderCreator = styled.div`
   width: 100%;
   /* height: 200px; */
-  /* background-color: red; */
   align-content: flex-start;
   display: flex;
   justify-content: center;
+
   /* padding: 100px 0; */
   /* align-items: center; */
   flex-wrap: wrap;
@@ -106,6 +106,16 @@ const clubsChart = (active) => {
 const LeftBar = () => {
   const { refresh, setRefresh } = useContext(AuthContext);
   const [isActive, setIsActive] = useState(0);
+  const [club, setClub] = useState("");
+
+  const handleSubmit = (e) => {
+    e.preventDefault();
+    console.log("submit");
+  };
+
+  const onChange = (e) => {
+    setClub(e.target.value);
+  };
 
   return (
     <Container>
@@ -132,17 +142,49 @@ const LeftBar = () => {
       </div>
 
       <HolderCreator>
-        <button type="button" className="btn btn-primary">
+        <button
+          style={{ marginBottom: "100px" }}
+          type="submit"
+          className="btn btn-primary"
+        >
           <Link href={"/create"}>
             <a>
-              <li style={{ color: "white", listStyle: "none" }}> Create new</li>
+              <li style={{ color: "white", listStyle: "none" }}>
+                {" "}
+                Create new card
+              </li>
             </a>
           </Link>
         </button>
 
-        <button type="button" className="btn btn-secondary">
-          Require for Card Creator
-        </button>
+        <form
+          onSubmit={(e) => handleSubmit(e)}
+          style={{
+            backgroundColor: "olive",
+            display: "flex",
+            justifyContent: "center",
+            alignItems: "center",
+            flexDirection: "column",
+            padding: "10px",
+          }}
+        >
+          {/* &nbsp; */}
+          <input
+            type="text"
+            placeholder="Type the club"
+            style={{ height: "50px" }}
+          />
+          <br />
+          <small>Type the club you want to be a creator for</small>
+
+          <button
+            type="button"
+            className="btn btn-secondary"
+            style={{ marginBottom: "20px" }}
+          >
+            Require for Card Creator
+          </button>
+        </form>
       </HolderCreator>
 
       <HolderTeams>
