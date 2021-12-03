@@ -47,7 +47,7 @@ export const loadEthereum = async () =>
 
         console.log(`chainId: ${chainId}`);
 
-        if (chainId !== "42" || chainId !== "80001") {
+        if (chainId !== "80001") {
           alert("change to 5777 || 42,69 or 80001 network ");
         } else {
           const cards = new web3.eth.Contract(
