@@ -45,7 +45,7 @@ export const loadEthereum = async () =>
         window.ethereum.enable();
         let chainId = await window.ethereum.networkVersion;
 
-        console.log(`${chainId}`);
+        console.log(`chainId: ${chainId}`);
 
         if (chainId !== "42" || chainId !== "80001") {
           alert("change to 5777 || 42,69 or 80001 network ");
