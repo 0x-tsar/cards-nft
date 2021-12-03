@@ -51,7 +51,7 @@ const Club = () => {
 
   useEffect(() => {
     const done = async () => {
-      searchEachClub();
+      searchEachClub(club);
     };
     done();
   }, [searchEachClub]);

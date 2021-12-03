@@ -97,9 +97,19 @@ export const AuthProvider = (props) => {
   }, [refresh]);
 
   //
-  const searchEachClub = async () => {
-    console.log("teste");
-    console.log(myInfos);
+
+  const searchEachClub = async (team) => {
+    if (myInfos.cards) {
+      if (!team) return;
+      const contract = await myInfos.cards.methods.clubToCreator(team).call();
+      if (contract === "0x0000000000000000000000000000000000000000") {
+        console.log("no creator found for this team for now");
+        return;
+      }
+      console.log(team);
+
+      console.log(contract);
+    }
   };
 
   return (
