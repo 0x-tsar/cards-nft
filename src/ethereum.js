@@ -45,10 +45,10 @@ export const loadEthereum = async () =>
         window.ethereum.enable();
         let chainId = await window.ethereum.networkVersion;
 
-        console.log(chainId);
+        console.log(`${chainId}`);
 
-        if (chainId !== "42") {
-          alert("change to 5777 || 42 or 69 network");
+        if (chainId !== "42" || chainId !== "80001") {
+          alert("change to 5777 || 42,69 or 80001 network ");
         } else {
           const cards = new web3.eth.Contract(
             Cards.abi,
