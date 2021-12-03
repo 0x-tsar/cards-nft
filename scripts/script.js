@@ -7,7 +7,7 @@ module.exports = async () => {
     const [account] = await web3.eth.getAccounts();
     console.log(`account ${account}`);
 
-    const value = web3.utils.toWei("1");
+    const value = web3.utils.toWei("0.001");
 
     // const accruedFeesContract = await cards.retrieveFunds({ from: account });
     // const totalFundsCollected = await cards.totalFundsCollected();
@@ -29,7 +29,7 @@ module.exports = async () => {
 
     // 0x66F1901c243E33E87a6cdeb881c78505aBD9568f
     // adding creator
-    const addingCreator = await cards.addCreator(account, "sao-paulo");
+    // const addingCreator = await cards.addCreator(account, "sao-paulo");
     // console.log(addingCreator);
     //
 
@@ -45,18 +45,18 @@ module.exports = async () => {
     // const isClubCreator = await cards.isClubCreator("spfc");
     // console.log(`${isClubCreator}`);
 
-    // await cards.mintCards(
-    //   "Luciano",
-    //   value,
-    //   "Description One",
-    //   "spfc",
-    //   "./card1.png",
-    //   5,
-    //   {
-    //     from: account,
-    //     // value: value,
-    //   }
-    // );
+    await cards.mintCards(
+      "Luciano",
+      value,
+      "Description One",
+      "spfc",
+      "./card1.png",
+      5,
+      {
+        from: account,
+        // value: value,
+      }
+    );
 
     // await cards.mintCards(
     //   "Hernanes",
