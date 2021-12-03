@@ -31,6 +31,7 @@ module.exports = async () => {
     // adding creator
     const addingCreator = await cards.addCreator(account, "sao-paulo");
     // console.log(addingCreator);
+    //
 
     // const admin = await cards.admin.call();
     // console.log(admin);
