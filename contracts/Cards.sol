@@ -88,9 +88,9 @@ contract Cards is ERC721URIStorage, ERC721Enumerable, Ownable {
                 totalAmount: _totalAmount
             });
 
-            _mint(address(this), nextItemId);
-            marketCards[address(this)][nextItemId] = card;
-            nextItemId++;
+            _mint(address(this), nextItemId.current());
+            marketCards[address(this)][nextItemId.current()] = card;
+            nextItemId.increment();
 
             emit cardMinted(
                 card.title,
