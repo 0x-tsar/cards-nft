@@ -4,9 +4,17 @@ pragma solidity >=0.4.22 <0.9.0;
 import "@openzeppelin/contracts/token/ERC721/ERC721.sol";
 import "@openzeppelin/contracts/token/ERC721/extensions/ERC721Enumerable.sol";
 
-contract Cards is ERC721Enumerable {
+import "@openzeppelin/contracts/token/ERC721/extensions/ERC721URIStorage.sol";
+import "@openzeppelin/contracts/token/ERC721/extensions/ERC721Enumerable.sol";
+import "@openzeppelin/contracts/utils/Counters.sol";
+import "@openzeppelin/contracts/access/Ownable.sol";
+
+contract Cards is ERC721URIStorage, ERC721Enumerable, Ownable {
+    using Counters for Counters.Counter;
+    Counters.Counter private nextItemId;
+
     address public immutable admin;
-    uint256 public nextItemId;
+    // uint256 public nextItemId;
     uint256 public CONTRACT_FEE = 9500; //5% fee, the rest goes to the creator, 95% == 9500
     // uint256 public CREATORS_FEE = 2000; // 20% fee
     //185 basis points = 1.85 pct
@@ -120,7 +128,7 @@ contract Cards is ERC721Enumerable {
 
     event cardMinted(
         string title,
-        uint256 id,
+        Counters.Counter id,
         address owner,
         uint256 price,
         string description,
@@ -131,7 +139,7 @@ contract Cards is ERC721Enumerable {
     );
 
     event cardTransfered(
-        uint256 id,
+        Counters.Counter id,
         address from,
         address to,
         uint256 timestamp
@@ -139,7 +147,7 @@ contract Cards is ERC721Enumerable {
 
     struct Card {
         string title;
-        uint256 id;
+        Counters.Counter id;
         address owner;
         uint256 price;
         string description;
