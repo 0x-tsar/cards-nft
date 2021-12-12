@@ -93,13 +93,13 @@ contract Cards is ERC721URIStorage, ERC721Enumerable, Ownable {
             nextItemId.increment();
 
             emit cardMinted(
-                card.title,
                 card.id,
                 card.owner,
+                card.timestamp,
+                card.title,
                 card.price,
                 card.description,
                 card.urlPicture,
-                card.timestamp,
                 card.totalAmount,
                 card.createdBy
             );
@@ -199,6 +199,45 @@ contract Cards is ERC721URIStorage, ERC721Enumerable, Ownable {
     function calculateFeeAdmin(uint256 amount) private view returns (uint256) {
         require((amount / 10000) * 10000 == amount, "too small");
         return (amount * CONTRACT_FEE) / 10000;
+    }
+
+    //overriding files
+    function _beforeTokenTransfer(
+        address from,
+        address to,
+        uint256 tokenId
+    ) internal override(ERC721, ERC721Enumerable) {
+        super._beforeTokenTransfer(from, to, tokenId);
+    }
+
+    function _burn(uint256 tokenId)
+        internal
+        override(ERC721, ERC721URIStorage)
+    {
+        super._burn(tokenId);
+    }
+
+    function tokenURI(uint256 tokenId)
+        public
+        view
+        override(ERC721, ERC721URIStorage)
+        returns (string memory)
+    {
+        return super.tokenURI(tokenId);
+    }
+
+    function supportsInterface(bytes4 interfaceId)
+        public
+        view
+        override(ERC721, ERC721Enumerable)
+        returns (bool)
+    {
+        return super.supportsInterface(interfaceId);
+    }
+
+    function _baseURI() internal pure override returns (string memory) {
+        // return "https://foo.com/token/";
+        return "https://ipfs.io/ipfs/";
     }
 
     // function calculateFeeCreator(uint256 amount)
