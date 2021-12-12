@@ -58,6 +58,7 @@ const Club = () => {
 
   return (
     <Container>
+      <div>{club}</div>
       {clubCards.map((item, key) => {
         return (
           <div key={key}>
