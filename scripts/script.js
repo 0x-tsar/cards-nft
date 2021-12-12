@@ -58,6 +58,8 @@ module.exports = async () => {
     //   }
     // );
 
+    // console.log(await cards.methods.tokenURI);
+
     //test pinata
     await cards.mintCards(
       "Luciano",
