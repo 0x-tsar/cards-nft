@@ -174,13 +174,9 @@ const Card = ({ card, changeVis, which }) => {
           ref.current.style.display = "none";
         }}
       >
-        {/* before minting 90803057490994358 */}
-        {/* after minting 86554539990994358 */}
-        {/* 244625847485594019 */}
         <Img src={card.urlPicture} width={"180px"} height={"280px"}></Img>
         {/* //HARDCODED, CHANGE IT LATER */}
-        {/* {console.log(card.club.toLowerCase())} */}
-        {card.club.toLowerCase() === "sao paulo" ? (
+        {card.club.toLowerCase() === "spfc" ? (
           <ImgBadge src="spfc.png" />
         ) : (
           <ImgBadge src="barcelona.png" />
