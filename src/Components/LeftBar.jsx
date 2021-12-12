@@ -106,6 +106,11 @@ export const EachTeam = styled.div`
   border-radius: 2px;
   margin: 2px;
   cursor: pointer;
+  transform: scale(0.9);
+
+  &:hover {
+    transform: scale(1);
+  }
 `;
 
 const teams_badges_a = [
