@@ -178,13 +178,17 @@ const teams_badges_b = [
   { ticker: "guarani", name: "Guarani", picture: "/guarani.png" },
   { ticker: "londrina", name: "Londrina", picture: "/londrina.png" },
   { ticker: "nautico", name: "Nautico", picture: "/nautico.png" },
-  { ticker: "avai", name: "Operário", picture: "/operario.png" },
-  { ticker: "avai", name: "Ponte Preta", picture: "/pontepreta.png" },
-  { ticker: "avai", name: "Remo", picture: "/remo.png" },
-  { ticker: "avai", name: "Sampaio Correa", picture: "/sampaiocorrea.png" },
-  { ticker: "avai", name: "Vasco", picture: "/vasco.png" },
-  { ticker: "avai", name: "Vila Nova", picture: "/vilanova.png" },
-  { ticker: "avai", name: "Vitória", picture: "/vitoria.png" },
+  { ticker: "operario", name: "Operário", picture: "/operario.png" },
+  { ticker: "ponte-preta", name: "Ponte Preta", picture: "/pontepreta.png" },
+  { ticker: "remo", name: "Remo", picture: "/remo.png" },
+  {
+    ticker: "sampaio-correa",
+    name: "Sampaio Correa",
+    picture: "/sampaiocorrea.png",
+  },
+  { ticker: "vasco", name: "Vasco", picture: "/vasco.png" },
+  { ticker: "vila-nova", name: "Vila Nova", picture: "/vilanova.png" },
+  { ticker: "vitoria", name: "Vitória", picture: "/vitoria.png" },
 ];
 
 const teams_badges_europe = [
