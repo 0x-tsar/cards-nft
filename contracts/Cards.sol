@@ -166,7 +166,7 @@ contract Cards is ERC721Enumerable {
     function buyCardFromMarket(uint256 tokenId) external payable {
         require(
             msg.value == marketCards[address(this)][tokenId].price,
-            "NOT THE RIGHT AMOUNT OF ETH, MAY BE MORE OR LESS"
+            "NOT THE RIGHT AMOUNT OF ETH, IT CAN NOT BE MORE OR LESS"
         );
 
         uint256 _fee_contract = calculateFeeAdmin(msg.value); //msg.value - FEE
