@@ -2,6 +2,7 @@ import React, { useRef, useContext } from "react";
 import styled from "styled-components";
 import { AuthContext } from "../providers/context";
 import confetti from "canvas-confetti";
+import axios from "axios";
 
 export const Container = styled.div``;
 
