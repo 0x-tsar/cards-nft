@@ -125,7 +125,11 @@ const Card = ({ card, changeVis, which }) => {
     randomInRange(0, 0);
   }
 
-  const getMetadata = async () => {};
+  const getMetadata = async (metadata) => {
+    const data = axios.get(metadata);
+    console.log(data.data);
+    return data.data.image;
+  };
 
   return (
     <Container>
@@ -177,7 +181,8 @@ const Card = ({ card, changeVis, which }) => {
           ref.current.style.display = "none";
         }}
       >
-        <Img src={card.urlPicture} width={"180px"} height={"280px"}></Img>
+        {/* <Img src={card.urlPicture} width={"180px"} height={"280px"}></Img> */}
+        <Img src={getMetadata(card)} width={"180px"} height={"280px"}></Img>
         {/* //HARDCODED, CHANGE IT LATER */}
         {card.club.toLowerCase() === "spfc" ? (
           <ImgBadge src="spfc.png" />

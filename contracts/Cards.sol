@@ -25,7 +25,6 @@ contract Cards is ERC721URIStorage, ERC721Enumerable, Ownable {
     //MIGRATE CONTRACT FIRST BEFORE ANYTHING, OF COURSE
     // first get the clubToCreator address of what team i want, then loop through marketCards
     // filtering just the cards `createdBy` that address and return it to the user
-
     mapping(string => string) private urlClubBadge;
     mapping(string => address) public clubToCreator;
     mapping(address => bool) public creators;
@@ -247,7 +246,7 @@ contract Cards is ERC721URIStorage, ERC721Enumerable, Ownable {
 
     function _baseURI() internal pure override returns (string memory) {
         // return "https://foo.com/token/";
-        return "https://ipfs.io/ipfs/";
+        return "";
     }
 
     // function calculateFeeCreator(uint256 amount)
