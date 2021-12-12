@@ -157,7 +157,11 @@ const teams_badges_a = [
 ];
 
 const teams_badges_b = [
-  { name: "Avaí", picture: "/avai.png" },
+  {
+    ticker: "avai",
+    name: "Avaí",
+    picture: "/avai.png",
+  },
   { name: "Botafogo", picture: "/botafogo.png" },
   { name: "Brasil de Pelotas", picture: "/brasildepelotas.png" },
   { name: "Brusque", picture: "/brusque.png" },
@@ -227,6 +231,7 @@ const clubsChart = (active) => {
     return (
       <>
         {teams_badges_b.map((item, key) => {
+          console.log(item.ticker);
           return (
             <Link href={`/clubs/${item.ticker.toLowerCase()}`} key={key}>
               <a
