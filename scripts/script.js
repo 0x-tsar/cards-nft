@@ -45,12 +45,26 @@ module.exports = async () => {
     // const isClubCreator = await cards.isClubCreator("spfc");
     // console.log(`${isClubCreator}`);
 
+    // await cards.mintCards(
+    //   "Luciano",
+    //   value,
+    //   "Description One",
+    //   "spfc",
+    //   "./card1.png",
+    //   5,
+    //   {
+    //     from: account,
+    //     // value: value,
+    //   }
+    // );
+
+    //test pinata
     await cards.mintCards(
       "Luciano",
       value,
       "Description One",
       "spfc",
-      "./card1.png",
+      "https://ipfs.io/ipfs/QmRZTmxsdUjSHJKqidiBn4hUT4Wf9dbndnKZmRsimB8sLX/luciano.json",
       5,
       {
         from: account,
