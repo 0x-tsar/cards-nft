@@ -124,6 +124,8 @@ const Card = ({ card, changeVis, which }) => {
     randomInRange(0, 0);
   }
 
+  const getMetadata = async () => {};
+
   return (
     <Container>
       <CardHolder
