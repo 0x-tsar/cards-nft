@@ -89,6 +89,9 @@ contract Cards is ERC721URIStorage, ERC721Enumerable, Ownable {
             marketCards[address(this)][nextItemId.current()] = card;
             nextItemId.increment();
 
+            // _setTokenURI(nextItemId, _tokenURI);
+            _setTokenURI(nextItemId.current(), _urlPicture); //ipfs or pinata address
+
             emit cardMinted(
                 card.id,
                 card.owner,
@@ -105,6 +108,16 @@ contract Cards is ERC721URIStorage, ERC721Enumerable, Ownable {
         // tokenOfOwnerByIndex(owner, index);
         // tokenByIndex(index);
     }
+
+    // function mint(string memory tokenURI) public onlyOwner returns (uint256) {
+    // _tokenIds.increment();
+
+    // uint256 newItemId = _tokenIds.current();
+    // _mint(owner(), newItemId);
+    // _setTokenURI(newItemId, tokenURI);
+
+    //     return newItemId;
+    // }
 
     //owner of the contract retrieving all of its fee's
     function retrieveFunds() external {

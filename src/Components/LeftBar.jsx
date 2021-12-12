@@ -251,7 +251,6 @@ const clubsChart = (active) => {
     return (
       <>
         {teams_badges_b.map((item, key) => {
-          console.log(item.ticker);
           return (
             <Link href={`/clubs/${item.ticker.toLowerCase()}`} key={key}>
               <a
