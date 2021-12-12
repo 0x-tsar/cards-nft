@@ -127,22 +127,22 @@ contract Cards is ERC721URIStorage, ERC721Enumerable, Ownable {
     }
 
     event cardMinted(
+        Counters.Counter indexed id,
+        address indexed owner,
+        uint256 indexed timestamp,
         string title,
-        Counters.Counter id,
-        address owner,
         uint256 price,
         string description,
         string urlPicture,
-        uint256 timestamp,
         uint256 totalAmount,
         address createdBy
     );
 
     event cardTransfered(
-        Counters.Counter id,
-        address from,
+        Counters.Counter indexed id,
+        address indexed from,
         address to,
-        uint256 timestamp
+        uint256 indexed timestamp
     );
 
     struct Card {
@@ -187,7 +187,7 @@ contract Cards is ERC721URIStorage, ERC721Enumerable, Ownable {
         delete marketCards[address(this)][tokenId];
 
         emit cardTransfered(
-            tokenId,
+            Counters.Counter(tokenId),
             address(this),
             msg.sender,
             block.timestamp
