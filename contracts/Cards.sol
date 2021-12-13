@@ -245,8 +245,9 @@ contract Cards is ERC721URIStorage, ERC721Enumerable, Ownable {
     }
 
     function _baseURI() internal pure override returns (string memory) {
-        // return "https://foo.com/token/";
         return "";
+        // return "https://foo.com/token/";
+        // return "https://ipfs.io/ipfs/";
     }
 
     // function calculateFeeCreator(uint256 amount)
