@@ -151,12 +151,14 @@ const Card = ({ card, changeVis, which }) => {
   }
 
   async function getNfts() {
-    // let numberOfNfts = (await myInfos.cards.totalSupply()).toNumber();
-    let collectionSymbol = await myInfos.card;
-    console.log(nft);
+    let numberOfNfts = await myInfos.cards.methods.totalSupply().call();
 
-    // let tempArray = [];
-    // let baseUrl = "";
+    // await myInfos.cards.methods.symbol().call()
+    // let collectionSymbol = await myInfos.cards.methods.symbol().call();
+    console.log(numberOfNfts);
+
+    let tempArray = [];
+    let baseUrl = "";
 
     // for (let i = 1; i <= numberOfNfts; i++) {
     //   // if (i == 1) {
