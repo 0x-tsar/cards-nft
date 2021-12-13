@@ -87,7 +87,7 @@ const Market = ({ changeVis }) => {
 
   marketCards.sort(() => 0.5 - Math.random());
 
-  console.log(nfts);
+  // console.log(nfts[0]);
 
   return (
     <Container>
@@ -98,7 +98,7 @@ const Market = ({ changeVis }) => {
               changeVis={changeVis}
               card={item}
               which={"market"}
-              // nft={nft[0]}
+              NFT={nfts[key]}
             ></Card>
           </div>
         );
