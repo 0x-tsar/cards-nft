@@ -2,6 +2,7 @@ import React, { useRef, useContext, useEffect, useState } from "react";
 import styled from "styled-components";
 import Card from "../Components/Card";
 import { AuthContext } from "../providers/context";
+import axios from "axios";
 
 import Router from "next/router";
 
@@ -38,16 +39,46 @@ const Market = ({ changeVis }) => {
     setCurrentTab,
   } = useContext(AuthContext);
 
+  let initialNfts = [
+    {
+      name: "",
+      symbol: "",
+      image: "https://via.placeholder.com/150",
+    },
+  ];
+
   const [state, setState] = useState([]);
+  const [nfts, setNfts] = useState(initialNfts);
 
   // useEffect(() => {
   //   Router.push("/searcher");
   // }, [changed]);
 
   useEffect(() => {
+    async function getMetadataFromIpfs(tokenURI) {
+      let metadata = await axios.get(tokenURI);
+      return metadata.data;
+    }
+
     const done = async () => {
       try {
-        console.log(await myInfos.cards);
+        // console.log(await myInfos.cards);
+        // console.log(myInfos);
+
+        let numberOfNfts = await myInfos.cards.methods.totalSupply().call();
+        console.log(numberOfNfts);
+
+        let tempArray = [];
+        let baseUrl = "";
+
+        for (let i = 0; i < numberOfNfts; i++) {
+          let tokenURI = await myInfos.cards.methods.tokenURI(i).call();
+          console.log(tokenURI);
+          let metadata = await getMetadataFromIpfs(tokenURI);
+          tempArray.push(metadata);
+        }
+        setNfts(tempArray);
+        // console.log(tempArray);
 
         // setState(myInfos.)
       } catch (error) {}
