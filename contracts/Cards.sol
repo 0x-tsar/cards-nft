@@ -71,6 +71,7 @@ contract Cards is ERC721URIStorage, ERC721Enumerable, Ownable {
         );
 
         for (uint256 i = 0; i < _totalAmount; i++) {
+            //
             Card memory card = Card({
                 title: _title,
                 id: nextItemId,
@@ -84,10 +85,10 @@ contract Cards is ERC721URIStorage, ERC721Enumerable, Ownable {
                 totalAmount: _totalAmount
             });
 
-            nextItemId.increment();
             _mint(address(this), nextItemId.current());
             marketCards[address(this)][nextItemId.current()] = card;
             _setTokenURI(nextItemId.current(), _urlPicture);
+            nextItemId.increment();
 
             //      _tokenIds.increment();
 
