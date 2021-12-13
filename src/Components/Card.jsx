@@ -140,30 +140,28 @@ const Card = ({ card, changeVis, which }) => {
       // const address = await connect();
       // if (address) {
       // console.log(myInfos);
-      getNfts(myInfos.account);
+      // getNfts(myInfos.account);
       // }
     })();
   }, []);
 
-  async function getMetadataFromIpfs(tokenURI) {
-    let metadata = await axios.get(tokenURI);
-    return metadata.data;
-  }
+  // async function getMetadataFromIpfs(tokenURI) {
+  //   let metadata = await axios.get(tokenURI);
+  //   return metadata.data;
+  // }
 
   async function getNfts() {
-    let numberOfNfts = await myInfos.cards.methods.totalSupply().call();
+    // let numberOfNfts = await myInfos.cards.methods.totalSupply().call();
     // await myInfos.cards.methods.symbol().call()
     // let collectionSymbol = await myInfos.cards.methods.symbol().call();
-    console.log(numberOfNfts);
-
-    let tempArray = [];
-    let baseUrl = "";
-
+    // console.log(numberOfNfts);
+    // let tempArray = [];
+    // let baseUrl = "";
     // for (let i = 1; i <= numberOfNfts; i++) {
     // if (i == 1) {
     // let tokenURI = await nftCollection.tokenURI(i);
-    let tokenURI = await myInfos.cards.methods.tokenURI(1).call();
-    console.log(tokenURI);
+    // let tokenURI = await myInfos.cards.methods.tokenURI(0).call();
+    // console.log(tokenURI);
     //
     // let metadata = await getMetadataFromIpfs(tokenURI);
     // tempArray.push(metadata);
@@ -172,15 +170,15 @@ const Card = ({ card, changeVis, which }) => {
     //   console.log(tempArray);
   }
 
-  const getMetadata = async () => {
-    // console.log(metadata);
-    const data = await axios.get(
-      "https://ipfs.io/ipfs/QmRZTmxsdUjSHJKqidiBn4hUT4Wf9dbndnKZmRsimB8sLX/luciano.json"
-    );
-    // console.log(data.data.image);
-    // console.log(data.data);
-    return data.data.image;
-  };
+  // const getMetadata = async () => {
+  //   // console.log(metadata);
+  //   const data = await axios.get(
+  //     "https://ipfs.io/ipfs/QmRZTmxsdUjSHJKqidiBn4hUT4Wf9dbndnKZmRsimB8sLX/luciano.json"
+  //   );
+  //   // console.log(data.data.image);
+  //   // console.log(data.data);
+  //   return data.data.image;
+  // };
 
   return (
     <Container>
