@@ -152,7 +152,6 @@ const Card = ({ card, changeVis, which }) => {
 
   async function getNfts() {
     let numberOfNfts = await myInfos.cards.methods.totalSupply().call();
-
     // await myInfos.cards.methods.symbol().call()
     // let collectionSymbol = await myInfos.cards.methods.symbol().call();
     console.log(numberOfNfts);
@@ -160,26 +159,17 @@ const Card = ({ card, changeVis, which }) => {
     let tempArray = [];
     let baseUrl = "";
 
-    // for (let i = 1; i <= numberOfNfts; i++) {
-    //   // if (i == 1) {
-    //   let tokenURI = await nftCollection.tokenURI(i);
-    //   console.log(tokenURI);
-    //   // tokenURI = tokenURI.slice(0, 21);
-    //   // tokenURI = tokenURI.slice(21, tokenURI.length);
-    //   let metadata = await getMetadataFromIpfs(tokenURI);
-    //   metadata.symbol = collectionSymbol;
-    //   tempArray.push(metadata);
-    //   // } else {
-    //   //   // let tokenURI = tokenURI.slice(21, tokenURI.length);
-    //   //   let tokenURI = await nftCollection.tokenURI(i);
-    //   //   console.log(tokenURI);
-    //   //   let metadata = await getMetadataFromIpfs(tokenURI);
-    //   //   metadata.symbol = collectionSymbol;
-    //   //   tempArray.push(metadata);
-    //   // }
-    // }
-    // setNfts(tempArray);
-    // console.log(tempArray);
+    for (let i = 0; i <= numberOfNfts; i++) {
+      // if (i == 1) {
+      // let tokenURI = await nftCollection.tokenURI(i);
+      let tokenURI = await myInfos.cards.methods.tokenURI(i).call();
+      console.log(tokenURI);
+      //
+      // let metadata = await getMetadataFromIpfs(tokenURI);
+      // tempArray.push(metadata);
+    }
+    setNfts(tempArray);
+    console.log(tempArray);
   }
 
   const getMetadata = async () => {

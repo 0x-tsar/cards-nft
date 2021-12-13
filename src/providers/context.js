@@ -29,6 +29,7 @@ export const AuthProvider = (props) => {
 
       const account = await web3.currentProvider.selectedAddress;
       const balanceEther = await web3.eth.getBalance(account);
+
       setMyInfos({
         account: account,
         balanceEther: balanceEther,
