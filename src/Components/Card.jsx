@@ -164,8 +164,8 @@ const Card = ({ card, changeVis, which }) => {
       let metadata = await getMetadataFromIpfs(tokenURI);
       tempArray.push(metadata);
     }
-    //   setNfts(tempArray);
-    //   console.log(tempArray);
+    setNfts(tempArray);
+    console.log(tempArray);
   }
 
   // const getMetadata = async () => {
