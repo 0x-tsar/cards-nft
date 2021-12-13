@@ -91,17 +91,22 @@ const Market = ({ changeVis }) => {
 
   console.log(nfts[0]);
   console.log(nfts[4]);
+
   return (
     <Container>
       {marketCards.map((item, key) => {
         return (
           <div key={key}>
-            {/* <Card
-              changeVis={changeVis}
-              card={item}
-              which={"market"}
-              NFT={nfts[key]}
-            ></Card> */}
+            {nfts.length > 2 ? (
+              <Card
+                changeVis={changeVis}
+                card={item}
+                which={"market"}
+                NFT={nfts[key]}
+              ></Card>
+            ) : (
+              <div></div>
+            )}
           </div>
         );
       })}
