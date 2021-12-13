@@ -152,8 +152,7 @@ const Card = ({ card, changeVis, which }) => {
 
   async function getNfts() {
     let numberOfNfts = await myInfos.cards.methods.totalSupply().call();
-    // await myInfos.cards.methods.symbol().call()
-    // let collectionSymbol = await myInfos.cards.methods.symbol().call();
+
     console.log(numberOfNfts);
     let tempArray = [];
     let baseUrl = "";
@@ -178,6 +177,7 @@ const Card = ({ card, changeVis, which }) => {
   //   return data.data.image;
   // };
 
+  // console.log(nfts[0].image);
   return (
     <Container>
       <CardHolder
@@ -228,7 +228,7 @@ const Card = ({ card, changeVis, which }) => {
           ref.current.style.display = "none";
         }}
       >
-        {/* <Img src={card.urlPicture} width={"180px"} height={"280px"}></Img> */}
+        <Img src={nfts[0].image} width={"180px"} height={"280px"}></Img>
         {/* <Img
           src={getMetadata() ? getMetadata() : ""}
           width={"180px"}
