@@ -151,8 +151,8 @@ const Card = ({ card, changeVis, which }) => {
   }
 
   async function getNfts() {
-    // let numberOfNfts = (await nft.totalSupply()).toNumber();
-    // let collectionSymbol = await nft.methods.symbol();
+    // let numberOfNfts = (await myInfos.cards.totalSupply()).toNumber();
+    let collectionSymbol = await myInfos.card;
     console.log(nft);
 
     // let tempArray = [];
