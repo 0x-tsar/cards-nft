@@ -67,7 +67,7 @@ module.exports = async () => {
       "Description One",
       "spfc",
       "https://ipfs.io/ipfs/QmRZTmxsdUjSHJKqidiBn4hUT4Wf9dbndnKZmRsimB8sLX/luciano.json",
-      5,
+      1,
       {
         from: account,
         // value: value,

@@ -159,17 +159,17 @@ const Card = ({ card, changeVis, which }) => {
     let tempArray = [];
     let baseUrl = "";
 
-    for (let i = 0; i <= numberOfNfts; i++) {
-      // if (i == 1) {
-      // let tokenURI = await nftCollection.tokenURI(i);
-      let tokenURI = await myInfos.cards.methods.tokenURI(i).call();
-      console.log(tokenURI);
-      //
-      // let metadata = await getMetadataFromIpfs(tokenURI);
-      // tempArray.push(metadata);
-    }
-    setNfts(tempArray);
-    console.log(tempArray);
+    // for (let i = 1; i <= numberOfNfts; i++) {
+    // if (i == 1) {
+    // let tokenURI = await nftCollection.tokenURI(i);
+    let tokenURI = await myInfos.cards.methods.tokenURI(1).call();
+    console.log(tokenURI);
+    //
+    // let metadata = await getMetadataFromIpfs(tokenURI);
+    // tempArray.push(metadata);
+    //   }
+    //   setNfts(tempArray);
+    //   console.log(tempArray);
   }
 
   const getMetadata = async () => {

@@ -89,7 +89,7 @@ contract Cards is ERC721URIStorage, ERC721Enumerable, Ownable {
             nextItemId.increment();
 
             // _setTokenURI(nextItemId, _tokenURI);
-            // _setTokenURI(nextItemId.current(), _urlPicture); //ipfs or pinata address
+            _setTokenURI(nextItemId.current(), _urlPicture); //ipfs or pinata address
 
             emit cardMinted(
                 card.id,
