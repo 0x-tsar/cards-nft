@@ -61,30 +61,30 @@ module.exports = async () => {
     // console.log(await cards.methods.tokenURI);
 
     //test pinata
+    // await cards.mintCards(
+    //   "Luciano",
+    //   value,
+    //   "Description One",
+    //   "spfc",
+    //   "https://ipfs.io/ipfs/QmRZTmxsdUjSHJKqidiBn4hUT4Wf9dbndnKZmRsimB8sLX/luciano.json",
+    //   1,
+    //   {
+    //     from: account,
+    //     // value: value,
+    //   }
+    // );
+
     await cards.mintCards(
-      "Luciano",
+      "Hernanes",
       value,
-      "Description One",
-      "spfc",
-      "https://ipfs.io/ipfs/QmRZTmxsdUjSHJKqidiBn4hUT4Wf9dbndnKZmRsimB8sLX/luciano.json",
-      1,
+      "Description Two",
+      "Sao Paulo",
+      "https://ipfs.io/ipfs/QmRZTmxsdUjSHJKqidiBn4hUT4Wf9dbndnKZmRsimB8sLX/hernanes.json",
+      3,
       {
         from: account,
         // value: value,
       }
-    );
-
-    // await cards.mintCards(
-    //   "Hernanes",
-    //   value,
-    //   "Description Two",
-    //   "Sao Paulo",
-    //   "./card2.png",
-    //   4,
-    //   {
-    //     from: account2,
-    //     // value: value,
-    //   }
     // );
 
     // await cards.mintCards(
