@@ -1,4 +1,4 @@
-import React, { useRef, useContext, useEffect } from "react";
+import React, { useRef, useContext, useEffect, useState } from "react";
 import styled from "styled-components";
 import { AuthContext } from "../providers/context";
 import confetti from "canvas-confetti";
@@ -125,6 +125,61 @@ const Card = ({ card, changeVis, which }) => {
     randomInRange(0, 0);
   }
 
+  let initialNfts = [
+    {
+      name: "",
+      symbol: "",
+      image: "https://via.placeholder.com/150",
+    },
+  ];
+
+  const [nfts, setNfts] = useState(initialNfts);
+
+  useEffect(() => {
+    (async () => {
+      // const address = await connect();
+      // if (address) {
+      // console.log(myInfos);
+      getNfts(myInfos.account);
+      // }
+    })();
+  }, []);
+
+  async function getMetadataFromIpfs(tokenURI) {
+    let metadata = await axios.get(tokenURI);
+    return metadata.data;
+  }
+
+  async function getNfts() {
+    // let numberOfNfts = (await nft.totalSupply()).toNumber();
+    // let collectionSymbol = await nft.methods.symbol();
+    console.log(nft);
+
+    // let tempArray = [];
+    // let baseUrl = "";
+
+    // for (let i = 1; i <= numberOfNfts; i++) {
+    //   // if (i == 1) {
+    //   let tokenURI = await nftCollection.tokenURI(i);
+    //   console.log(tokenURI);
+    //   // tokenURI = tokenURI.slice(0, 21);
+    //   // tokenURI = tokenURI.slice(21, tokenURI.length);
+    //   let metadata = await getMetadataFromIpfs(tokenURI);
+    //   metadata.symbol = collectionSymbol;
+    //   tempArray.push(metadata);
+    //   // } else {
+    //   //   // let tokenURI = tokenURI.slice(21, tokenURI.length);
+    //   //   let tokenURI = await nftCollection.tokenURI(i);
+    //   //   console.log(tokenURI);
+    //   //   let metadata = await getMetadataFromIpfs(tokenURI);
+    //   //   metadata.symbol = collectionSymbol;
+    //   //   tempArray.push(metadata);
+    //   // }
+    // }
+    // setNfts(tempArray);
+    // console.log(tempArray);
+  }
+
   const getMetadata = async () => {
     // console.log(metadata);
     const data = await axios.get(
@@ -187,11 +242,11 @@ const Card = ({ card, changeVis, which }) => {
       >
         {/* <Img src={card.urlPicture} width={"180px"} height={"280px"}></Img> */}
         {/* <Img
-          src={""}
+          src={getMetadata() ? getMetadata() : ""}
           width={"180px"}
           height={"280px"}
         ></Img> */}
-        {console.log(getMetadata())}
+        {/* {console.log(getMetadata())} */}
         {/* //HARDCODED, CHANGE IT LATER */}
         {card.club.toLowerCase() === "spfc" ? (
           <ImgBadge src="spfc.png" />
