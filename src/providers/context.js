@@ -33,30 +33,6 @@ export const AuthProvider = (props) => {
   const done = async () => {
     const { cards, web3 } = await loadEthereum();
     if (cards && web3) {
-      getNfts(myInfos.account);
-
-      async function getMetadataFromIpfs(tokenURI) {
-        let metadata = await axios.get(tokenURI);
-        return metadata.data;
-      }
-
-      async function getNfts() {
-        let numberOfNfts = await cards.methods.totalSupply().call();
-
-        console.log(numberOfNfts);
-        let tempArray = [];
-        let baseUrl = "";
-        for (let i = 0; i < numberOfNfts; i++) {
-          let tokenURI = await cards.methods.tokenURI(i).call();
-          console.log(tokenURI);
-
-          let metadata = await getMetadataFromIpfs(tokenURI);
-          tempArray.push(metadata);
-        }
-        setNfts(tempArray);
-        // console.log(tempArray);
-      }
-
       //////////////////////
       //////////////////////
       //////////////////////

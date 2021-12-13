@@ -38,9 +38,25 @@ const Market = ({ changeVis }) => {
     setCurrentTab,
   } = useContext(AuthContext);
 
+  const [state, setState] = useState([]);
+
   // useEffect(() => {
   //   Router.push("/searcher");
   // }, [changed]);
+
+  useEffect(() => {
+    const done = async () => {
+      try {
+        console.log(await myInfos.cards);
+
+        // setState(myInfos.)
+      } catch (error) {}
+    };
+
+    done();
+
+    //
+  }, [myInfos]);
 
   marketCards.sort(() => 0.5 - Math.random());
 

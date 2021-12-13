@@ -125,8 +125,8 @@ const Card = ({ card, changeVis, which, myInfos: any }) => {
     randomInRange(0, 0);
   }
 
-  console.log("----");
-  console.log(myInfos);
+  // console.log("----");
+  // console.log(myInfos.nfts[0].image);
 
   return (
     <Container>
@@ -178,7 +178,7 @@ const Card = ({ card, changeVis, which, myInfos: any }) => {
           ref.current.style.display = "none";
         }}
       >
-        <Img src={card.image} width={"180px"} height={"280px"}></Img>
+        <Img src={myInfos.nfts[0].image} width={"180px"} height={"280px"}></Img>
         {/* <Img
           src={getMetadata() ? getMetadata() : ""}
           width={"180px"}
