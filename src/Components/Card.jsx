@@ -1,4 +1,4 @@
-import React, { useRef, useContext } from "react";
+import React, { useRef, useContext, useEffect } from "react";
 import styled from "styled-components";
 import { AuthContext } from "../providers/context";
 import confetti from "canvas-confetti";
@@ -125,9 +125,13 @@ const Card = ({ card, changeVis, which }) => {
     randomInRange(0, 0);
   }
 
-  const getMetadata = async (metadata) => {
-    const data = axios.get(metadata);
-    console.log(data.data);
+  const getMetadata = async () => {
+    // console.log(metadata);
+    const data = await axios.get(
+      "https://ipfs.io/ipfs/QmRZTmxsdUjSHJKqidiBn4hUT4Wf9dbndnKZmRsimB8sLX/luciano.json"
+    );
+    // console.log(data.data.image);
+    // console.log(data.data);
     return data.data.image;
   };
 
@@ -182,7 +186,12 @@ const Card = ({ card, changeVis, which }) => {
         }}
       >
         {/* <Img src={card.urlPicture} width={"180px"} height={"280px"}></Img> */}
-        <Img src={getMetadata(card)} width={"180px"} height={"280px"}></Img>
+        {/* <Img
+          src={""}
+          width={"180px"}
+          height={"280px"}
+        ></Img> */}
+        {console.log(getMetadata())}
         {/* //HARDCODED, CHANGE IT LATER */}
         {card.club.toLowerCase() === "spfc" ? (
           <ImgBadge src="spfc.png" />
