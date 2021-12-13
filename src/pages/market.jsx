@@ -38,12 +38,6 @@ const Market = ({ changeVis }) => {
     setCurrentTab,
   } = useContext(AuthContext);
 
-  useEffect(() => {
-    //   setTimeout(() => {
-    //     setChanged(false);
-    //   }, 300);
-  }, []);
-
   // useEffect(() => {
   //   Router.push("/searcher");
   // }, [changed]);
@@ -55,7 +49,12 @@ const Market = ({ changeVis }) => {
       {marketCards.map((item, key) => {
         return (
           <div key={key}>
-            <Card changeVis={changeVis} card={item} which={"market"}></Card>
+            <Card
+              changeVis={changeVis}
+              card={item}
+              which={"market"}
+              myInfos={myInfos}
+            ></Card>
           </div>
         );
       })}

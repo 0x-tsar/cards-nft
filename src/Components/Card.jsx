@@ -75,7 +75,7 @@ export const ImgBadge = styled.img`
   }
 `;
 
-const Card = ({ card, changeVis, which }) => {
+const Card = ({ card, changeVis, which, myInfos: any }) => {
   const ref = useRef();
 
   const {
@@ -124,6 +124,9 @@ const Card = ({ card, changeVis, which }) => {
 
     randomInRange(0, 0);
   }
+
+  console.log("----");
+  console.log(myInfos);
 
   return (
     <Container>
