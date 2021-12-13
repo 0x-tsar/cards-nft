@@ -62,9 +62,6 @@ const Market = ({ changeVis }) => {
 
     const done = async () => {
       try {
-        // console.log(await myInfos.cards);
-        // console.log(myInfos);
-
         let numberOfNfts = await myInfos.cards.methods.totalSupply().call();
         console.log(numberOfNfts);
 
@@ -79,7 +76,6 @@ const Market = ({ changeVis }) => {
         }
         setNfts(tempArray);
         // console.log(tempArray);
-
         // setState(myInfos.)
       } catch (error) {}
     };
@@ -91,6 +87,8 @@ const Market = ({ changeVis }) => {
 
   marketCards.sort(() => 0.5 - Math.random());
 
+  console.log(nfts);
+
   return (
     <Container>
       {marketCards.map((item, key) => {
@@ -100,7 +98,7 @@ const Market = ({ changeVis }) => {
               changeVis={changeVis}
               card={item}
               which={"market"}
-              myInfos={myInfos}
+              // nft={nft[0]}
             ></Card>
           </div>
         );

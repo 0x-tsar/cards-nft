@@ -75,7 +75,7 @@ export const ImgBadge = styled.img`
   }
 `;
 
-const Card = ({ card, changeVis, which, myInfos: any }) => {
+const Card = ({ card, changeVis, which, NFT }) => {
   const ref = useRef();
 
   const {
@@ -126,7 +126,7 @@ const Card = ({ card, changeVis, which, myInfos: any }) => {
   }
 
   // console.log("----");
-  // console.log(myInfos.nfts[0].image);
+  // console.log(NFT);
 
   return (
     <Container>
