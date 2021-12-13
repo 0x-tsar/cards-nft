@@ -125,59 +125,6 @@ const Card = ({ card, changeVis, which }) => {
     randomInRange(0, 0);
   }
 
-  let initialNfts = [
-    {
-      name: "",
-      symbol: "",
-      image: "https://via.placeholder.com/150",
-    },
-  ];
-
-  const [nfts, setNfts] = useState(initialNfts);
-
-  useEffect(() => {
-    (async () => {
-      // const address = await connect();
-      // if (address) {
-      // console.log(myInfos);
-      getNfts(myInfos.account);
-      // }
-    })();
-  }, []);
-
-  async function getMetadataFromIpfs(tokenURI) {
-    let metadata = await axios.get(tokenURI);
-    return metadata.data;
-  }
-
-  async function getNfts() {
-    let numberOfNfts = await myInfos.cards.methods.totalSupply().call();
-
-    console.log(numberOfNfts);
-    let tempArray = [];
-    let baseUrl = "";
-    for (let i = 0; i < numberOfNfts; i++) {
-      let tokenURI = await myInfos.cards.methods.tokenURI(0).call();
-      console.log(tokenURI);
-
-      let metadata = await getMetadataFromIpfs(tokenURI);
-      tempArray.push(metadata);
-    }
-    setNfts(tempArray);
-    console.log(tempArray);
-  }
-
-  // const getMetadata = async () => {
-  //   // console.log(metadata);
-  //   const data = await axios.get(
-  //     "https://ipfs.io/ipfs/QmRZTmxsdUjSHJKqidiBn4hUT4Wf9dbndnKZmRsimB8sLX/luciano.json"
-  //   );
-  //   // console.log(data.data.image);
-  //   // console.log(data.data);
-  //   return data.data.image;
-  // };
-
-  // console.log(nfts[0].image);
   return (
     <Container>
       <CardHolder
@@ -228,7 +175,7 @@ const Card = ({ card, changeVis, which }) => {
           ref.current.style.display = "none";
         }}
       >
-        <Img src={nfts[0].image} width={"180px"} height={"280px"}></Img>
+        <Img src={card.image} width={"180px"} height={"280px"}></Img>
         {/* <Img
           src={getMetadata() ? getMetadata() : ""}
           width={"180px"}

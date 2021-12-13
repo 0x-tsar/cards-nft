@@ -85,7 +85,7 @@ module.exports = async () => {
         from: account,
         // value: value,
       }
-    // );
+    );
 
     // await cards.mintCards(
     //   "Reinaldo",

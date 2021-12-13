@@ -1,4 +1,4 @@
-import React, { useRef, useContext, useEffect } from "react";
+import React, { useRef, useContext, useEffect, useState } from "react";
 import styled from "styled-components";
 import Card from "../Components/Card";
 import { AuthContext } from "../providers/context";
@@ -38,11 +38,11 @@ const Market = ({ changeVis }) => {
     setCurrentTab,
   } = useContext(AuthContext);
 
-  // useEffect(() => {
-  //   setTimeout(() => {
-  //     setChanged(false);
-  //   }, 300);
-  // }, []);
+  useEffect(() => {
+    //   setTimeout(() => {
+    //     setChanged(false);
+    //   }, 300);
+  }, []);
 
   // useEffect(() => {
   //   Router.push("/searcher");
