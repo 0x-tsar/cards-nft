@@ -148,6 +148,10 @@ const Card = ({ card, changeVis, which, NFT }) => {
             //   origin: { y: 0.5, y: 1.2 },
             // });
 
+            // console.log(card.id.toString());
+            // console.log(card.price);
+            // console.log(account);
+
             await myInfos.cards.methods
               .buyCardFromMarket(card.id)
               .send({ from: account, value: card.price })
@@ -162,6 +166,8 @@ const Card = ({ card, changeVis, which, NFT }) => {
                 console.log("Not accepted by the user");
                 // changeVis("none", "REJECTED");
               });
+
+            //
           } else {
           }
 
