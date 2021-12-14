@@ -164,6 +164,8 @@ const Card = ({ card, changeVis, which, NFT }) => {
               });
           } else {
           }
+
+          //onclick end
         }}
         onMouseMove={(e) => {
           ref.current.style.display = "flex";
