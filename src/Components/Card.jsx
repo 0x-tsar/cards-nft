@@ -153,7 +153,7 @@ const Card = ({ card, changeVis, which, NFT }) => {
             // console.log(account);
 
             await myInfos.cards.methods
-              .buyCardFromMarket(card.id)
+              .buyCardFromMarket(card.id.toString())
               .send({ from: account, value: card.price })
               .then((error, result) => {
                 // changeVis("none", "MESSAGE HERE");
