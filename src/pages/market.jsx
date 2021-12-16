@@ -89,9 +89,9 @@ const Market = ({ changeVis }) => {
 
   // console.log(nfts[0]);
 
-  console.log(nfts[0]);
-  console.log(nfts[4]);
-  //
+  // console.log(nfts[0]);
+  // console.log(nfts[4]);
+
   return (
     <Container>
       {marketCards.map((item, key) => {
