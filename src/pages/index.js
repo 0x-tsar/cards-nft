@@ -4,6 +4,7 @@ import styled from "styled-components";
 import { useContext, useEffect, useState } from "react";
 import { AuthContext } from "../providers/context";
 import Card from "../Components/Card";
+import axios from "axios";
 
 // import Router from "next/router";
 
@@ -71,9 +72,14 @@ export default function Home({ changeVis }) {
           console.log(tokenURI);
           let metadata = await getMetadataFromIpfs(tokenURI);
           tempArray.push(metadata);
+          console.log(metadata);
         }
+        // console.log(`temp`);
+        // console.log(tempArray);
         setNfts(tempArray);
-      } catch (error) {}
+      } catch (error) {
+        console.error(error);
+      }
     };
 
     done();
