@@ -87,11 +87,6 @@ const Market = ({ changeVis }) => {
 
   marketCards.sort(() => 0.5 - Math.random());
 
-  // console.log(nfts[0]);
-
-  console.log(nfts[0]);
-  console.log(nfts[4]);
-
   return (
     <Container>
       {marketCards.map((item, key) => {

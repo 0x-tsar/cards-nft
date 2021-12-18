@@ -1,7 +1,7 @@
 import Head from "next/head";
 import styles from "../../styles/Home.module.css";
 import styled from "styled-components";
-import { useContext, useEffect } from "react";
+import { useContext, useEffect, useState } from "react";
 import { AuthContext } from "../providers/context";
 import Card from "../Components/Card";
 
@@ -41,12 +41,57 @@ export default function Home({ changeVis }) {
     setWhichTab,
   } = useContext(AuthContext);
 
+  let initialNfts = [
+    {
+      name: "",
+      symbol: "",
+      image: "https://via.placeholder.com/150",
+    },
+  ];
+
+  const [state, setState] = useState([]);
+  const [nfts, setNfts] = useState(initialNfts);
+
+  useEffect(() => {
+    async function getMetadataFromIpfs(tokenURI) {
+      let metadata = await axios.get(tokenURI);
+      return metadata.data;
+    }
+
+    const done = async () => {
+      try {
+        let numberOfNfts = await myInfos.cards.methods.totalSupply().call();
+        console.log(numberOfNfts);
+
+        let tempArray = [];
+        let baseUrl = "";
+
+        for (let i = 0; i < numberOfNfts; i++) {
+          let tokenURI = await myInfos.cards.methods.tokenURI(i).call();
+          console.log(tokenURI);
+          let metadata = await getMetadataFromIpfs(tokenURI);
+          tempArray.push(metadata);
+        }
+        setNfts(tempArray);
+      } catch (error) {}
+    };
+
+    done();
+
+    //
+  }, [myInfos]);
+
   return (
     <Container>
       {myCards.map((item, key) => {
         return (
           <div key={key}>
-            <Card card={item} changeVis={changeVis} which={"home"}></Card>
+            <Card
+              card={item}
+              changeVis={changeVis}
+              which={"home"}
+              NFT={nfts[key]}
+            ></Card>
           </div>
         );
       })}
