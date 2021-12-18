@@ -97,14 +97,12 @@ const Searcher = ({ changedVis }) => {
     const done = async () => {
       try {
         let numberOfNfts = await myInfos.cards.methods.totalSupply().call();
-        console.log(numberOfNfts);
 
         let tempArray = [];
         let baseUrl = "";
 
         for (let i = 0; i < numberOfNfts; i++) {
           let tokenURI = await myInfos.cards.methods.tokenURI(i).call();
-          console.log(tokenURI);
           let metadata = await getMetadataFromIpfs(tokenURI);
           tempArray.push(metadata);
         }
@@ -131,12 +129,11 @@ const Searcher = ({ changedVis }) => {
     done();
   }, []);
 
-  console.log("nfts");
-  console.log(nfts);
   return (
     <Container>
       {filtered.map((item, key) => {
         console.log("----");
+        console.log(item);
         console.log(nfts[key]);
         return (
           <Card

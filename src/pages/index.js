@@ -62,20 +62,17 @@ export default function Home({ changeVis }) {
     const done = async () => {
       try {
         let numberOfNfts = await myInfos.cards.methods.totalSupply().call();
-        console.log(numberOfNfts);
 
         let tempArray = [];
         let baseUrl = "";
 
         for (let i = 0; i < numberOfNfts; i++) {
           let tokenURI = await myInfos.cards.methods.tokenURI(i).call();
-          console.log(tokenURI);
+
           let metadata = await getMetadataFromIpfs(tokenURI);
           tempArray.push(metadata);
-          console.log(metadata);
         }
-        // console.log(`temp`);
-        // console.log(tempArray);
+
         setNfts(tempArray);
       } catch (error) {
         console.error(error);
