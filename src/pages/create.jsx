@@ -170,7 +170,7 @@ const Create = () => {
             placeholder="Card Name"
           />
           <small id="cardName" className="form-text text-muted">
-            Type the Card's Title
+            {`Type the Card's Title`}
           </small>
         </div>
 
@@ -212,7 +212,7 @@ const Create = () => {
             placeholder="Card Club"
           />
           <small id="cardClub" className="form-text text-muted">
-            Club's name
+            {`Club's name`}
           </small>
         </div>
 
