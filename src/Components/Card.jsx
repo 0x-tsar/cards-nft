@@ -11,12 +11,9 @@ export const CardHolder = styled.div`
   width: 180px;
   height: 280px;
   background-color: #000000;
-
   margin: 10px;
-
   padding: 0;
   /* max-height: min-content; */
-
   border-radius: 10px;
   /* position: relative; */
 `;
@@ -41,14 +38,8 @@ export const LittleWindow = styled.div`
 `;
 
 export const Img = styled.img`
-  /* width: auto;
-  height: auto; */
   width: ${(props) => props.width};
   height: ${(props) => props.height};
-  /* 280px; */
-  /* 180px; */
-  /* 270 */
-  /* 260 */
   transform: scale(1);
   transition-duration: 5s;
 
@@ -65,7 +56,6 @@ export const ImgBadge = styled.img`
   transform: scale(1);
   transition-duration: 1s;
   margin-top: -30px;
-  /* margin-left: 20px; */
   margin-right: -15px;
   float: right;
 
@@ -90,15 +80,14 @@ const Card = ({ card, changeVis, which, NFT }) => {
   } = useContext(AuthContext);
 
   function confetis() {
-    var duration = 1 * 300;
-    var animationEnd = Date.now() + duration;
-    var skew = 1;
+    let duration = 1 * 300;
+    let animationEnd = Date.now() + duration;
+    let skew = 1;
 
     function randomInRange(min, max) {
-      var end = Date.now() + 1 * 300;
+      let end = Date.now() + 1 * 300;
 
-      // go Buckeyes!
-      var colors = ["#00bb6d", "#ffffff"];
+      let colors = ["#00bb6d", "#ffffff"];
 
       (function frame() {
         confetti({

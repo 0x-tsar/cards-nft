@@ -5,7 +5,6 @@ import { useContext, useEffect, useState } from "react";
 import { AuthContext } from "../providers/context";
 import Card from "../Components/Card";
 import axios from "axios";
-
 // import Router from "next/router";
 
 export const Container = styled.div`

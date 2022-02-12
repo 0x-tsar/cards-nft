@@ -34,11 +34,14 @@ export const AuthProvider = (props) => {
     const { cards, web3 } = await loadEthereum();
     if (cards && web3) {
       //////////////////////
-      //////////////////////
-      //////////////////////
       // reading users items
+      let account;
 
-      const account = await web3.currentProvider.selectedAddress;
+      account = await web3.currentProvider.selectedAddress;
+      if (!account) {
+        // Request account access if needed
+        account = await window.ethereum.send("eth_requestAccounts");
+      }
       const balanceEther = await web3.eth.getBalance(account);
 
       setMyInfos({

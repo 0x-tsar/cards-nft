@@ -10,16 +10,11 @@ import { AuthContext, AuthProvider } from "../providers/context";
 import { useState, useEffect, useContext } from "react";
 
 export const Container = styled.div`
-  /* background-color: rgb(230, 230, 230); */
   background-color: #1f262f;
-  /* background-color: rgb(26, 33, 42); */
-
   display: grid;
   grid-template-areas:
     "header header"
     "leftbar main";
-
-  /* overflow: hidden; */
 
   grid-column-gap: 1px;
   grid-row-gap: 1px;
@@ -66,8 +61,6 @@ export const Load = styled.div`
   align-items: center;
   color: white;
 
-  /* font-size: 50px; */
-  /* font-size: 100px; */
   font-family: monospace;
   flex-wrap: wrap;
   word-wrap: break-word;
@@ -101,19 +94,6 @@ function MyApp({ Component, pageProps }) {
           href="https://fonts.googleapis.com/css2?family=Kanit:ital@0;1&display=swap"
           rel="stylesheet"
         />
-
-        {/* <link
-          rel="stylesheet"
-          href="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/css/bootstrap.min.css"
-          integrity="sha384-Gn5384xqQ1aoWXA+058RXPxPg6fy4IWvTNh0E263XmFcJlSAwiGgFAW/dAiS6JXm"
-          crossOrigin="anonymous"
-        /> */}
-        {/* bootstrap */}
-
-        {/* <link
-          href="https://fonts.googleapis.com/css2?family=Kanit:ital@0;1&display=swap"
-          rel="stylesheet"
-        /> */}
       </Head>
 
       <Container>
