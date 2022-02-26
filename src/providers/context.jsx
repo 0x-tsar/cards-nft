@@ -1,5 +1,4 @@
 import React, { createContext, useEffect, useState } from "react";
-import axios from "axios";
 import loadEthereum from "../ethereum";
 
 export const AuthContext = createContext({});
@@ -60,13 +59,12 @@ export const AuthProvider = (props) => {
           .call();
         const token = await cards.methods.tokenByIndex(tokenId).call();
         const item = await cards.methods.myCards(account, token).call();
-        // console.log(item);
 
         setMyCards((myCards) => [...myCards, item]);
       }
 
       const balance = await cards.methods.balanceOf(cards._address).call();
-      // console.log(balance);
+
       for (let i = 0; i < balance; i++) {
         const tokenId = await cards.methods
           .tokenOfOwnerByIndex(cards._address, i)

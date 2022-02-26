@@ -166,7 +166,6 @@ const Card = ({ card, changeVis, which, NFT }) => {
           ref.current.style.display = "flex";
           ref.current.style.left = `${e.pageX + 10}px`;
           ref.current.style.top = `${e.pageY + 10}px`;
-          // console.log(window.screen.width);
         }}
         onMouseLeave={(e) => {
           ref.current.style.display = "none";

@@ -4,14 +4,12 @@ import { AuthContext } from "../providers/context";
 import Router from "next/router";
 
 export const Container = styled.div`
-  /* background-color: white; */
   background-color: rgb(26, 33, 42);
 
   grid-area: header;
   display: flex;
   align-items: center;
   justify-content: space-between;
-  /* color: #1c1c1c; */
   color: white;
   border-bottom: 1px solid rgb(0, 0, 0, 0.3);
   padding: 10px;
@@ -21,12 +19,9 @@ export const Container = styled.div`
 const Header = () => {
   const { myInfos, search, setSearch, changed, setChanged } =
     useContext(AuthContext);
-  // const [searchh, setSearchh] = useState("");
 
   const handleForm = (e) => {
-    // setSearchh(e.target.value);
     setSearch(e.target.value);
-    // console.log(e.target.value);
   };
 
   const handleSubmit = (e) => {
@@ -36,16 +31,7 @@ const Header = () => {
 
     setChanged(true);
     Router.push({ pathname: "/searcher" });
-
-    // setTimeout(() => {
-    //   setChanged(false);
-    // }, 1000);
   };
-
-  // useEffect(() => {
-  //go to searcher
-  // Router.push("/searcher");
-  // }, [changed]);
 
   return (
     <Container>
